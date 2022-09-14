@@ -1,23 +1,18 @@
 import { ThemeProvider } from "styled-components";
+import SideBar from "./components/nav/SideBar";
 import GlobalStyles from "./styles/global";
-
-const theme = {
-  primary: "#1DB954",
-  font: "#FFFFFF",
-  bg: "#191414",
-};
-type ThemeType = typeof theme;
+import theme from "./styles/theme";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <main>
+      <SideBar />
+      {/* <main>
         <h1>Spotify Clone</h1>
-      </main>
+      </main> */}
     </ThemeProvider>
   );
 }
 
-export { ThemeType };
 export default App;
