@@ -1,4 +1,5 @@
 import { ThemeProvider } from "styled-components";
+import Playbar from "./components/nav/Playbar";
 import Sidebar from "./components/nav/Sidebar";
 import GlobalStyles from "./styles/global";
 import theme from "./styles/theme";
@@ -27,6 +28,7 @@ function App() {
       {/* <main>
         <h1>Spotify Clone</h1>
       </main> */}
+      <Playbar />
     </ThemeProvider>
   );
 }

@@ -41,10 +41,12 @@ export default createGlobalStyle`
         margin: 0 auto;
         height: 100%;
     }
-    
+
     button {
         color: var(--text-base);
         font-size: 1em;
         cursor: pointer;
+        background-color: transparent;
+        border: none;
     }
 `;

@@ -18,12 +18,14 @@ export default css`
     --essential-bright-accent: #1ed760;
 
     --sidebar-width: 200px;
+    --playbar-height: 46px;
 
     --radius-small: 2px;
     --radius-big: 20px;
 
+    --fs-xxs: 10px;
     --fs-xs: 12px;
-    --fs-sm: 14px;
+    --fs-sm: 13px;
     --fs-md: 16px;
     --fs-lg: 18px;
     --fs-xl: 20px;
