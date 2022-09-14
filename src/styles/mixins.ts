@@ -1,9 +1,6 @@
 import { css } from "styled-components";
 
 const mixins = {
-  clearList: css`
-    list-style: none;
-  `,
   buttonAdd: css`
     div {
       color: var(--text-press);

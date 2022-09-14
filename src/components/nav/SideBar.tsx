@@ -3,9 +3,10 @@ import { MdHomeFilled, MdSearch } from "react-icons/md";
 import { VscLibrary } from "react-icons/vsc";
 import { AiOutlinePlus, AiFillHeart } from "react-icons/ai";
 import Logo from "../../assets/logo.svg";
+import React from "react";
 
 const StyledNav = styled.nav`
-  height: 100%;
+  height: calc(100% - 2.4em);
   width: var(--sidebar-width);
   background-color: var(--background-press);
   font-size: 16px;
@@ -15,6 +16,8 @@ const StyledNav = styled.nav`
 const StyledAside = styled.aside`
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow: hidden;
   ul {
     list-style: none;
   }
@@ -69,15 +72,33 @@ const StyledAside = styled.aside`
     margin: 0.8em 0;
   }
   .playlist-list {
+    height: 500px;
+    ul {
+      height: 100%;
+      overflow: hidden;
+      overflow-y: scroll;
+    }
     li {
       ${({ theme }) => theme.mixins.opacityHover}
       font-size: var(--fs-sm);
       margin-bottom: 0.5em;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 `;
 
-const SideBar = () => {
+interface PlaylistItem {
+  id: number;
+  name: string;
+}
+
+type SidebarProps = {
+  playlists?: PlaylistItem[];
+};
+
+const Sidebar: React.FC<SidebarProps> = ({ playlists }) => {
   return (
     <StyledNav>
       <StyledAside>
@@ -122,15 +143,11 @@ const SideBar = () => {
           <hr></hr>
           <div className="playlist-list">
             <ul>
-              <li>
-                <a href="">Rock</a>
-              </li>
-              <li>
-                <a href="">Cyberpunk</a>
-              </li>
-              <li>
-                <a href="">Pop</a>
-              </li>
+              {playlists?.map((playlist) => (
+                <li key={playlist.id}>
+                  <a href={`/playlist/${playlist.id}`}>{playlist.name}</a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -139,4 +156,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default Sidebar;
