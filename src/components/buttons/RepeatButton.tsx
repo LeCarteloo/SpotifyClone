@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { css } from "styled-components";
 
 type RepeatButtonProps = {
-  repeatAmount?: number;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  repeatAmount: number;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const StyledButton = styled.button<RepeatButtonProps>`

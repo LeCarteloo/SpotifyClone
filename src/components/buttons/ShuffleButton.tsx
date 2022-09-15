@@ -3,8 +3,8 @@ import styled, { css } from "styled-components";
 import { BiShuffle } from "react-icons/bi";
 
 type ShuffleButtonProps = {
-  isClicked?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  isClicked: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 const StyledButton = styled.button<ShuffleButtonProps>`
@@ -12,7 +12,7 @@ const StyledButton = styled.button<ShuffleButtonProps>`
   ${({ isClicked }) =>
     isClicked &&
     css`
-      ${({ theme }) => theme.mixins.buttonAcitve}
+      ${({ theme }) => theme.mixins.buttonActive};
     `}
 `;
 
