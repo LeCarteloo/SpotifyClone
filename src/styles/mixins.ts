@@ -29,10 +29,13 @@ const mixins = {
   `,
   scaleHover: css`
     transform: scale(1);
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.1s ease-in-out;
     &:hover,
     &:focus-within {
       transform: scale(1.1);
+    }
+    &:active {
+      transform: scale(1);
     }
   `,
   buttonActive: css`

@@ -1,15 +1,16 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import LikeButton from "../buttons/LikeButton";
-
-import { BiSkipPrevious, BiSkipNext } from "react-icons/bi";
-import { FaPlayCircle } from "react-icons/fa";
-import { FiRepeat, FiSpeaker, FiVolume2 } from "react-icons/fi";
-import { TbMicrophone2 } from "react-icons/tb";
-import { MdQueueMusic, MdOpenInFull } from "react-icons/md";
 import ShuffleButton from "../buttons/ShuffleButton";
 import RepeatButton from "../buttons/RepeatButton";
 import ActionButton from "../buttons/ActionButton";
+
+import { BiSkipPrevious, BiSkipNext } from "react-icons/bi";
+import { FiSpeaker, FiVolume2 } from "react-icons/fi";
+import { TbMicrophone2 } from "react-icons/tb";
+import { MdQueueMusic, MdOpenInFull } from "react-icons/md";
+import Progressbar from "./Progressbar";
+import PlayButton from "../buttons/PlayButton";
 
 const StyledFooter = styled.footer`
   position: absolute;
@@ -48,6 +49,8 @@ const StyledFooter = styled.footer`
   .song-player {
     display: flex;
     flex-direction: column;
+    align-items: center;
+
     .player-buttons {
       display: flex;
       gap: 0.5em;
@@ -59,6 +62,10 @@ const Playbar = () => {
   const [liked, setLiked] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState(0);
+  const [playing, setPlaying] = useState(false);
+
+  const [currentTime, setCurrentTime] = useState(216);
+  const songTime = 284;
 
   const onLike = () => {
     setLiked(!liked);
@@ -81,7 +88,13 @@ const Playbar = () => {
 
   const onPrevSong = () => {};
 
-  const onPlay = () => {};
+  const onPlay = () => {
+    setPlaying(!playing);
+  };
+
+  const onProgressClick = (pos: number) => {
+    setCurrentTime(pos);
+  };
 
   return (
     <StyledFooter>
@@ -107,15 +120,15 @@ const Playbar = () => {
             onClick={onPrevSong}
             icon={<BiSkipPrevious size="2em" />}
           />
-          <ActionButton
-            onClick={onPlay}
-            icon={<FaPlayCircle size="1.8em" />}
-            animType={"scale"}
-          />
+          <PlayButton isPlaying={playing} onClick={onPlay} />
           <ActionButton onClick={onNextSong} icon={<BiSkipNext size="2em" />} />
           <RepeatButton repeatAmount={repeat} onClick={onRepeat} />
         </div>
-        <div className="player-time">-------</div>
+        <Progressbar
+          currentTime={currentTime}
+          songTime={songTime}
+          onClick={onProgressClick}
+        />
       </div>
       <div className="other-features">
         <button>
