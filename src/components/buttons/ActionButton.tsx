@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 type animEnum = "scale" | "opacity";
 
 interface ActionButtonProps {
-  icon: JSX.Element;
+  icon?: JSX.Element;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   animType?: animEnum;
 }
