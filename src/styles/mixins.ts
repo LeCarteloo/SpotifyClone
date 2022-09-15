@@ -27,6 +27,21 @@ const mixins = {
       opacity: 1;
     }
   `,
+  buttonActive: css`
+    color: var(--text-bright-accent);
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      border-radius: 50%;
+      background-color: var(--text-bright-accent);
+      width: 4px;
+      height: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  `,
 };
 
 export default mixins;
