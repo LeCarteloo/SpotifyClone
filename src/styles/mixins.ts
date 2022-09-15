@@ -27,6 +27,14 @@ const mixins = {
       opacity: 1;
     }
   `,
+  scaleHover: css`
+    transform: scale(1);
+    transition: transform 0.2s ease-in-out;
+    &:hover,
+    &:focus-within {
+      transform: scale(1.1);
+    }
+  `,
   buttonActive: css`
     color: var(--text-bright-accent);
     position: relative;

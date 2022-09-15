@@ -2,56 +2,138 @@ import { useState } from "react";
 import styled from "styled-components";
 import LikeButton from "../buttons/LikeButton";
 
+import { BiSkipPrevious, BiSkipNext } from "react-icons/bi";
+import { FaPlayCircle } from "react-icons/fa";
+import { FiRepeat, FiSpeaker, FiVolume2 } from "react-icons/fi";
+import { TbMicrophone2 } from "react-icons/tb";
+import { MdQueueMusic, MdOpenInFull } from "react-icons/md";
+import ShuffleButton from "../buttons/ShuffleButton";
+import RepeatButton from "../buttons/RepeatButton";
+import ActionButton from "../buttons/ActionButton";
+
 const StyledFooter = styled.footer`
   position: absolute;
   padding: 1em;
   bottom: 0;
   background-color: var(--background-elevated-base);
-  width: 100%;
+  width: calc(100% - 2em);
   height: var(--playbar-height);
   align-items: center;
 
   display: flex;
+  justify-content: space-between;
 
-  .current-song {
+  .song-current {
     display: flex;
-    align-items: center;
-    height: 100%;
-    width: 176px;
-    img {
-      margin-right: 0.5em;
+    .song-link {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: 176px;
+      color: var(--text-base);
+      text-decoration: none;
+
+      img {
+        margin-right: 0.5em;
+      }
+      h4 {
+        font-size: var(--fs-xs);
+      }
+      h5 {
+        font-size: var(--fs-xxs);
+      }
     }
-    h4 {
-      font-size: var(--fs-xs);
-    }
-    h5 {
-      font-size: var(--fs-xxs);
+  }
+
+  .song-player {
+    display: flex;
+    flex-direction: column;
+    .player-buttons {
+      display: flex;
+      gap: 0.5em;
     }
   }
 `;
 
 const Playbar = () => {
   const [liked, setLiked] = useState(false);
+  const [shuffle, setShuffle] = useState(false);
+  const [repeat, setRepeat] = useState(0);
 
   const onLike = () => {
     setLiked(!liked);
   };
 
+  const onShuffle = () => {
+    setShuffle(!shuffle);
+  };
+
+  const onRepeat = () => {
+    if (repeat >= 2) {
+      setRepeat(0);
+      return;
+    }
+
+    setRepeat(repeat + 1);
+  };
+
+  const onNextSong = () => {};
+
+  const onPrevSong = () => {};
+
+  const onPlay = () => {};
+
   return (
     <StyledFooter>
-      <div className="current-song">
-        <img
-          src="https://via.placeholder.com/50"
-          alt="Song cover"
-          width="50px"
-          height="50px"
-        />
-        <div className="current-info">
-          <h4>A Reason to Fight</h4>
-          <h5>Disturbed</h5>
-        </div>
+      <div className="song-current">
+        <a href="" className="song-link">
+          <img
+            src="https://via.placeholder.com/50"
+            alt="Song cover"
+            width="50px"
+            height="50px"
+          />
+          <div className="song-info">
+            <h4>A Reason to Fight</h4>
+            <h5>Disturbed</h5>
+          </div>
+        </a>
+        <LikeButton isLiked={liked} onClick={onLike} />
       </div>
-      <LikeButton isLiked={liked} onClick={onLike} />
+      <div className="song-player">
+        <div className="player-buttons">
+          <ShuffleButton isClicked={shuffle} onClick={onShuffle} />
+          <ActionButton
+            onClick={onPrevSong}
+            icon={<BiSkipPrevious size="2em" />}
+          />
+          <ActionButton
+            onClick={onPlay}
+            icon={<FaPlayCircle size="1.8em" />}
+            animType={"scale"}
+          />
+          <ActionButton onClick={onNextSong} icon={<BiSkipNext size="2em" />} />
+          <RepeatButton repeatAmount={repeat} onClick={onRepeat} />
+        </div>
+        <div className="player-time">-------</div>
+      </div>
+      <div className="other-features">
+        <button>
+          <TbMicrophone2 />
+        </button>
+        <button>
+          <MdQueueMusic />
+        </button>
+        <button>
+          <FiSpeaker />
+        </button>
+        <button>
+          <FiVolume2 />
+        </button>
+        <button>
+          <MdOpenInFull />
+        </button>
+      </div>
     </StyledFooter>
   );
 };
