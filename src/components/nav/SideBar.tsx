@@ -6,7 +6,7 @@ import Logo from "../../assets/logo.svg";
 import React from "react";
 
 const StyledNav = styled.nav`
-  height: calc(100% - 2.4em);
+  height: calc(100% - 3.4em - var(--playbar-height));
   width: var(--sidebar-width);
   background-color: var(--background-press);
   font-size: 16px;
@@ -71,17 +71,14 @@ const StyledAside = styled.aside`
   hr {
     margin: 0.8em 0;
   }
+
   .playlist-list {
-    height: 500px;
-    ul {
-      height: 100%;
-      overflow: hidden;
-      overflow-y: scroll;
-    }
+    width: 100%;
+    overflow: auto;
     li {
       ${({ theme }) => theme.mixins.opacityHover}
       font-size: var(--fs-sm);
-      margin-bottom: 0.5em;
+      padding-bottom: 0.5em;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -141,15 +138,15 @@ const Sidebar: React.FC<SidebarProps> = ({ playlists }) => {
             </button>
           </div>
           <hr></hr>
-          <div className="playlist-list">
-            <ul>
-              {playlists?.map((playlist) => (
-                <li key={playlist.id}>
-                  <a href={`/playlist/${playlist.id}`}>{playlist.name}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
+        </div>
+        <div className="playlist-list">
+          <ul>
+            {playlists?.map((playlist) => (
+              <li key={playlist.id}>
+                <a href={`/playlist/${playlist.id}`}>{playlist.name}</a>
+              </li>
+            ))}
+          </ul>
         </div>
       </StyledAside>
     </StyledNav>
