@@ -6,7 +6,9 @@ import Logo from "../../assets/logo.svg";
 import React from "react";
 
 const StyledNav = styled.nav`
-  height: calc(100% - 3.4em - var(--playbar-height));
+  grid-area: side-bar;
+  height: 100%;
+  /* height: calc(100% - 3.4em - var(--playbar-height)); */
   width: var(--sidebar-width);
   background-color: var(--background-press);
   font-size: 16px;

@@ -39,7 +39,7 @@ export default createGlobalStyle`
     #root {
         margin: 0 auto;
         height: 100%;
-    }
+      }
 
     button {
         color: var(--text-base);

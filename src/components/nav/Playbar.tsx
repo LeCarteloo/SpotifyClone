@@ -14,14 +14,12 @@ import { MdOpenInFull } from "react-icons/md";
 import { BsList } from "react-icons/bs";
 
 const StyledFooter = styled.footer`
-  position: absolute;
+  grid-area: play-bar;
   padding: 1em;
-  bottom: 0;
   background-color: var(--background-elevated-base);
   width: calc(100% - 2em);
   height: var(--playbar-height);
   align-items: center;
-
   display: flex;
   justify-content: space-between;
 
