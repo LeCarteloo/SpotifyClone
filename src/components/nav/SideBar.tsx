@@ -8,11 +8,14 @@ import React from "react";
 const StyledNav = styled.nav`
   grid-area: side-bar;
   height: 100%;
-  /* height: calc(100% - 3.4em - var(--playbar-height)); */
   width: var(--sidebar-width);
   background-color: var(--background-press);
   font-size: 16px;
   padding: 1.2em;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const StyledAside = styled.aside`
@@ -20,6 +23,7 @@ const StyledAside = styled.aside`
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+
   ul {
     list-style: none;
   }
@@ -51,6 +55,7 @@ const StyledAside = styled.aside`
     display: flex;
     flex-direction: column;
     gap: 0.8em;
+
     button {
       text-align: left;
       display: flex;
@@ -73,7 +78,6 @@ const StyledAside = styled.aside`
   hr {
     margin: 0.8em 0;
   }
-
   .playlist-list {
     width: 100%;
     overflow: auto;

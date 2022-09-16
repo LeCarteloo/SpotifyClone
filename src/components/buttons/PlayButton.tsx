@@ -1,9 +1,10 @@
 import { FaPlayCircle, FaPauseCircle } from "react-icons/fa";
 import styled, { css } from "styled-components";
+import { SongListType, PlaylistInterface } from "../../types/types";
 
 type PlayButtonProps = {
   isPlaying: boolean;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick: (arg: any) => void;
   isGreen?: boolean;
   size?: string;
 };

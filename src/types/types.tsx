@@ -16,3 +16,10 @@ export interface PlaylistInterface {
   playlistURL: string;
   songList: SongListType[];
 }
+
+export interface CurrentSongInterface {
+  isPlaying: boolean;
+  playlist?: PlaylistInterface;
+  song?: SongListType;
+  currDuration: number;
+}

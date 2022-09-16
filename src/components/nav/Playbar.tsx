@@ -13,6 +13,12 @@ import { TbMicrophone2 } from "react-icons/tb";
 import { MdOpenInFull } from "react-icons/md";
 import { BsList } from "react-icons/bs";
 
+import { CurrentSongInterface } from "../../types/types";
+
+type PlaybarProps = {
+  current: CurrentSongInterface;
+};
+
 const StyledFooter = styled.footer`
   grid-area: play-bar;
   padding: 1em;
@@ -68,7 +74,7 @@ const StyledFooter = styled.footer`
   }
 `;
 
-const Playbar = () => {
+const Playbar = ({ current }: PlaybarProps) => {
   const [liked, setLiked] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState(0);
@@ -115,19 +121,23 @@ const Playbar = () => {
   return (
     <StyledFooter>
       <div className="song-current">
-        <a href="" className="song-link">
-          <img
-            src="https://via.placeholder.com/50"
-            alt="Song cover"
-            width="50px"
-            height="50px"
-          />
-          <div className="song-info">
-            <h4>A Reason to Fight</h4>
-            <h5>Disturbed</h5>
-          </div>
-        </a>
-        <LikeButton isLiked={liked} onClick={onLike} />
+        {current.song && (
+          <>
+            <a href="" className="song-link">
+              <img
+                src={current.song?.songURL}
+                alt="Song cover"
+                width="50px"
+                height="50px"
+              />
+              <div className="song-info">
+                <h4>{current.song?.name}</h4>
+                <h5>{current.song?.artist}</h5>
+              </div>
+            </a>
+            <LikeButton isLiked={liked} onClick={onLike} />
+          </>
+        )}
       </div>
       <div className="song-player">
         <div className="player-buttons">

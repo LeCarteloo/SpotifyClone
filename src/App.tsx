@@ -6,6 +6,9 @@ import GlobalStyles from "./styles/global";
 import theme from "./styles/theme";
 import userPlaylists from "./data/userPlaylists.json";
 import favoritePlaylists from "./data/favoritePlaylists.json";
+import { useState } from "react";
+
+import { CurrentSongInterface, SongListType } from "./types/types";
 
 const StyledDiv = styled.div`
   height: 100%;
@@ -18,16 +21,34 @@ const StyledDiv = styled.div`
 `;
 
 function App() {
+  const [currSong, setCurrSong] = useState<CurrentSongInterface>({
+    isPlaying: false,
+    playlist: undefined,
+    song: undefined,
+    currDuration: 0,
+  });
+
+  const onPlay = (playlist: any) => {
+    setCurrSong({
+      ...currSong,
+      isPlaying: !currSong.isPlaying,
+      playlist: playlist,
+      song: playlist.songList[0],
+    });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <StyledDiv>
         <Sidebar playlists={userPlaylists} />
         <Main
+          current={currSong}
+          onPlay={onPlay}
           userPlaylists={userPlaylists}
           favoritePlaylists={favoritePlaylists}
         />
-        <Playbar />
+        <Playbar current={currSong} />
       </StyledDiv>
     </ThemeProvider>
   );

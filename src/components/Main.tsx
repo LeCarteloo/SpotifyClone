@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import Welcome from "./sections/Welcome";
-import { PlaylistInterface } from "../types/types";
+import { PlaylistInterface, CurrentSongInterface } from "../types/types";
 import PlaylistSection from "./sections/PlaylistSection";
 
 interface MainProps {
+  current: CurrentSongInterface;
   userPlaylists: PlaylistInterface[];
   favoritePlaylists: PlaylistInterface[];
+  onPlay: (arg: any) => void;
 }
 
 const StyledMain = styled.main`
@@ -16,15 +18,23 @@ const StyledMain = styled.main`
   margin: 4.5em 1.5em 0 1.5em;
 `;
 
-const Main = ({ userPlaylists, favoritePlaylists }: MainProps) => {
+const Main = ({
+  current,
+  onPlay,
+  userPlaylists,
+  favoritePlaylists,
+}: MainProps) => {
   return (
     <StyledMain>
-      <Welcome userPlaylists={userPlaylists} />
-      <PlaylistSection
+      <Welcome
+        current={current}
+        onPlay={onPlay}
+        userPlaylists={userPlaylists}
+      />
+      {/* <PlaylistSection
         title="Favorited playlists"
         playlists={favoritePlaylists}
-      />
-      <PlaylistSection title="Discover new" playlists={favoritePlaylists} />
+      /> */}
     </StyledMain>
   );
 };

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import UserPlaylist from "../playlist/UserPlaylist";
-import { PlaylistInterface } from "../../types/types";
+import { CurrentSongInterface, PlaylistInterface } from "../../types/types";
 
 interface WelcomeProps {
+  current: CurrentSongInterface;
   userPlaylists: PlaylistInterface[];
+  onPlay: (arg: any) => void;
 }
 
 const StyledSection = styled.section`
@@ -14,11 +16,16 @@ const StyledSection = styled.section`
     display: grid;
     grid-gap: 1.1em;
     grid-template-columns: 1fr 1fr 1fr;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 `;
 
-const Welcome = ({ userPlaylists }: WelcomeProps) => {
+const Welcome = ({ current, userPlaylists, onPlay }: WelcomeProps) => {
   const [msg, setMsg] = useState<String>("");
+  console.log(userPlaylists[0]);
 
   useEffect(() => {
     const today = new Date();
@@ -36,10 +43,10 @@ const Welcome = ({ userPlaylists }: WelcomeProps) => {
       <div className="user-playlists">
         {userPlaylists.map((playlist) => (
           <UserPlaylist
+            isPlaying={current.playlist?.id === playlist.id}
             key={playlist.id}
-            id={playlist.id}
-            name={playlist.name}
-            playlistURL={playlist.playlistURL}
+            playlist={playlist}
+            onPlay={onPlay}
           />
         ))}
       </div>
