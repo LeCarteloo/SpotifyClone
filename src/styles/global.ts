@@ -8,23 +8,22 @@ export default createGlobalStyle`
         margin: 0;
         padding: 0;
         @supports (scrollbar-width: thin) {
-      scrollbar-width: thin;
-      scrollbar-color: var(--background-base) var(--essential-bright-accent);
-    }
-    &::-webkit-scrollbar {
-      border-radius: 10px;
-      width: 7px;
-    }
-    &::-webkit-scrollbar-button {
-      height: 0;
-      width: 0;
-      background-color: transparent;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--essential-bright-accent);
-      border-radius: 10px;
-    }
-
+        scrollbar-width: thin;
+        scrollbar-color: var(--essential-bright-accent) transparent;
+      }
+      &::-webkit-scrollbar {
+        border-radius: 10px;
+        width: 7px;
+      }
+      &::-webkit-scrollbar-button {
+        height: 0;
+        width: 0;
+        background-color: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--essential-bright-accent);
+        border-radius: 10px;
+      }
     }
     html {
         height: 100%;
