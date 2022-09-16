@@ -4,8 +4,6 @@ import PlayButton from "../buttons/PlayButton";
 type PlaylistProps = {
   name: string;
   isPlaying: boolean;
-
-  //   artist: string;
 };
 
 type StyledProps = {

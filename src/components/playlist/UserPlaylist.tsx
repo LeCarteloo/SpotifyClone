@@ -50,7 +50,6 @@ const StyledDiv = styled.div<StyledProps>`
             transform: translateY(5px);
             opacity: 0;
           `}
-    }
   }
 
   &:hover,
@@ -64,6 +63,8 @@ const StyledDiv = styled.div<StyledProps>`
 `;
 
 const UserPlaylist = ({ isPlaying, playlist, onPlay }: UserPlaylistProps) => {
+  console.log(isPlaying);
+
   return (
     <StyledDiv isPlaying={isPlaying}>
       <img src={playlist.playlistURL} alt="Playlist cover" />

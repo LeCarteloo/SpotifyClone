@@ -24,6 +24,7 @@ const Main = ({
   userPlaylists,
   favoritePlaylists,
 }: MainProps) => {
+  console.log("MAIN");
   return (
     <StyledMain>
       <Welcome

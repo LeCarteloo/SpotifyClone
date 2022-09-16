@@ -25,7 +25,6 @@ const StyledSection = styled.section`
 
 const Welcome = ({ current, userPlaylists, onPlay }: WelcomeProps) => {
   const [msg, setMsg] = useState<String>("");
-  console.log(userPlaylists[0]);
 
   useEffect(() => {
     const today = new Date();
@@ -43,7 +42,9 @@ const Welcome = ({ current, userPlaylists, onPlay }: WelcomeProps) => {
       <div className="user-playlists">
         {userPlaylists.map((playlist) => (
           <UserPlaylist
-            isPlaying={current.playlist?.id === playlist.id}
+            isPlaying={
+              current.playlist?.id === playlist.id && current.isPlaying
+            }
             key={playlist.id}
             playlist={playlist}
             onPlay={onPlay}

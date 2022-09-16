@@ -28,12 +28,16 @@ function App() {
     currDuration: 0,
   });
 
-  const onPlay = (playlist: any) => {
+  console.log(currSong);
+
+  const onPlay = (playlist?: any) => {
+    console.log("work", playlist);
+
     setCurrSong({
       ...currSong,
       isPlaying: !currSong.isPlaying,
-      playlist: playlist,
-      song: playlist.songList[0],
+      playlist: playlist.name ? playlist : currSong.playlist,
+      song: playlist.name ? playlist.songList[0] : currSong.song,
     });
   };
 
@@ -48,7 +52,7 @@ function App() {
           userPlaylists={userPlaylists}
           favoritePlaylists={favoritePlaylists}
         />
-        <Playbar current={currSong} />
+        <Playbar current={currSong} onPlay={onPlay} />
       </StyledDiv>
     </ThemeProvider>
   );

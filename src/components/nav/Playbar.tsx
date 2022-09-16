@@ -17,6 +17,7 @@ import { CurrentSongInterface } from "../../types/types";
 
 type PlaybarProps = {
   current: CurrentSongInterface;
+  onPlay: (arg: any) => void;
 };
 
 const StyledFooter = styled.footer`
@@ -74,11 +75,10 @@ const StyledFooter = styled.footer`
   }
 `;
 
-const Playbar = ({ current }: PlaybarProps) => {
+const Playbar = ({ current, onPlay }: PlaybarProps) => {
   const [liked, setLiked] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState(0);
-  const [playing, setPlaying] = useState(false);
 
   const [currentTime, setCurrentTime] = useState(216);
   const songTime = 284;
@@ -103,10 +103,6 @@ const Playbar = ({ current }: PlaybarProps) => {
   const onNextSong = () => {};
 
   const onPrevSong = () => {};
-
-  const onPlay = () => {
-    setPlaying(!playing);
-  };
 
   const onProgressClick = (pos: number) => {
     setCurrentTime(pos);
@@ -146,7 +142,10 @@ const Playbar = ({ current }: PlaybarProps) => {
             onClick={onPrevSong}
             icon={<BiSkipPrevious size="2em" />}
           />
-          <PlayButton isPlaying={playing} onClick={onPlay} />
+          <PlayButton
+            isPlaying={current.isPlaying}
+            onClick={() => onPlay({})}
+          />
           <ActionButton onClick={onNextSong} icon={<BiSkipNext size="2em" />} />
           <RepeatButton repeatAmount={repeat} onClick={onRepeat} />
         </div>
