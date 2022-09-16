@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Rock",
+    "photoURL": "https://via.placeholder.com/200"
+  },
+  {
+    "id": 2,
+    "name": "Cyberpunk",
+    "photoURL": "https://via.placeholder.com/200"
+  },
+  {
+    "id": 3,
+    "name": "Pop",
+    "photoURL": "https://via.placeholder.com/200"
+  },
+  {
+    "id": 4,
+    "name": "Very very very long name of playlist",
+    "photoURL": "https://via.placeholder.com/200"
+  },
+  {
+    "id": 5,
+    "name": "Happy mix",
+    "photoURL": "https://via.placeholder.com/200"
+  },
+  {
+    "id": 6,
+    "name": "Moody mix",
+    "photoURL": "https://via.placeholder.com/200"
+  }
+]

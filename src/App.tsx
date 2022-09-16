@@ -5,6 +5,8 @@ import Sidebar from "./components/nav/Sidebar";
 import GlobalStyles from "./styles/global";
 import theme from "./styles/theme";
 
+import userPlaylists from "./data/userPlaylists.json";
+
 const StyledDiv = styled.div`
   height: 100%;
   display: grid;
@@ -16,32 +18,12 @@ const StyledDiv = styled.div`
 `;
 
 function App() {
-  // Sample data
-  const playlists = [
-    {
-      id: 1,
-      name: "Rock",
-    },
-    {
-      id: 2,
-      name: "Cyberpunk",
-    },
-    {
-      id: 3,
-      name: "Pop",
-    },
-    {
-      id: 4,
-      name: "Very very very long name of playlist",
-    },
-  ];
-
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <StyledDiv>
-        <Sidebar playlists={playlists} />
-        <Main />
+        <Sidebar playlists={userPlaylists} />
+        <Main userPlaylists={userPlaylists} />
         <Playbar />
       </StyledDiv>
     </ThemeProvider>
