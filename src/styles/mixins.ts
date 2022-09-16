@@ -53,6 +53,7 @@ const mixins = {
       transform: translateX(-50%);
     }
   `,
+  playlistHover: css``,
 };
 
 export default mixins;

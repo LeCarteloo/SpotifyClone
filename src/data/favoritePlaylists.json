@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Rock",
+    "name": "Mix 1",
     "playlistURL": "https://via.placeholder.com/200",
     "songList": [
       {
@@ -19,7 +19,7 @@
   },
   {
     "id": 2,
-    "name": "Cyberpunk",
+    "name": "Mix 2",
     "playlistURL": "https://via.placeholder.com/200",
     "songList": [
       {
@@ -37,7 +37,7 @@
   },
   {
     "id": 3,
-    "name": "Pop",
+    "name": "Mix 3",
     "playlistURL": "https://via.placeholder.com/200",
     "songList": [
       {
@@ -55,7 +55,7 @@
   },
   {
     "id": 4,
-    "name": "Very very very long name of playlist",
+    "name": "Favorite playlist 4",
     "playlistURL": "https://via.placeholder.com/200",
     "songList": [
       {
@@ -73,7 +73,7 @@
   },
   {
     "id": 5,
-    "name": "Happy mix",
+    "name": "Favorite playlist 5",
     "playlistURL": "https://via.placeholder.com/200",
     "songList": [
       {
@@ -91,7 +91,7 @@
   },
   {
     "id": 6,
-    "name": "Moody mix",
+    "name": "Favorite playlist 6",
     "playlistURL": "https://via.placeholder.com/200",
     "songList": [
       {

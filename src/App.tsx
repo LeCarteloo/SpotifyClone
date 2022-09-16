@@ -4,8 +4,8 @@ import Playbar from "./components/nav/Playbar";
 import Sidebar from "./components/nav/Sidebar";
 import GlobalStyles from "./styles/global";
 import theme from "./styles/theme";
-
 import userPlaylists from "./data/userPlaylists.json";
+import favoritePlaylists from "./data/favoritePlaylists.json";
 
 const StyledDiv = styled.div`
   height: 100%;
@@ -23,7 +23,10 @@ function App() {
       <GlobalStyles />
       <StyledDiv>
         <Sidebar playlists={userPlaylists} />
-        <Main userPlaylists={userPlaylists} />
+        <Main
+          userPlaylists={userPlaylists}
+          favoritePlaylists={favoritePlaylists}
+        />
         <Playbar />
       </StyledDiv>
     </ThemeProvider>

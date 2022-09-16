@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import UserPlaylist from "../playlist/UserPlaylist";
-import { UserPlaylistType } from "../../types/types";
+import { PlaylistInterface } from "../../types/types";
 
 interface WelcomeProps {
-  userPlaylists: UserPlaylistType[];
+  userPlaylists: PlaylistInterface[];
 }
 
 const StyledSection = styled.section`
@@ -39,7 +39,7 @@ const Welcome = ({ userPlaylists }: WelcomeProps) => {
             key={playlist.id}
             id={playlist.id}
             name={playlist.name}
-            photoURL={playlist.photoURL}
+            playlistURL={playlist.playlistURL}
           />
         ))}
       </div>

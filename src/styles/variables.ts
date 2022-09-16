@@ -21,6 +21,7 @@ export default css`
     --playbar-height: 46px;
 
     --radius-small: 2px;
+    --radius-md: 5px;
     --radius-big: 20px;
 
     --fs-xxs: 10px;

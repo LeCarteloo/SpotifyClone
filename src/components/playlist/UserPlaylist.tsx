@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { UserPlaylistType } from "../../types/types";
+
+type UserPlaylistProps = {
+  id: number;
+  name: string;
+  playlistURL: string;
+};
 
 const StyledDiv = styled.div`
   display: flex;
@@ -14,13 +19,16 @@ const StyledDiv = styled.div`
   }
   h3 {
     margin-left: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
-const UserPlaylist = ({ name, photoURL }: UserPlaylistType) => {
+const UserPlaylist = ({ id, name, playlistURL }: UserPlaylistProps) => {
   return (
     <StyledDiv>
-      <img src={photoURL} alt="Playlist cover" />
+      <img src={playlistURL} alt="Playlist cover" />
       <h3>{name}</h3>
     </StyledDiv>
   );
