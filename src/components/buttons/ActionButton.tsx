@@ -4,6 +4,7 @@ type animEnum = "scale" | "opacity";
 
 interface ActionButtonProps {
   icon?: JSX.Element;
+  isActive?: boolean;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   animType?: animEnum;
 }
@@ -17,15 +18,22 @@ const StyledButton = styled.button<ActionButtonProps>`
       : css`
           ${({ theme }) => theme.mixins.scaleHover}
         `}
+
+  ${({ isActive }) =>
+    isActive &&
+    css`
+      ${({ theme }) => theme.mixins.buttonActive}
+    `}
 `;
 
 const ActionButton: React.FC<ActionButtonProps> = ({
   icon,
+  isActive,
   onClick,
   animType = "opacity",
 }) => {
   return (
-    <StyledButton onClick={onClick} animType={animType}>
+    <StyledButton onClick={onClick} animType={animType} isActive={isActive}>
       {icon}
     </StyledButton>
   );

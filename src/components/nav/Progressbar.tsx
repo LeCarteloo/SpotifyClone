@@ -16,11 +16,13 @@ const StyledDiv = styled.div<ProgressProps>`
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
+  width: 100%;
+
   span {
     font-size: var(--fs-xs);
   }
   .progress-bar {
-    width: 500px;
+    width: 100%;
     height: 4px;
     border-radius: var(--radius-small);
     background-color: var(--background-highlight);
@@ -74,19 +76,6 @@ const Progressbar = ({ currentTime, songTime, onClick }: ProgressbarProps) => {
 
     onClick(newTime);
   };
-
-  //   const dragTest = (e: React.MouseEvent<HTMLDivElement>) => {
-  //     const rect = progressRef?.current?.getBoundingClientRect();
-  //     const fullWidth = rect!.width;
-  //     const xPos = Math.floor(((e.clientX - rect!.left) / fullWidth) * songTime);
-
-  //     console.log("dragTest");
-  //     setMouseMove(true);
-
-  //     if (xPos >= 0 && xPos <= songTime) {
-  //       onClick(xPos);
-  //     }
-  //   };
 
   return (
     <StyledDiv

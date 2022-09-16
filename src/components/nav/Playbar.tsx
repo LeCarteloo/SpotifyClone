@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import LikeButton from "../buttons/LikeButton";
 import ShuffleButton from "../buttons/ShuffleButton";
 import RepeatButton from "../buttons/RepeatButton";
 import ActionButton from "../buttons/ActionButton";
+import Progressbar from "./Progressbar";
+import PlayButton from "../buttons/PlayButton";
 
 import { BiSkipPrevious, BiSkipNext } from "react-icons/bi";
 import { FiSpeaker, FiVolume2 } from "react-icons/fi";
 import { TbMicrophone2 } from "react-icons/tb";
-import { MdQueueMusic, MdOpenInFull } from "react-icons/md";
-import Progressbar from "./Progressbar";
-import PlayButton from "../buttons/PlayButton";
+import { MdOpenInFull } from "react-icons/md";
+import { BsList } from "react-icons/bs";
 
 const StyledFooter = styled.footer`
   position: absolute;
@@ -26,6 +27,8 @@ const StyledFooter = styled.footer`
 
   .song-current {
     display: flex;
+    width: 100%;
+
     .song-link {
       display: flex;
       align-items: center;
@@ -50,11 +53,20 @@ const StyledFooter = styled.footer`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 
     .player-buttons {
       display: flex;
       gap: 0.5em;
     }
+  }
+
+  .other-buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+    gap: 0.7em;
   }
 `;
 
@@ -96,6 +108,12 @@ const Playbar = () => {
     setCurrentTime(pos);
   };
 
+  const onLyrics = () => {};
+  const onQueue = () => {};
+  const onDevice = () => {};
+  const onVolume = () => {};
+  const onFullScreen = () => {};
+
   return (
     <StyledFooter>
       <div className="song-current">
@@ -130,22 +148,23 @@ const Playbar = () => {
           onClick={onProgressClick}
         />
       </div>
-      <div className="other-features">
-        <button>
-          <TbMicrophone2 />
-        </button>
-        <button>
-          <MdQueueMusic />
-        </button>
-        <button>
-          <FiSpeaker />
-        </button>
-        <button>
-          <FiVolume2 />
-        </button>
-        <button>
-          <MdOpenInFull />
-        </button>
+      <div className="other-buttons">
+        <ActionButton
+          isActive={true}
+          icon={<TbMicrophone2 size={"1em"} />}
+          onClick={onLyrics}
+        />
+        <ActionButton
+          isActive={true}
+          icon={<BsList size={"1.2em"} />}
+          onClick={onQueue}
+        />
+        <ActionButton icon={<FiSpeaker size={"1em"} />} onClick={onDevice} />
+        <ActionButton icon={<FiVolume2 size={"1em"} />} onClick={onVolume} />
+        <ActionButton
+          icon={<MdOpenInFull size={"1em"} />}
+          onClick={onFullScreen}
+        />
       </div>
     </StyledFooter>
   );
