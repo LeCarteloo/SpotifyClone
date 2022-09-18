@@ -29,19 +29,24 @@ const StyledFooter = styled.footer`
   height: var(--playbar-height);
   align-items: center;
   display: flex;
+  /* gap: 2em; */
   justify-content: space-between;
 
   .song-current {
     display: flex;
-    width: 100%;
+    width: 40%;
+    height: 100%;
 
-    .song-link {
+    .song-info {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: center;
       height: 100%;
       color: var(--text-base);
       text-decoration: none;
-      margin-right: 1em;
+      margin: 0 1em;
+      overflow: hidden;
+      white-space: nowrap;
 
       img {
         margin-right: 0.5em;
@@ -59,7 +64,7 @@ const StyledFooter = styled.footer`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 30%;
     .player-buttons {
       display: flex;
       gap: 0.5em;
@@ -69,7 +74,7 @@ const StyledFooter = styled.footer`
   .other-buttons {
     display: flex;
     justify-content: flex-end;
-    width: 100%;
+    width: 30%;
 
     gap: 0.7em;
   }
@@ -112,21 +117,19 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
       <div className="song-current">
         {current.song && (
           <>
-            <a href="" className="song-link">
-              <img
-                src={current.song?.songURL}
-                alt="Song cover"
-                width="50px"
-                height="50px"
-              />
-              <div className="song-info">
-                <h4>{current.song?.name}</h4>
-                <h5>{current.song?.artist}</h5>
-              </div>
-            </a>
-            <LikeButton isLiked={liked} onClick={onLike} />
+            <img
+              src={current.song?.songURL}
+              alt="Song cover"
+              width="50px"
+              height="50px"
+            />
+            <div className="song-info">
+              <h4>{current.song?.name}</h4>
+              <h5>{current.song?.artist}</h5>
+            </div>
           </>
         )}
+        <LikeButton isLiked={liked} onClick={onLike} />
       </div>
       <div className="song-player">
         <div className="player-buttons">

@@ -4,6 +4,8 @@ import { VscLibrary } from "react-icons/vsc";
 import { AiOutlinePlus, AiFillHeart } from "react-icons/ai";
 import Logo from "../../assets/logo.svg";
 import React from "react";
+import PlaylistItem from "./PlaylistItem";
+import { CurrentSongInterface } from "../../types/types";
 
 const StyledNav = styled.nav`
   grid-area: side-bar;
@@ -92,16 +94,22 @@ const StyledAside = styled.aside`
   }
 `;
 
-interface PlaylistItem {
+interface Playlist {
   id: number;
   name: string;
 }
 
 type SidebarProps = {
-  playlists?: PlaylistItem[];
+  current: CurrentSongInterface;
+  playlists?: Playlist[];
+  onPlaylistPause: () => void;
 };
 
-const Sidebar: React.FC<SidebarProps> = ({ playlists }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+  current,
+  playlists,
+  onPlaylistPause,
+}) => {
   return (
     <StyledNav>
       <StyledAside>
@@ -148,9 +156,17 @@ const Sidebar: React.FC<SidebarProps> = ({ playlists }) => {
         <div className="playlist-list">
           <ul>
             {playlists?.map((playlist) => (
-              <li key={playlist.id}>
-                <a href={`/playlist/${playlist.id}`}>{playlist.name}</a>
-              </li>
+              <PlaylistItem
+                key={playlist.id}
+                id={playlist.id}
+                name={playlist.name}
+                isPlaying={
+                  current.playlist &&
+                  playlist.id === current.playlist!.id &&
+                  current.isPlaying
+                }
+                onPause={onPlaylistPause}
+              />
             ))}
           </ul>
         </div>

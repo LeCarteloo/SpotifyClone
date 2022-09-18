@@ -50,7 +50,11 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <StyledDiv>
-        <Sidebar playlists={userPlaylists} />
+        <Sidebar
+          current={currSong}
+          playlists={userPlaylists}
+          onPlaylistPause={onPlaybarPlay}
+        />
         <Main
           current={currSong}
           onPlay={onPlay}
