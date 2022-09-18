@@ -6,12 +6,12 @@
     "songList": [
       {
         "id": 1,
-        "name": "A Reason to Fight",
-        "artist": "Disturbed",
-        "album": "Evolution (Deluxe Edition)",
+        "name": "Forgotten",
+        "artist": "Linkin Park",
+        "album": "Hybrid Theory",
         "date": "2020-01-09T18:25:43.511Z",
         "songURL": "https://via.placeholder.com/200",
-        "duration": 284,
+        "duration": 194,
         "plays": 53318831,
         "isLiked": false
       }
@@ -24,12 +24,12 @@
     "songList": [
       {
         "id": 1,
-        "name": "A Reason to Fight",
-        "artist": "Disturbed",
-        "album": "Evolution (Deluxe Edition)",
+        "name": "Spoiler - Original Mix",
+        "artist": "Hyper",
+        "album": "Lies",
         "date": "2020-01-09T18:25:43.511Z",
         "songURL": "https://via.placeholder.com/200",
-        "duration": 284,
+        "duration": 272,
         "plays": 53318831,
         "isLiked": false
       }
@@ -42,12 +42,12 @@
     "songList": [
       {
         "id": 1,
-        "name": "A Reason to Fight",
-        "artist": "Disturbed",
-        "album": "Evolution (Deluxe Edition)",
+        "name": "We Found Love",
+        "artist": "Rihanna, Calvin Harris",
+        "album": "Talk That Talk",
         "date": "2020-01-09T18:25:43.511Z",
         "songURL": "https://via.placeholder.com/200",
-        "duration": 284,
+        "duration": 215,
         "plays": 53318831,
         "isLiked": false
       }

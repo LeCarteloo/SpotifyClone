@@ -28,17 +28,22 @@ function App() {
     currDuration: 0,
   });
 
-  console.log(currSong);
-
-  const onPlay = (playlist?: any) => {
-    console.log("work", playlist);
-
+  const onPlay = (current: CurrentSongInterface) => {
+    const { isPlaying, playlist, song, currDuration } = current;
     setCurrSong({
-      ...currSong,
-      isPlaying: !currSong.isPlaying,
-      playlist: playlist.name ? playlist : currSong.playlist,
-      song: playlist.name ? playlist.songList[0] : currSong.song,
+      isPlaying: isPlaying ? isPlaying : !currSong.isPlaying,
+      playlist: playlist ? playlist : currSong.playlist,
+      song: song ? song : currSong.song,
+      currDuration: currDuration,
     });
+  };
+
+  const onPlaybarPlay = () => {
+    setCurrSong({ ...currSong, isPlaying: !currSong.isPlaying });
+  };
+
+  const onProgressChange = (time: number) => {
+    setCurrSong({ ...currSong, currDuration: time });
   };
 
   return (
@@ -52,7 +57,11 @@ function App() {
           userPlaylists={userPlaylists}
           favoritePlaylists={favoritePlaylists}
         />
-        <Playbar current={currSong} onPlay={onPlay} />
+        <Playbar
+          current={currSong}
+          onPlay={onPlaybarPlay}
+          onProgressChange={onProgressChange}
+        />
       </StyledDiv>
     </ThemeProvider>
   );

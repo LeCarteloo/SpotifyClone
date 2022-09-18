@@ -6,7 +6,7 @@ import { CurrentSongInterface, PlaylistInterface } from "../../types/types";
 interface WelcomeProps {
   current: CurrentSongInterface;
   userPlaylists: PlaylistInterface[];
-  onPlay: (arg: any) => void;
+  onPlay: (current: CurrentSongInterface) => void;
 }
 
 const StyledSection = styled.section`
@@ -42,10 +42,13 @@ const Welcome = ({ current, userPlaylists, onPlay }: WelcomeProps) => {
       <div className="user-playlists">
         {userPlaylists.map((playlist) => (
           <UserPlaylist
+            key={playlist.id}
             isPlaying={
               current.playlist?.id === playlist.id && current.isPlaying
             }
-            key={playlist.id}
+            currDuration={
+              current.playlist?.id === playlist.id ? current.currDuration : 0
+            }
             playlist={playlist}
             onPlay={onPlay}
           />

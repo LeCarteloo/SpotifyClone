@@ -17,7 +17,8 @@ import { CurrentSongInterface } from "../../types/types";
 
 type PlaybarProps = {
   current: CurrentSongInterface;
-  onPlay: (arg: any) => void;
+  onPlay: () => void;
+  onProgressChange: (time: number) => void;
 };
 
 const StyledFooter = styled.footer`
@@ -38,9 +39,9 @@ const StyledFooter = styled.footer`
       display: flex;
       align-items: center;
       height: 100%;
-      width: 176px;
       color: var(--text-base);
       text-decoration: none;
+      margin-right: 1em;
 
       img {
         margin-right: 0.5em;
@@ -59,7 +60,6 @@ const StyledFooter = styled.footer`
     flex-direction: column;
     align-items: center;
     width: 100%;
-
     .player-buttons {
       display: flex;
       gap: 0.5em;
@@ -75,13 +75,10 @@ const StyledFooter = styled.footer`
   }
 `;
 
-const Playbar = ({ current, onPlay }: PlaybarProps) => {
+const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
   const [liked, setLiked] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState(0);
-
-  const [currentTime, setCurrentTime] = useState(216);
-  const songTime = 284;
 
   const onLike = () => {
     setLiked(!liked);
@@ -103,10 +100,6 @@ const Playbar = ({ current, onPlay }: PlaybarProps) => {
   const onNextSong = () => {};
 
   const onPrevSong = () => {};
-
-  const onProgressClick = (pos: number) => {
-    setCurrentTime(pos);
-  };
 
   const onLyrics = () => {};
   const onQueue = () => {};
@@ -144,15 +137,16 @@ const Playbar = ({ current, onPlay }: PlaybarProps) => {
           />
           <PlayButton
             isPlaying={current.isPlaying}
-            onClick={() => onPlay({})}
+            isDisabled={!current.song}
+            onClick={onPlay}
           />
           <ActionButton onClick={onNextSong} icon={<BiSkipNext size="2em" />} />
           <RepeatButton repeatAmount={repeat} onClick={onRepeat} />
         </div>
         <Progressbar
-          currentTime={currentTime}
-          songTime={songTime}
-          onClick={onProgressClick}
+          currentTime={current.song ? current?.currDuration : 0}
+          songTime={current.song ? current.song.duration : 0}
+          onClick={onProgressChange}
         />
       </div>
       <div className="other-buttons">

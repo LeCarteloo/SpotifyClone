@@ -1,11 +1,16 @@
 import styled, { css } from "styled-components";
 import PlayButton from "../buttons/PlayButton";
-import { SongListType, PlaylistInterface } from "../../types/types";
+import {
+  SongListType,
+  PlaylistInterface,
+  CurrentSongInterface,
+} from "../../types/types";
 
 interface UserPlaylistProps {
   isPlaying: boolean;
   playlist: PlaylistInterface;
-  onPlay: (arg: any) => void;
+  currDuration: number;
+  onPlay: (current: CurrentSongInterface) => void;
 }
 
 type StyledProps = {
@@ -62,9 +67,12 @@ const StyledDiv = styled.div<StyledProps>`
   }
 `;
 
-const UserPlaylist = ({ isPlaying, playlist, onPlay }: UserPlaylistProps) => {
-  console.log(isPlaying);
-
+const UserPlaylist = ({
+  isPlaying,
+  playlist,
+  onPlay,
+  currDuration,
+}: UserPlaylistProps) => {
   return (
     <StyledDiv isPlaying={isPlaying}>
       <img src={playlist.playlistURL} alt="Playlist cover" />
@@ -72,7 +80,14 @@ const UserPlaylist = ({ isPlaying, playlist, onPlay }: UserPlaylistProps) => {
       <div className="play-button">
         <PlayButton
           isPlaying={isPlaying}
-          onClick={() => onPlay(playlist)}
+          onClick={() =>
+            onPlay({
+              isPlaying: !isPlaying,
+              playlist: playlist,
+              song: playlist.songList[0],
+              currDuration: currDuration,
+            })
+          }
           isGreen={true}
           size="2.5em"
         />

@@ -7,7 +7,7 @@ interface MainProps {
   current: CurrentSongInterface;
   userPlaylists: PlaylistInterface[];
   favoritePlaylists: PlaylistInterface[];
-  onPlay: (arg: any) => void;
+  onPlay: (current: CurrentSongInterface) => void;
 }
 
 const StyledMain = styled.main`
@@ -24,7 +24,6 @@ const Main = ({
   userPlaylists,
   favoritePlaylists,
 }: MainProps) => {
-  console.log("MAIN");
   return (
     <StyledMain>
       <Welcome
