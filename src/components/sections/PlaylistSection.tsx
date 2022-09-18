@@ -19,6 +19,8 @@ const StyledSection = styled.section`
     display: flex;
     gap: 1.6em;
     overflow: auto;
+    padding-bottom: 0.5em;
+    min-height: 100%;
   }
 `;
 const PlaylistSection = ({

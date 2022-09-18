@@ -13,7 +13,8 @@ export default createGlobalStyle`
       }
       &::-webkit-scrollbar {
         border-radius: 10px;
-        width: 7px;
+        width: 5px;
+        height: 5px;
       }
       &::-webkit-scrollbar-button {
         height: 0;

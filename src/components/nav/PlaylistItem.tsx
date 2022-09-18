@@ -46,7 +46,12 @@ const PlaylistItem = ({ id, name, isPlaying, onPause }: PlaylistItemProps) => {
           onMouseLeave={() => onHover(false)}
         >
           {isHovering ? (
-            <button onClick={onPause}>
+            <button
+              onClick={() => {
+                onPause();
+                setIsHovering(false);
+              }}
+            >
               <FaPause className="pause-icon" />
             </button>
           ) : (

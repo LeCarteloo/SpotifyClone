@@ -15,7 +15,7 @@ const StyledMain = styled.main`
   min-height: calc(100% - 4.5em);
   overflow: auto;
   width: calc(100% - 3em);
-  margin: 4.5em 1.5em 0 1.5em;
+  padding: 4.5em 1.5em 0 1.5em;
 `;
 
 const Main = ({

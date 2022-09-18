@@ -61,6 +61,11 @@ const StyledDiv = styled.div<StyledProps>`
       opacity: 1;
     }
   }
+
+  @media (max-width: 768px) {
+    height: 50px;
+    font-size: 0.7em;
+  }
 `;
 
 const UserPlaylist = ({
