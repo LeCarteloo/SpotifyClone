@@ -1,10 +1,12 @@
 import styled from "styled-components";
-import { PlaylistInterface } from "../../types/types";
+import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
 import Playlist from "../playlist/Playlist";
 
 interface PlaylistSectionProps {
   title: string;
   playlists: PlaylistInterface[];
+  current: CurrentSongInterface;
+  onPlay: (current: CurrentSongInterface) => void;
 }
 
 const StyledSection = styled.section`
@@ -19,13 +21,28 @@ const StyledSection = styled.section`
     overflow: auto;
   }
 `;
-const PlaylistSection = ({ title, playlists }: PlaylistSectionProps) => {
+const PlaylistSection = ({
+  title,
+  playlists,
+  current,
+  onPlay,
+}: PlaylistSectionProps) => {
   return (
     <StyledSection>
       <h2>{title}</h2>
       <div className="playlists-list">
         {playlists.map((playlist) => (
-          <Playlist name={playlist.name} isPlaying={false} />
+          <Playlist
+            key={playlist.id}
+            isPlaying={
+              current.playlist?.id === playlist.id && current.isPlaying
+            }
+            currDuration={
+              current.playlist?.id === playlist.id ? current.currDuration : 0
+            }
+            playlist={playlist}
+            onPlay={onPlay}
+          />
         ))}
       </div>
     </StyledSection>

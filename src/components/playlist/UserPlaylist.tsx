@@ -1,10 +1,6 @@
 import styled, { css } from "styled-components";
 import PlayButton from "../buttons/PlayButton";
-import {
-  SongListType,
-  PlaylistInterface,
-  CurrentSongInterface,
-} from "../../types/types";
+import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
 
 interface UserPlaylistProps {
   isPlaying: boolean;

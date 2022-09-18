@@ -31,10 +31,12 @@ const Main = ({
         onPlay={onPlay}
         userPlaylists={userPlaylists}
       />
-      {/* <PlaylistSection
-        title="Favorited playlists"
+      <PlaylistSection
+        title="Favorite playlists"
+        current={current}
         playlists={favoritePlaylists}
-      /> */}
+        onPlay={onPlay}
+      />
     </StyledMain>
   );
 };

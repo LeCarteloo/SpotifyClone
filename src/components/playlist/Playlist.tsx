@@ -1,10 +1,13 @@
 import styled, { css } from "styled-components";
 import PlayButton from "../buttons/PlayButton";
+import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
 
-type PlaylistProps = {
-  name: string;
+interface PlaylistProps {
   isPlaying: boolean;
-};
+  playlist: PlaylistInterface;
+  currDuration: number;
+  onPlay: (current: CurrentSongInterface) => void;
+}
 
 type StyledProps = {
   isPlaying: boolean;
@@ -84,9 +87,12 @@ const StyledDiv = styled.div<StyledProps>`
   }
 `;
 
-const Playlist = ({ name, isPlaying }: PlaylistProps) => {
-  const onPlay = () => {};
-
+const Playlist = ({
+  isPlaying,
+  playlist,
+  onPlay,
+  currDuration,
+}: PlaylistProps) => {
   return (
     <StyledDiv isPlaying={isPlaying}>
       <figure>
@@ -94,14 +100,21 @@ const Playlist = ({ name, isPlaying }: PlaylistProps) => {
         <div className="play-button">
           <PlayButton
             isPlaying={isPlaying}
-            onClick={onPlay}
+            onClick={() =>
+              onPlay({
+                isPlaying: !isPlaying,
+                playlist: playlist,
+                song: playlist.songList[0],
+                currDuration: currDuration,
+              })
+            }
             isGreen={true}
             size="2.8em"
           />
         </div>
       </figure>
       <div className="playlist-info">
-        <h4>{name}</h4>
+        <h4>{playlist.name}</h4>
         <span>Queen, Three Days Grace, Papa Roach and more</span>
       </div>
     </StyledDiv>
