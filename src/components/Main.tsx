@@ -2,6 +2,9 @@ import styled from "styled-components";
 import Welcome from "./sections/Welcome";
 import { PlaylistInterface, CurrentSongInterface } from "../types/types";
 import PlaylistSection from "./sections/PlaylistSection";
+import { Routes, Route } from "react-router-dom";
+import Home from "./views/Home";
+import Lyrics from "./views/Lyrics";
 
 interface MainProps {
   current: CurrentSongInterface;
@@ -26,17 +29,20 @@ const Main = ({
 }: MainProps) => {
   return (
     <StyledMain>
-      <Welcome
-        current={current}
-        onPlay={onPlay}
-        userPlaylists={userPlaylists}
-      />
-      <PlaylistSection
-        title="Favorite playlists"
-        current={current}
-        playlists={favoritePlaylists}
-        onPlay={onPlay}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              current={current}
+              onPlay={onPlay}
+              userPlaylists={userPlaylists}
+              favoritePlaylists={favoritePlaylists}
+            />
+          }
+        />
+        <Route path="/lyrics" element={<Lyrics />} />
+      </Routes>
     </StyledMain>
   );
 };

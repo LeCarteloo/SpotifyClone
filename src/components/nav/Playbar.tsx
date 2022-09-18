@@ -14,6 +14,7 @@ import { MdOpenInFull } from "react-icons/md";
 import { BsList } from "react-icons/bs";
 
 import { CurrentSongInterface } from "../../types/types";
+import { useLocation, useNavigate } from "react-router-dom";
 
 type PlaybarProps = {
   current: CurrentSongInterface;
@@ -85,6 +86,9 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState(0);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const onLike = () => {
     setLiked(!liked);
   };
@@ -106,7 +110,15 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
 
   const onPrevSong = () => {};
 
-  const onLyrics = () => {};
+  const onLyrics = () => {
+    if (location.pathname.toString() === "/lyrics") {
+      navigate(-1);
+      return;
+    }
+
+    navigate("/lyrics");
+  };
+
   const onQueue = () => {};
   const onDevice = () => {};
   const onVolume = () => {};
@@ -154,7 +166,7 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
       </div>
       <div className="other-buttons">
         <ActionButton
-          isActive={true}
+          isActive={location.pathname === "/lyrics"}
           icon={<TbMicrophone2 size={"1em"} />}
           onClick={onLyrics}
         />

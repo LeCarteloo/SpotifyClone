@@ -35,7 +35,7 @@ export default createGlobalStyle`
         background: linear-gradient(
           180deg, 
           rgba(218,44,44,1) 0%, 
-          rgba(18,18,18,1) 21%
+          rgba(12,12,12,1) 21%
         );
         color: var(--text-base);
         overflow-x: hidden;

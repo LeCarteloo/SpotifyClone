@@ -14,6 +14,7 @@ type StyledProps = {
 };
 
 const StyledDiv = styled.div<StyledProps>`
+  position: relative;
   padding: 0.85em;
   height: 205px;
   width: 125px;
@@ -26,7 +27,7 @@ const StyledDiv = styled.div<StyledProps>`
     position: relative;
     img {
       border-radius: var(--radius-md) var(--radius-md) 0 0;
-      box-shadow: 1px 0px 7px 0px var(--background-press);
+      box-shadow: 0px 0px 10px 0px var(--background-press);
       width: 100%;
       height: auto;
     }
@@ -97,7 +98,7 @@ const Playlist = ({
   return (
     <StyledDiv isPlaying={isPlaying}>
       <figure>
-        <img src="https://via.placeholder.com/200/000" alt="Playlist cover" />
+        <img src="https://via.placeholder.com/200" alt="Playlist cover" />
         <div className="play-button">
           <PlayButton
             isPlaying={isPlaying}

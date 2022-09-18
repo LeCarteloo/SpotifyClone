@@ -3,7 +3,7 @@ import { css } from "styled-components";
 export default css`
   :root {
     --background-base: #121212;
-    --background-highlight: #1a1a1a;
+    --background-highlight: #181818;
     --background-press: #000;
     --background-subdued: #ffffffcc;
     --background-elevated-base: #242424;

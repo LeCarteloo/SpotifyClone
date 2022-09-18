@@ -7,7 +7,7 @@ import theme from "./styles/theme";
 import userPlaylists from "./data/userPlaylists.json";
 import favoritePlaylists from "./data/favoritePlaylists.json";
 import { useState } from "react";
-
+import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentSongInterface, SongListType } from "./types/types";
 
 const StyledDiv = styled.div`
@@ -49,24 +49,26 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <StyledDiv>
-        <Sidebar
-          current={currSong}
-          playlists={userPlaylists}
-          onPlaylistPause={onPlaybarPlay}
-        />
-        <Main
-          current={currSong}
-          onPlay={onPlay}
-          userPlaylists={userPlaylists}
-          favoritePlaylists={favoritePlaylists}
-        />
-        <Playbar
-          current={currSong}
-          onPlay={onPlaybarPlay}
-          onProgressChange={onProgressChange}
-        />
-      </StyledDiv>
+      <Router>
+        <StyledDiv>
+          <Sidebar
+            current={currSong}
+            playlists={userPlaylists}
+            onPlaylistPause={onPlaybarPlay}
+          />
+          <Main
+            current={currSong}
+            onPlay={onPlay}
+            userPlaylists={userPlaylists}
+            favoritePlaylists={favoritePlaylists}
+          />
+          <Playbar
+            current={currSong}
+            onPlay={onPlaybarPlay}
+            onProgressChange={onProgressChange}
+          />
+        </StyledDiv>
+      </Router>
     </ThemeProvider>
   );
 }

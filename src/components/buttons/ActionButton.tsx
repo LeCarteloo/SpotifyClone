@@ -5,8 +5,8 @@ type animEnum = "scale" | "opacity";
 interface ActionButtonProps {
   icon?: JSX.Element;
   isActive?: boolean;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
   animType?: animEnum;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const StyledButton = styled.button<ActionButtonProps>`
