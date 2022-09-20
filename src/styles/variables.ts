@@ -17,8 +17,8 @@ export default css`
     --essential-base: #fff;
     --essential-bright-accent: #1ed760;
 
-    --sidebar-width: 200px;
-    --playbar-height: 46px;
+    --sidebar-width: 194px;
+    --playbar-height: 58px;
 
     --radius-small: 2px;
     --radius-md: 5px;

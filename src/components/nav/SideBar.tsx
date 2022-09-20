@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { MdHomeFilled, MdSearch } from "react-icons/md";
+import { MdHomeFilled } from "react-icons/md";
+import { FiSearch } from "react-icons/fi";
 import { VscLibrary } from "react-icons/vsc";
 import { AiOutlinePlus, AiFillHeart } from "react-icons/ai";
 import Logo from "../../assets/logo.svg";
@@ -13,7 +14,7 @@ const StyledNav = styled.nav`
   width: var(--sidebar-width);
   background-color: var(--background-press);
   font-size: 16px;
-  padding: 1.2em;
+  padding: 1.5em;
 
   @media (max-width: 768px) {
     display: none;
@@ -33,30 +34,32 @@ const StyledAside = styled.aside`
     text-decoration: none;
     color: var(--text-base);
     img {
-      width: 58%;
+      width: 131px;
+      height: 40px;
     }
   }
+
   .nav-list {
-    padding: 1.5em 0;
+    padding: 1.8em 0;
     li {
       ${({ theme }) => theme.mixins.opacityHover}
       &:not(:first-child) {
-        margin-top: 0.75em;
+        margin-top: 1em;
       }
       a {
         display: flex;
         align-items: center;
         span {
-          margin-left: 0.7em;
+          margin-left: 1.1em;
         }
       }
     }
   }
   .button-group {
-    margin-top: 0.5em;
+    margin-top: 0.7em;
     display: flex;
     flex-direction: column;
-    gap: 0.8em;
+    gap: 1.1em;
 
     button {
       text-align: left;
@@ -73,12 +76,15 @@ const StyledAside = styled.aside`
         ${({ theme }) => theme.mixins.buttonLiked}
       }
       span {
-        margin-left: 0.7em;
+        margin-left: 1.1em;
       }
     }
   }
   hr {
-    margin: 0.8em 0;
+    margin: 1em 0;
+    height: 1px;
+    border: none;
+    background-color: var(--text-subdued);
   }
   .playlist-list {
     width: 100%;
@@ -86,7 +92,7 @@ const StyledAside = styled.aside`
     li {
       ${({ theme }) => theme.mixins.opacityHover}
       font-size: var(--fs-sm);
-      padding-bottom: 0.5em;
+      padding-bottom: 1.4em;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -125,7 +131,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           </li>
           <li>
             <a href="/search">
-              <MdSearch size="24px" />
+              <FiSearch size="24px" />
               <span>Search</span>
             </a>
           </li>

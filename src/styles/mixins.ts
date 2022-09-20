@@ -6,7 +6,7 @@ const mixins = {
       color: var(--text-press);
       background-color: var(--background-subdued);
       border-radius: var(--radius-small);
-      padding: 0.15em;
+      padding: 0.21em;
       display: flex;
     }
   `,
@@ -15,7 +15,7 @@ const mixins = {
       color: var(--text-subdued);
       background: linear-gradient(135deg, #450af5, #c4efd9);
       border-radius: var(--radius-small);
-      padding: 0.15em;
+      padding: 0.21em;
       display: flex;
     }
   `,
