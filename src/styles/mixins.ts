@@ -55,15 +55,15 @@ const mixins = {
   `,
   buttonSecondary: css`
     border-radius: var(--radius-big);
-    border: 1px solid var(--essential-base);
-    padding: 0.2em;
+    border: 1px solid var(--essential-subdued);
+    padding: 0.4em 1em;
     font-size: 0.875em;
     font-weight: 600;
-    width: 80px;
     transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out;
 
     &:hover {
       background-color: var(--essential-press);
+      border: 1px solid var(--essential-base);
       transform: scale(1.05);
     }
   `,
