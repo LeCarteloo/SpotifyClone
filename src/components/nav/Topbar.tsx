@@ -1,13 +1,7 @@
 import styled from "styled-components";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
-import {
-  useLocation,
-  useNavigate,
-  useNavigation,
-  useRoutes,
-} from "react-router-dom";
-import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const StyledHeader = styled.header`
   grid-area: top-bar;
@@ -93,6 +87,10 @@ const Topbar = () => {
     }
     navigate(1);
   };
+
+  // if (location.pathname === "/lyrics") {
+  //   return <></>;
+  // }
 
   return (
     <StyledHeader>

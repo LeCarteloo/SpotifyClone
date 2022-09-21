@@ -4,6 +4,7 @@ import React from "react";
 
 type LikeButtonProps = {
   isLiked: boolean;
+  size?: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -37,10 +38,10 @@ const StyledButton = styled.button<LikeButtonProps>`
     `}
 `;
 
-const LikeButton: React.FC<LikeButtonProps> = ({ isLiked, onClick }) => {
+const LikeButton: React.FC<LikeButtonProps> = ({ isLiked, onClick, size }) => {
   return (
     <StyledButton onClick={onClick} isLiked={isLiked}>
-      {isLiked ? <FaHeart /> : <FaRegHeart />}
+      {isLiked ? <FaHeart size={size} /> : <FaRegHeart size={size} />}
     </StyledButton>
   );
 };

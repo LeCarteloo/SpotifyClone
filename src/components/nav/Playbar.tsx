@@ -25,13 +25,15 @@ type PlaybarProps = {
 const StyledFooter = styled.footer`
   grid-area: play-bar;
   padding: 1em;
-  background-color: var(--background-elevated-base);
+  background-color: var(--background-highlight);
   width: calc(100% - 2em);
   height: var(--playbar-height);
   align-items: center;
   display: flex;
   /* gap: 2em; */
   justify-content: space-between;
+  z-index: 1;
+  border-top: 1px solid #282828;
 
   .song-current {
     display: flex;

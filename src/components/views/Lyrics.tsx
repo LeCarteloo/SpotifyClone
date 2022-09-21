@@ -4,7 +4,7 @@ import lyricsData from "../../data/songLyrics.json";
 
 const StyledSection = styled.section`
   width: calc(100% - 14.8em);
-  padding: 4em 7.4em 0 7.4em;
+  padding: 2.8em 7.4em 0 7.4em;
   p {
     font-size: 2.87em;
     font-weight: 600;

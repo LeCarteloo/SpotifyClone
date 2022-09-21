@@ -17,11 +17,12 @@ export default css`
     --essential-base: #fff;
     --essential-press: #000;
     --essential-subdued: #ffffffcc;
+    --essential-gray: #ffffff4d;
     --essential-bright-accent: #1ed760;
 
     --topbar-height: 64px;
     --sidebar-width: 194px;
-    --playbar-height: 58px;
+    --playbar-height: 57px;
 
     --radius-small: 2px;
     --radius-md: 5px;

@@ -3,6 +3,7 @@ import { PlaylistInterface, CurrentSongInterface } from "../types/types";
 import { Routes, Route } from "react-router-dom";
 import Home from "./views/Home";
 import Lyrics from "./views/Lyrics";
+import PlaylistPage from "./views/PlaylistPage";
 
 interface MainProps {
   current: CurrentSongInterface;
@@ -39,6 +40,7 @@ const Main = ({
             />
           }
         />
+        <Route path="/playlist/:id" element={<PlaylistPage />} />
         <Route path="/lyrics" element={<Lyrics />} />
       </Routes>
     </StyledMain>

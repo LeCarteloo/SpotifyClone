@@ -25,7 +25,7 @@ const StyledDiv = styled.div<ProgressProps>`
     width: 100%;
     height: 4px;
     border-radius: var(--radius-small);
-    background-color: var(--background-highlight);
+    background-color: var(--essential-gray);
   }
 
   &:hover,
