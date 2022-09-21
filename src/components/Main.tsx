@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import Welcome from "./sections/Welcome";
 import { PlaylistInterface, CurrentSongInterface } from "../types/types";
-import PlaylistSection from "./sections/PlaylistSection";
 import { Routes, Route } from "react-router-dom";
 import Home from "./views/Home";
 import Lyrics from "./views/Lyrics";
@@ -15,10 +13,10 @@ interface MainProps {
 
 const StyledMain = styled.main`
   grid-area: main;
-  min-height: calc(100% - 4.5em);
+  min-height: 100%;
   overflow: auto;
-  width: calc(100% - 3em);
-  padding: 4.5em 1.5em 0 1.5em;
+  width: calc(100% - 3.8em);
+  padding: 1.2em 1.9em 0 1.9em;
 `;
 
 const Main = ({

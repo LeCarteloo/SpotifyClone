@@ -9,13 +9,15 @@ import favoritePlaylists from "./data/favoritePlaylists.json";
 import { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentSongInterface, SongListType } from "./types/types";
+import Topbar from "./components/nav/Topbar";
 
 const StyledDiv = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
+    "side-bar top-bar"
     "side-bar main"
     "play-bar play-bar";
 `;
@@ -56,6 +58,7 @@ function App() {
             playlists={userPlaylists}
             onPlaylistPause={onPlaybarPlay}
           />
+          <Topbar />
           <Main
             current={currSong}
             onPlay={onPlay}

@@ -53,6 +53,20 @@ const mixins = {
       transform: translateX(-50%);
     }
   `,
+  buttonSecondary: css`
+    border-radius: var(--radius-big);
+    border: 1px solid var(--essential-base);
+    padding: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+    width: 80px;
+    transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out;
+
+    &:hover {
+      background-color: var(--essential-press);
+      transform: scale(1.05);
+    }
+  `,
   playlistHover: css``,
 };
 

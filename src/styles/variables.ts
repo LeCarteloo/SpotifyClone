@@ -15,8 +15,11 @@ export default css`
     --text-subdued: #ffffffcc;
 
     --essential-base: #fff;
+    --essential-press: #000;
+    --essential-subdued: #ffffffcc;
     --essential-bright-accent: #1ed760;
 
+    --topbar-height: 64px;
     --sidebar-width: 194px;
     --playbar-height: 58px;
 
