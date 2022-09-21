@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FiVolume2 } from "react-icons/fi";
 import { FaPause } from "react-icons/fa";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 type PlaylistItemProps = {
   id: number;
@@ -39,7 +40,7 @@ const PlaylistItem = ({ id, name, isPlaying, onPause }: PlaylistItemProps) => {
 
   return (
     <StyledListItem isPlaying={isPlaying}>
-      <a href={`/userplaylist/${id}`}>{name}</a>
+      <NavLink to={`/playlist/${id}`}>{name}</NavLink>
       {isPlaying && (
         <div
           onMouseEnter={() => onHover(true)}

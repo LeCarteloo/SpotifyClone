@@ -7,6 +7,7 @@ import Logo from "../../assets/logo.svg";
 import React from "react";
 import PlaylistItem from "./PlaylistItem";
 import { CurrentSongInterface } from "../../types/types";
+import { NavLink } from "react-router-dom";
 
 const StyledNav = styled.nav`
   grid-area: side-bar;
@@ -124,22 +125,22 @@ const Sidebar: React.FC<SidebarProps> = ({
         </a>
         <ul className="nav-list">
           <li>
-            <a href="/">
+            <NavLink to="/">
               <MdHomeFilled size="24px" />
               <span>Home</span>
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="/search">
+            <NavLink to="/search">
               <FiSearch size="24px" />
               <span>Search</span>
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="/library">
+            <NavLink to="/library">
               <VscLibrary size="24px" />
               <span>Library</span>
-            </a>
+            </NavLink>
           </li>
         </ul>
         <div>
