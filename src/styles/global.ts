@@ -32,11 +32,7 @@ export default createGlobalStyle`
 
     body {
         height: 100%;
-        background: linear-gradient(
-          180deg, 
-          rgba(218,44,44,1) 0%, 
-          rgba(12,12,12,1) 21%
-        );
+        background-color: var(--background-base);
         color: var(--text-base);
         overflow-x: hidden;
     }

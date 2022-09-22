@@ -67,7 +67,15 @@ const mixins = {
       transform: scale(1.05);
     }
   `,
-  playlistHover: css``,
+  sectionPadding: css`
+    width: calc(100% - 3.8em);
+    padding: 0 1.9em;
+    padding-top: calc(var(--topbar-height) + 1.2em);
+  `,
+  innerSectionPadding: css`
+    width: calc(100% - 3.8em);
+    padding: 0 1.9em;
+  `,
 };
 
 export default mixins;

@@ -12,6 +12,7 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 1.9em;
+  z-index: 99;
 
   .nav-buttons {
     display: flex;
@@ -70,9 +71,6 @@ const StyledButton = styled.button`
 const Topbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  // console.log(location);
-  // console.log(window.history);
 
   const goBackward = () => {
     if (location.key === "default") {

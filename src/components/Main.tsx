@@ -16,8 +16,7 @@ const StyledMain = styled.main`
   grid-area: main;
   min-height: 100%;
   overflow: auto;
-  width: calc(100% - 3.8em);
-  padding: 1.2em 1.9em 0 1.9em;
+  margin-top: calc(var(--topbar-height) * -1);
 `;
 
 const Main = ({

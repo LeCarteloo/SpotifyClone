@@ -28,6 +28,9 @@ export default css`
     --radius-md: 5px;
     --radius-big: 20px;
 
+    /* --main-padding: 0 1.9em;
+    --main-margin: calc(var(--topbar-height) * -1); */
+
     --fs-xxs: 10px;
     --fs-xs: 12px;
     --fs-sm: 13px;
