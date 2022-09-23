@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import LikedTracks from "../playlist/LikedTracks";
-import Playlist from "../playlist/Playlist";
-import test from "../../data/favoritePlaylists.json";
 import { Navigate, Route, Routes } from "react-router-dom";
 import LibPlaylists from "../library/LibPlaylists";
+import LibNoData from "../library/LibNoData";
+import { HiMusicNote } from "react-icons/hi";
 
 const StyledSection = styled.section`
   ${({ theme }) => theme.mixins.sectionPadding}
@@ -15,6 +14,18 @@ const Library = () => {
       <Routes>
         <Route index element={<Navigate to="/library/playlists" />} />
         <Route path="playlists" element={<LibPlaylists />} />
+        <Route
+          path="podcasts"
+          element={
+            <LibNoData
+              icon={<HiMusicNote size={"5em"} />}
+              title={"Create your first playlist"}
+              text={"It's easy, we'll help you."}
+              btnText={"Create playlist"}
+              onClick={() => {}}
+            />
+          }
+        />
       </Routes>
     </StyledSection>
   );
