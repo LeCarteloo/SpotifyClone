@@ -98,19 +98,6 @@ const StyledSection = styled.section`
         padding-bottom: 0.2em;
         border-bottom: 1px solid var(--essential-subdued);
       }
-      .col-1 {
-        text-align: center;
-        width: 50px;
-      }
-      .col-2 {
-        width: 40%;
-      }
-      .col-3 {
-        width: 27.5%;
-      }
-      .col-4 {
-        width: 25%;
-      }
       td {
         padding: 0.47em 0;
       }
@@ -126,6 +113,23 @@ const StyledSection = styled.section`
     }
   }
 
+  /* .col-1 {
+    text-align: center;
+    width: 50px;
+  }
+  .col-2 {
+    width: 40%;
+  }
+  .col-3 {
+    width: 27.5%;
+  }
+  .col-4 {
+    width: 25%;
+  }
+  .col-5 {
+    width: 100%;
+  } */
+
   .table-header {
     position: sticky;
     width: 100%;
@@ -134,23 +138,9 @@ const StyledSection = styled.section`
 `;
 
 const PlaylistPage = () => {
-  const tableHeaderRef = useRef(null);
+  const tableHeaderRef = useRef<HTMLTableSectionElement>(null);
   const onPlay = () => {};
   const onLike = () => {};
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([e]) => {
-        e.target.classList.toggle("is-pinned", e.intersectionRatio < 1);
-        console.log(e.intersectionRatio);
-      },
-      { threshold: [1] }
-    );
-
-    if (tableHeaderRef.current) {
-      observer.observe(tableHeaderRef.current);
-    }
-  }, [tableHeaderRef]);
 
   return (
     <StyledSection>

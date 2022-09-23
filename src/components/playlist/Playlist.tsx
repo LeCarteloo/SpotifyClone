@@ -16,9 +16,9 @@ type StyledProps = {
 const StyledDiv = styled.div<StyledProps>`
   position: relative;
   padding: 0.85em;
-  height: 205px;
-  width: 125px;
+  width: calc(100% - 0.85em * 2);
   min-width: 125px;
+  max-width: 160px;
   background-color: var(--background-highlight);
   border-radius: var(--radius-md);
   overflow: hidden;

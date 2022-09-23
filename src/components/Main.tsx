@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./views/Home";
 import Lyrics from "./views/Lyrics";
 import PlaylistPage from "./views/PlaylistPage";
+import Library from "./views/Library";
 
 interface MainProps {
   current: CurrentSongInterface;
@@ -40,6 +41,7 @@ const Main = ({
           }
         />
         <Route path="/playlist/:id" element={<PlaylistPage />} />
+        <Route path="/library" element={<Library />} />
         <Route path="/lyrics" element={<Lyrics />} />
       </Routes>
     </StyledMain>
