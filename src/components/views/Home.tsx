@@ -1,6 +1,7 @@
 import Welcome from "../sections/Welcome";
 import PlaylistSection from "../sections/PlaylistSection";
 import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
+import styled from "styled-components";
 
 interface HomeProps {
   current: CurrentSongInterface;
@@ -9,6 +10,10 @@ interface HomeProps {
   onPlay: (current: CurrentSongInterface) => void;
 }
 
+const StyledDiv = styled.div`
+  ${({ theme }) => theme.mixins.sectionPadding}
+`;
+
 const Home = ({
   current,
   onPlay,
@@ -16,7 +21,7 @@ const Home = ({
   favoritePlaylists,
 }: HomeProps) => {
   return (
-    <>
+    <StyledDiv>
       <Welcome
         current={current}
         onPlay={onPlay}
@@ -28,7 +33,7 @@ const Home = ({
         playlists={favoritePlaylists}
         onPlay={onPlay}
       />
-    </>
+    </StyledDiv>
   );
 };
 
