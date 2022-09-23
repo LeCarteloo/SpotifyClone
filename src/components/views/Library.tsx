@@ -2,49 +2,20 @@ import styled from "styled-components";
 import LikedTracks from "../playlist/LikedTracks";
 import Playlist from "../playlist/Playlist";
 import test from "../../data/favoritePlaylists.json";
+import { Navigate, Route, Routes } from "react-router-dom";
+import LibPlaylists from "../library/LibPlaylists";
 
 const StyledSection = styled.section`
   ${({ theme }) => theme.mixins.sectionPadding}
-
-  h2 {
-    margin-bottom: 1em;
-  }
-
-  .playlist-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(270px, 1fr));
-    gap: 1em;
-  }
 `;
 
 const Library = () => {
-  const onPlay = () => {};
-
   return (
     <StyledSection>
-      <h2>{"Playlists"}</h2>
-      <div className="playlist-grid">
-        <LikedTracks />
-        <Playlist
-          isPlaying={true}
-          currDuration={30}
-          playlist={test[0]}
-          onPlay={onPlay}
-        />
-        <Playlist
-          isPlaying={true}
-          currDuration={30}
-          playlist={test[0]}
-          onPlay={onPlay}
-        />
-        <Playlist
-          isPlaying={true}
-          currDuration={30}
-          playlist={test[0]}
-          onPlay={onPlay}
-        />
-      </div>
+      <Routes>
+        <Route index element={<Navigate to="/library/playlists" />} />
+        <Route path="playlists" element={<LibPlaylists />} />
+      </Routes>
     </StyledSection>
   );
 };

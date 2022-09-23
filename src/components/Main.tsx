@@ -41,7 +41,7 @@ const Main = ({
           }
         />
         <Route path="/playlist/:id" element={<PlaylistPage />} />
-        <Route path="/library" element={<Library />} />
+        <Route path="/library/*" element={<Library />} />
         <Route path="/lyrics" element={<Lyrics />} />
       </Routes>
     </StyledMain>

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
-import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import NavButton from "../buttons/NavButton";
 
 const StyledHeader = styled.header`
   grid-area: top-bar;
@@ -11,12 +12,19 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2.7em;
   padding: 0 1.9em;
   z-index: 99;
 
   .nav-buttons {
     display: flex;
     gap: 1.15em;
+  }
+
+  .library-links {
+    flex-grow: 1;
+    display: flex;
+    gap: 1.5em;
   }
 
   .nav-user {
@@ -86,9 +94,9 @@ const Topbar = () => {
     navigate(1);
   };
 
-  // if (location.pathname === "/lyrics") {
-  //   return <></>;
-  // }
+  if (location.pathname === "/lyrics") {
+    return <></>;
+  }
 
   return (
     <StyledHeader>
@@ -103,6 +111,14 @@ const Topbar = () => {
           <BsChevronRight size="1em" />
         </StyledButton>
       </div>
+      {location.pathname.includes("/library") && (
+        <div className="library-links">
+          <NavButton path="/library/playlists" text="Playlists" />
+          <NavButton path="/library/podcasts" text="Podcasts" />
+          <NavButton path="/library/artists" text="Artists" />
+          <NavButton path="/library/albums" text="Albums" />
+        </div>
+      )}
       <div className="nav-user">
         <button className="premium-btn">Go Premium</button>
         <button className="profile-btn">
