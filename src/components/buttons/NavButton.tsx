@@ -14,7 +14,6 @@ const StyledNavLink = styled(NavLink)`
   transition: background-color 0.1s ease-in-out;
   font-size: var(--fs-sm);
   font-weight: bold;
-
   &.active {
     background-color: var(--background-elevated-highlight);
   }

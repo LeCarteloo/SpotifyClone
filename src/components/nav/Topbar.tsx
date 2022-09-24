@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NavButton from "../buttons/NavButton";
+import NavDropdown from "../buttons/NavDropdown";
 
 const StyledHeader = styled.header`
   grid-area: top-bar;
@@ -16,6 +17,10 @@ const StyledHeader = styled.header`
   padding: 0 1.9em;
   z-index: 99;
 
+  @media (max-width: 800px) {
+    gap: 0.5em;
+  }
+
   .nav-buttons {
     display: flex;
     gap: 1.15em;
@@ -24,12 +29,31 @@ const StyledHeader = styled.header`
   .library-links {
     flex-grow: 1;
     display: flex;
-    gap: 1.5em;
+    .links {
+      display: flex;
+      gap: 1.5em;
+    }
+
+    .dropdown {
+      display: none;
+    }
+
+    @media (max-width: 1080px) {
+      .links {
+        display: none;
+      }
+      .dropdown {
+        display: block;
+      }
+    }
   }
 
   .nav-user {
     display: flex;
     gap: 2em;
+    @media (max-width: 800px) {
+      gap: 0.5em;
+    }
     .premium-btn {
       ${({ theme }) => theme.mixins.buttonSecondary}
     }
@@ -56,6 +80,12 @@ const StyledHeader = styled.header`
       img {
         border-radius: 50%;
         height: 28px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .profile-name {
+        display: none;
       }
     }
   }
@@ -113,10 +143,15 @@ const Topbar = () => {
       </div>
       {location.pathname.includes("/library") && (
         <div className="library-links">
-          <NavButton path="/library/playlists" text="Playlists" />
-          <NavButton path="/library/podcasts" text="Podcasts" />
-          <NavButton path="/library/artists" text="Artists" />
-          <NavButton path="/library/albums" text="Albums" />
+          <div className="links">
+            <NavButton path="/library/playlists" text="Playlists" />
+            <NavButton path="/library/podcasts" text="Podcasts" />
+            <NavButton path="/library/artists" text="Artists" />
+            <NavButton path="/library/albums" text="Albums" />
+          </div>
+          <div className="dropdown">
+            <NavDropdown state={location.pathname.split("/").pop()} />
+          </div>
         </div>
       )}
       <div className="nav-user">
@@ -124,7 +159,7 @@ const Topbar = () => {
         <button className="profile-btn">
           <img src="https://via.placeholder.com/200" alt="User avatar" />
           <div className="profile-btn-text">
-            User Name
+            <span className="profile-name">User Name</span>
             <BiCaretDown size="1.4em" />
           </div>
         </button>

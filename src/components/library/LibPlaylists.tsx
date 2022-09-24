@@ -9,10 +9,7 @@ const StyledSection = styled.section`
   }
 
   .playlist-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(270px, 1fr));
-    gap: 1em;
+    ${({ theme }) => theme.mixins.blockGrid};
   }
 `;
 

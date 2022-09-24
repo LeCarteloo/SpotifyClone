@@ -77,6 +77,12 @@ const mixins = {
     width: calc(100% - 3.8em);
     padding: 0 1.9em;
   `,
+  blockGrid: css`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1em;
+  `,
 };
 
 export default mixins;
