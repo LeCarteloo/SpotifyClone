@@ -17,7 +17,7 @@ const LibArtists = () => {
         <LibNoData
           icon={<FaUserPlus size={"5em"} />}
           title={"Start following your first artist"}
-          text={"Follow artists, that you like, by pressing button Follow."}
+          text={"Follow artists you like, by pressing Follow button."}
           btnText={"Find artists"}
           onClick={() => {}}
         />

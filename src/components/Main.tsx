@@ -5,6 +5,7 @@ import Home from "./views/Home";
 import Lyrics from "./views/Lyrics";
 import PlaylistPage from "./views/PlaylistPage";
 import Library from "./views/Library";
+import Search from "./views/Search";
 
 interface MainProps {
   current: CurrentSongInterface;
@@ -40,8 +41,9 @@ const Main = ({
             />
           }
         />
-        <Route path="/playlist/:id" element={<PlaylistPage />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/library/*" element={<Library />} />
+        <Route path="/playlist/:id" element={<PlaylistPage />} />
         <Route path="/lyrics" element={<Lyrics />} />
       </Routes>
     </StyledMain>
