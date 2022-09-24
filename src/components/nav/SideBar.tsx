@@ -43,13 +43,16 @@ const StyledAside = styled.aside`
   .nav-list {
     padding: 1.8em 0;
     li {
-      ${({ theme }) => theme.mixins.opacityHover}
       &:not(:first-child) {
         margin-top: 1em;
       }
       a {
+        ${({ theme }) => theme.mixins.opacityHover}
         display: flex;
         align-items: center;
+        &.active {
+          opacity: 1;
+        }
         span {
           margin-left: 1.1em;
         }
@@ -125,7 +128,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         </a>
         <ul className="nav-list">
           <li>
-            <NavLink to="/">
+            <NavLink to="/" end>
               <MdHomeFilled size="24px" />
               <span>Home</span>
             </NavLink>

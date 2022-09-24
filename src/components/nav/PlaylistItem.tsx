@@ -16,15 +16,18 @@ type StyleProps = {
 };
 
 const StyledListItem = styled.li<StyleProps>`
-  ${({ theme }) => theme.mixins.opacityHover}
   font-size: var(--fs-sm);
   padding-bottom: 0.5em;
   display: flex;
   justify-content: space-between;
   a {
+    ${({ theme }) => theme.mixins.opacityHover}
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    &.active {
+      opacity: 1;
+    }
   }
   .volume-icon {
     color: var(--text-bright-accent);

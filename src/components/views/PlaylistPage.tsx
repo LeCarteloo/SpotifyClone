@@ -5,7 +5,8 @@ import { BiTime } from "react-icons/bi";
 import LikeButton from "../buttons/LikeButton";
 import PlayButton from "../buttons/PlayButton";
 import PlaylistRow from "../playlist/PlaylistRow";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { HiOutlinePencil } from "react-icons/hi";
 
 const StyledSection = styled.section`
   .playlist-header {
@@ -14,8 +15,30 @@ const StyledSection = styled.section`
     background: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%),rgb(200, 40, 48);
 
     .playlist-cover {
+      position: relative;
       height: 232px;
       width: auto;
+      &:hover,
+      &:focus-within {
+        button {
+          display: flex;
+        }
+      }
+      img {
+        height: inherit;
+        width: inherit;
+      }
+      button {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(12, 12, 12, 0.6);
+        top: 0;
+        display: none;
+      }
     }
     .playlist-info {
       padding: 1.8em 0 1.8em 1.4em;
@@ -145,11 +168,17 @@ const PlaylistPage = () => {
   return (
     <StyledSection>
       <div className="playlist-header">
-        <img
-          src="https://via.placeholder.com/300"
+        <figure
           className="playlist-cover"
-          alt="Playlist cover"
-        />
+          tabIndex={0}
+          aria-label="Choose playlist image"
+        >
+          <img src="https://via.placeholder.com/300" alt="Playlist cover" />
+          <button tabIndex={-1}>
+            <HiOutlinePencil size={"3em"} />
+            Choose image
+          </button>
+        </figure>
         <div className="playlist-info">
           <div>PLAYLISTA</div>
           <h1 className="playlist-title">Polskie przeboje wszech czasów</h1>
