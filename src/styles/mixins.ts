@@ -61,7 +61,8 @@ const mixins = {
     font-weight: 600;
     transition: background-color 0.1s ease-in-out, transform 0.1s ease-in-out;
 
-    &:hover {
+    &:hover,
+    &:focus-within {
       background-color: var(--essential-press);
       border: 1px solid var(--essential-base);
       transform: scale(1.05);

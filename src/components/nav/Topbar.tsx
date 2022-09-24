@@ -4,6 +4,7 @@ import { BiCaretDown, BiCaretUp } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
 import NavButton from "../buttons/NavButton";
 import NavDropdown from "../buttons/NavDropdown";
+import SearchInput from "../inputs/SearchInput";
 
 const StyledHeader = styled.header`
   grid-area: top-bar;
@@ -154,6 +155,7 @@ const Topbar = () => {
           </div>
         </div>
       )}
+      {location.pathname === "/search" && <SearchInput />}
       <div className="nav-user">
         <button className="premium-btn">Go Premium</button>
         <button className="profile-btn">
