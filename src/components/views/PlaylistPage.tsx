@@ -162,6 +162,7 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
   );
 
   const isPlaying = current.playlist?.id === playlist?.id && current.isPlaying;
+  const isPlayingSong = current.song?.id === playlist?.id && current.isPlaying;
 
   return (
     <StyledSection>
@@ -244,10 +245,27 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
               <tr></tr>
               {playlist?.songList.map((song, i) => (
                 <PlaylistRow
+                  key={i + 1}
                   rowNumber={i + 1}
                   song={song}
+                  isCurrentSong={
+                    current.song?.id === song.id &&
+                    current.playlist?.id === playlist.id
+                  }
                   isPlaying={current.song?.id === song.id && isPlaying}
-                  onPlay={onPlay}
+                  onPlay={() =>
+                    onPlay({
+                      isPlaying: !(
+                        current.song?.id === song?.id && current.isPlaying
+                      ),
+                      playlist: playlist,
+                      song: song,
+                      currDuration:
+                        current.song?.id === song?.id
+                          ? current.currDuration
+                          : 0,
+                    })
+                  }
                 />
               ))}
             </tbody>

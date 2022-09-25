@@ -18,7 +18,6 @@ const StyledButton = styled.button<RepeatButtonProps>`
         position: absolute;
         width: 7px;
         height: 7px;
-        background-color: var(--background-elevated-base);
         font-size: 0.6em;
         top: 0;
         left: 50%;

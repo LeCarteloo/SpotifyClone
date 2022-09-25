@@ -55,23 +55,35 @@ const StyledTr = styled.tr`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  &.currently-playing {
+    .song-name,
+    .col-1 {
+      color: var(--text-bright-accent);
+    }
+  }
 `;
 
 type PlaylistRowProps = {
   song: SongListType;
   rowNumber: number;
   isPlaying: boolean;
-  onPlay?: (current: CurrentSongInterface) => void;
+  isCurrentSong: boolean;
+  onPlay: React.MouseEventHandler<HTMLElement>;
 };
 
 const PlaylistRow = ({
   song,
   rowNumber,
   isPlaying,
+  isCurrentSong,
   onPlay,
 }: PlaylistRowProps) => {
   return (
-    <StyledTr onDoubleClick={() => console.log("Double-click")} tabIndex={0}>
+    <StyledTr
+      onDoubleClick={onPlay}
+      tabIndex={0}
+      className={isCurrentSong ? "currently-playing" : ""}
+    >
       <td className="col-1">
         <span className="number">
           {!isPlaying ? (
@@ -84,7 +96,7 @@ const PlaylistRow = ({
             />
           )}
         </span>
-        <button className="play-btn hide">
+        <button className="play-btn hide" onClick={onPlay}>
           {!isPlaying ? (
             <BsFillPlayFill size={"1.5em"} />
           ) : (
@@ -96,8 +108,8 @@ const PlaylistRow = ({
         <div className="song-info">
           <img src={song.songURL} alt="Song cover" className="song-cover" />
           <div className="song-title">
-            <span>{song.name}</span>
-            <span>{song.artist}</span>
+            <span className="song-name">{song.name}</span>
+            <span className="song-artist">{song.artist}</span>
           </div>
         </div>
       </td>
