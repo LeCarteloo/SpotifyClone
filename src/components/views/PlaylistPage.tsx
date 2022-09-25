@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { BsThreeDots } from "react-icons/bs";
 import { BiTime } from "react-icons/bi";
@@ -7,6 +7,8 @@ import PlayButton from "../buttons/PlayButton";
 import PlaylistRow from "../playlist/PlaylistRow";
 import { useRef } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
+import { CurrentSongInterface } from "../../types/types";
+import playlists from "../../data/userPlaylists.json";
 
 const StyledSection = styled.section`
   .playlist-header {
@@ -144,10 +146,22 @@ const StyledSection = styled.section`
   }
 `;
 
-const PlaylistPage = () => {
+interface PlaylistPageProps {
+  current: CurrentSongInterface;
+  onPlay: (current: CurrentSongInterface) => void;
+}
+
+const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
   const tableHeaderRef = useRef<HTMLTableSectionElement>(null);
-  const onPlay = () => {};
+  const params = useParams();
+  // const onPlay = () => {};
   const onLike = () => {};
+
+  const playlist = playlists.find(
+    (playlist) => playlist.id.toString() === params.id
+  );
+
+  const isPlaying = current.playlist?.id === playlist?.id && current.isPlaying;
 
   return (
     <StyledSection>
@@ -165,7 +179,10 @@ const PlaylistPage = () => {
         </figure>
         <div className="playlist-info">
           <div>PLAYLISTA</div>
-          <h1 className="playlist-title">Polskie przeboje wszech czasów</h1>
+          <h1 className="playlist-title">
+            {playlist?.name}
+            {/* Polskie przeboje wszech czasów */}
+          </h1>
           <p className="playlist-desc">
             Legendarne polskie piosenki na jednej playliście.
           </p>
@@ -181,8 +198,18 @@ const PlaylistPage = () => {
       <div className="playlist-content">
         <div className="playlist-controls">
           <PlayButton
-            isPlaying={false}
-            onClick={onPlay}
+            isPlaying={isPlaying}
+            onClick={() =>
+              onPlay({
+                isPlaying: !isPlaying,
+                playlist: playlist,
+                song: playlist?.songList[0],
+                currDuration:
+                  current.playlist?.id === playlist?.id
+                    ? current.currDuration
+                    : 0,
+              })
+            }
             isGreen={true}
             size="3.5em"
           />
@@ -215,23 +242,14 @@ const PlaylistPage = () => {
             </thead>
             <tbody>
               <tr></tr>
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
-              <PlaylistRow />
+              {playlist?.songList.map((song, i) => (
+                <PlaylistRow
+                  rowNumber={i + 1}
+                  song={song}
+                  isPlaying={current.song?.id === song.id && isPlaying}
+                  onPlay={onPlay}
+                />
+              ))}
             </tbody>
           </table>
         </div>

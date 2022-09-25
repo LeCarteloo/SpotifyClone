@@ -2,27 +2,29 @@ import styled from "styled-components";
 import LikeButton from "../buttons/LikeButton";
 import { BsThreeDots, BsFillPlayFill } from "react-icons/bs";
 import { FaPause } from "react-icons/fa";
+import { CurrentSongInterface, SongListType } from "../../types/types";
+import playingGif from "../../assets/playing.gif";
 
 const StyledTr = styled.tr`
   &:hover {
     background-color: var(--essential-tinted);
   }
-
   &:focus-within {
     background-color: var(--essential-gray);
   }
-
   .buttons {
     display: flex;
     justify-content: space-around;
     align-items: center;
     gap: 0.25em;
   }
-
   .hide {
     visibility: hidden;
   }
-
+  .song-cover {
+    width: 40px;
+    height: 40px;
+  }
   &:hover,
   &:focus-within {
     .number {
@@ -32,7 +34,6 @@ const StyledTr = styled.tr`
       visibility: visible;
     }
   }
-
   .col-1 {
     position: relative;
   }
@@ -46,34 +47,68 @@ const StyledTr = styled.tr`
   td {
     padding: 0.47em 1em;
   }
+  .playing-icon {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
 
-const PlaylistRow = () => {
+type PlaylistRowProps = {
+  song: SongListType;
+  rowNumber: number;
+  isPlaying: boolean;
+  onPlay?: (current: CurrentSongInterface) => void;
+};
+
+const PlaylistRow = ({
+  song,
+  rowNumber,
+  isPlaying,
+  onPlay,
+}: PlaylistRowProps) => {
   return (
     <StyledTr onDoubleClick={() => console.log("Double-click")} tabIndex={0}>
       <td className="col-1">
-        <span className="number">1</span>
+        <span className="number">
+          {!isPlaying ? (
+            rowNumber
+          ) : (
+            <img
+              src={playingGif}
+              className={"playing-icon"}
+              alt="Animated icon"
+            />
+          )}
+        </span>
         <button className="play-btn hide">
-          {false ? <BsFillPlayFill size={"1.5em"} /> : <FaPause size={"1em"} />}
+          {!isPlaying ? (
+            <BsFillPlayFill size={"1.5em"} />
+          ) : (
+            <FaPause size={"1em"} />
+          )}
         </button>
       </td>
       <td className="col-2">
         <div className="song-info">
-          <img src="https://via.placeholder.com/40" alt="Song cover" />
+          <img src={song.songURL} alt="Song cover" className="song-cover" />
           <div className="song-title">
-            <span>Ocalic od zapomnienia</span>
-            <span>Marek Grechuta</span>
+            <span>{song.name}</span>
+            <span>{song.artist}</span>
           </div>
         </div>
       </td>
-      <td className="col-3">Korowod</td>
-      <td className="col-4">28 gru 2021</td>
+      <td className="col-3">{song.album}</td>
+      <td className="col-4">{song.date}</td>
       <td className="col-5">
         <div className="buttons">
-          <div className="hide">
-            <LikeButton isLiked={false} onClick={() => {}} />
+          <div className={`${!song.isLiked ? "hide" : ""}`}>
+            <LikeButton isLiked={song.isLiked} onClick={() => {}} />
           </div>
-          <span>2:40</span>
+          <span>{song.duration}</span>
           <div className="hide">
             <button>
               <BsThreeDots />

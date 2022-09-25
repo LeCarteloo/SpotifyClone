@@ -14,6 +14,17 @@
         "duration": 194,
         "plays": 53318831,
         "isLiked": false
+      },
+      {
+        "id": 2,
+        "name": "Teardrops",
+        "artist": "Bring Me The Horizon",
+        "album": "Teardrops",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://via.placeholder.com/200",
+        "duration": 215,
+        "plays": 53318831,
+        "isLiked": true
       }
     ]
   },
