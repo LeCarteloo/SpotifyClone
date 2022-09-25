@@ -24,7 +24,7 @@ const StyledDiv = styled.div`
     background-color: transparent;
     border: none;
     outline: none;
-    width: 100%;
+    width: 110%;
     text-overflow: ellipsis;
   }
   button {

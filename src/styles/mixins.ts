@@ -38,6 +38,12 @@ const mixins = {
       transform: scale(1);
     }
   `,
+  underlineHover: css`
+    &:hover,
+    &:focus-within {
+      text-decoration: underline;
+    }
+  `,
   buttonActive: css`
     color: var(--text-bright-accent);
     position: relative;

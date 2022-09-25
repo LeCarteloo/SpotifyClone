@@ -22,7 +22,7 @@ const StyledSection = styled.section`
 const Search = () => {
   return (
     <StyledSection>
-      <h2>Search all</h2>
+      <h2>Browse all</h2>
       <div className="search-grid">
         <GenreBlock
           id={1}

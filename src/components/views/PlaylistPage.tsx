@@ -13,7 +13,6 @@ const StyledSection = styled.section`
     display: flex;
     ${({ theme }) => theme.mixins.sectionPadding}
     background: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%),rgb(200, 40, 48);
-
     .playlist-cover {
       position: relative;
       height: 232px;
@@ -58,11 +57,11 @@ const StyledSection = styled.section`
         a {
           color: var(--text-base);
           text-decoration: none;
+          ${({ theme }) => theme.mixins.underlineHover}
         }
       }
     }
   }
-
   .playlist-content {
     ${({ theme }) => theme.mixins.innerSectionPadding}
     position: relative;
@@ -87,76 +86,61 @@ const StyledSection = styled.section`
       gap: 1.9em;
       position: relative;
     }
-    table {
-      position: relative;
-      margin-top: 1.8em;
+  }
+
+  table {
+    position: relative;
+    margin-top: 1.8em;
+    width: 100%;
+    border-collapse: collapse;
+
+    .table-header {
+      position: sticky;
       width: 100%;
-      border-collapse: collapse;
+      top: 64px;
+    }
 
-      tbody {
-        tr:first-child {
-          display: block;
-          padding-top: 1.1em;
-        }
+    tbody {
+      tr:first-child {
+        display: block;
+        padding-top: 1.1em;
       }
-      &:first-child td:first-child {
-        border-top-left-radius: var(--radius-md);
-      }
-      &:first-child td:last-child {
-        border-top-right-radius: var(--radius-md);
-      }
+    }
+    &:first-child td:first-child {
+      border-top-left-radius: var(--radius-md);
+    }
+    &:first-child td:last-child {
+      border-top-right-radius: var(--radius-md);
+    }
 
-      &:last-child td:first-child {
-        border-bottom-left-radius: var(--radius-md);
-      }
-      &:last-child td:last-child {
-        border-bottom-right-radius: var(--radius-md);
-      }
-      tr:hover {
-        background-color: var(--essential-gray);
-      }
-      th {
-        font-weight: normal;
-        text-align: left;
-        padding-bottom: 0.2em;
-        border-bottom: 1px solid var(--essential-subdued);
-      }
-      td {
-        padding: 0.47em 0;
-      }
-      .song-info {
+    &:last-child td:first-child {
+      border-bottom-left-radius: var(--radius-md);
+    }
+    &:last-child td:last-child {
+      border-bottom-right-radius: var(--radius-md);
+    }
+    th {
+      font-weight: normal;
+      text-align: left;
+      border-bottom: 1px solid var(--essential-subdued);
+      padding: 0.2em 1em;
+    }
+    .song-info {
+      display: flex;
+      .song-title {
+        margin-left: 1em;
         display: flex;
-        .song-title {
-          margin-left: 1em;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
+        flex-direction: column;
+        justify-content: space-between;
       }
     }
   }
 
-  /* .col-1 {
-    text-align: center;
-    width: 50px;
-  }
-  .col-2 {
-    width: 40%;
-  }
-  .col-3 {
-    width: 27.5%;
-  }
-  .col-4 {
-    width: 25%;
+  .col-1 {
+    width: 2% !important;
   }
   .col-5 {
-    width: 100%;
-  } */
-
-  .table-header {
-    position: sticky;
-    width: 100%;
-    top: 64px;
+    text-align: center;
   }
 `;
 
@@ -187,10 +171,10 @@ const PlaylistPage = () => {
           </p>
           <div className="playlist-author">
             <Link to="/user/spotify">
-              <b>Spotify</b> •
+              <b>Spotify </b>
             </Link>
-            <span>198 655 polubień •</span>
-            <span>90 utworów, 6 godz. 13 min</span>
+            <span>• 198 655 polubień •</span>
+            <span> 90 utworów, 6 godz. 13 min</span>
           </div>
         </div>
       </div>
@@ -208,6 +192,15 @@ const PlaylistPage = () => {
           </button>
         </div>
         <div>
+          {/* <div className="test-header">
+            <div>#</div>
+            <div>TYTUŁ</div>
+            <div>ALBUM</div>
+            <div>DATA DODANIA</div>
+            <div>
+              <BiTime size="1.25em" />
+            </div>
+          </div> */}
           <table>
             <thead className="table-header" ref={tableHeaderRef}>
               <tr>

@@ -19,6 +19,7 @@ export default css`
     --essential-subdued: #ffffffcc;
     --essential-gray: #ffffff4d;
     --essential-bright-accent: #1ed760;
+    --essential-tinted: rgba(255, 255, 255, 0.1);
 
     --topbar-height: 64px;
     --sidebar-width: 194px;
