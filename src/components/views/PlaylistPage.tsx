@@ -12,22 +12,32 @@ import playlists from "../../data/userPlaylists.json";
 
 const StyledSection = styled.section`
   .playlist-header {
-    display: flex;
     ${({ theme }) => theme.mixins.sectionPadding}
-    background: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%),rgb(200, 40, 48);
+    padding-bottom: 1.8em;
+    background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
+      rgb(200, 40, 48);
+
+    .header-wrapper {
+      display: flex;
+    }
+
     .playlist-cover {
-      position: relative;
-      height: 232px;
-      width: auto;
+      .cover-wrapper {
+        position: relative;
+        height: 232px;
+        width: auto;
+
+        img {
+          height: inherit;
+          width: inherit;
+        }
+      }
+
       &:hover,
       &:focus-within {
         button {
           display: flex;
         }
-      }
-      img {
-        height: inherit;
-        width: inherit;
       }
       button {
         position: absolute;
@@ -38,21 +48,32 @@ const StyledSection = styled.section`
         align-items: center;
         background-color: rgba(12, 12, 12, 0.6);
         top: 0;
+        left: 0;
         display: none;
       }
     }
     .playlist-info {
-      padding: 1.8em 0 1.8em 1.4em;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      justify-content: flex-end;
+      margin: 0 1.4em;
       div:first-child {
         font-size: 12px;
       }
       .playlist-title {
-        font-size: 84px;
-        line-height: 116px;
+        font-size: clamp(36px, 5.5vw, 84px);
+        /* line-height: 116px; */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
       }
       .playlist-desc {
         margin: 1.3em 0 1em 0;
         font-size: 15.5px;
+        color: var(--text-subdued);
       }
       .playlist-author {
         font-size: 14.2px;
@@ -63,7 +84,22 @@ const StyledSection = styled.section`
         }
       }
     }
+
+    @media (max-width: 768px) {
+      .header-wrapper {
+        flex-direction: column;
+      }
+      .playlist-cover {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .playlist-info {
+        margin: 1.5em 0 0 0;
+      }
+    }
   }
+
   .playlist-content {
     ${({ theme }) => theme.mixins.innerSectionPadding}
     position: relative;
@@ -91,6 +127,7 @@ const StyledSection = styled.section`
   }
 
   table {
+    table-layout: fixed;
     position: relative;
     margin-top: 1.8em;
     width: 100%;
@@ -139,11 +176,32 @@ const StyledSection = styled.section`
   }
 
   .col-1 {
-    width: 2% !important;
+    width: 0%;
+  }
+  .col-2 {
+    width: 35%;
   }
   .col-5 {
     text-align: center;
+    width: 100px;
   }
+
+  @media (max-width: 1080px) {
+    .col-4 {
+      display: none;
+    }
+  }
+  @media (max-width: 480px) {
+    .col-1 {
+      display: none;
+    }
+    .col-3 {
+      display: none;
+    }
+    .col-5 {
+      display: none;
+    }
+  } ;
 `;
 
 interface PlaylistPageProps {
@@ -154,7 +212,6 @@ interface PlaylistPageProps {
 const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
   const tableHeaderRef = useRef<HTMLTableSectionElement>(null);
   const params = useParams();
-  // const onPlay = () => {};
   const onLike = () => {};
 
   const playlist = playlists.find(
@@ -162,37 +219,37 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
   );
 
   const isPlaying = current.playlist?.id === playlist?.id && current.isPlaying;
-  const isPlayingSong = current.song?.id === playlist?.id && current.isPlaying;
 
   return (
     <StyledSection>
       <div className="playlist-header">
-        <figure
-          className="playlist-cover"
-          tabIndex={0}
-          aria-label="Choose playlist image"
-        >
-          <img src="https://via.placeholder.com/300" alt="Playlist cover" />
-          <button tabIndex={-1}>
-            <HiOutlinePencil size={"3em"} />
-            Choose image
-          </button>
-        </figure>
-        <div className="playlist-info">
-          <div>PLAYLISTA</div>
-          <h1 className="playlist-title">
-            {playlist?.name}
-            {/* Polskie przeboje wszech czasów */}
-          </h1>
-          <p className="playlist-desc">
-            Legendarne polskie piosenki na jednej playliście.
-          </p>
-          <div className="playlist-author">
-            <Link to="/user/spotify">
-              <b>Spotify </b>
-            </Link>
-            <span>• 198 655 polubień •</span>
-            <span> 90 utworów, 6 godz. 13 min</span>
+        <div className="header-wrapper">
+          <div
+            className="playlist-cover"
+            tabIndex={0}
+            aria-label="Choose playlist image"
+          >
+            <div className="cover-wrapper">
+              <img src="https://via.placeholder.com/300" alt="Playlist cover" />
+              <button tabIndex={-1}>
+                <HiOutlinePencil size={"3em"} />
+                Choose image
+              </button>
+            </div>
+          </div>
+          <div className="playlist-info">
+            <div>PLAYLISTA</div>
+            <h1 className="playlist-title">{playlist?.name}</h1>
+            <p className="playlist-desc">
+              Legendarne polskie piosenki na jednej playliście.
+            </p>
+            <div className="playlist-author">
+              <Link to="/user/spotify">
+                <b>Spotify </b>
+              </Link>
+              <span>• 198 655 polubień •</span>
+              <span> 90 utworów, 6 godz. 13 min</span>
+            </div>
           </div>
         </div>
       </div>

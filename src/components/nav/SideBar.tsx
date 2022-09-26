@@ -93,14 +93,6 @@ const StyledAside = styled.aside`
   .playlist-list {
     width: 100%;
     overflow: auto;
-    li {
-      ${({ theme }) => theme.mixins.opacityHover}
-      font-size: var(--fs-sm);
-      padding-bottom: 1.4em;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
   }
 `;
 

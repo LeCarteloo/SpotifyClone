@@ -2,8 +2,9 @@ import styled from "styled-components";
 import LikeButton from "../buttons/LikeButton";
 import { BsThreeDots, BsFillPlayFill } from "react-icons/bs";
 import { FaPause } from "react-icons/fa";
-import { CurrentSongInterface, SongListType } from "../../types/types";
+import { SongListType } from "../../types/types";
 import playingGif from "../../assets/playing.gif";
+import { useEffect, useState } from "react";
 
 const StyledTr = styled.tr`
   &:hover {
@@ -16,7 +17,7 @@ const StyledTr = styled.tr`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 0.25em;
+    gap: 1.5em;
   }
   .hide {
     visibility: hidden;
@@ -61,6 +62,22 @@ const StyledTr = styled.tr`
       color: var(--text-bright-accent);
     }
   }
+
+  .song-title,
+  .song-artist,
+  .song-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .song-album {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+  }
 `;
 
 type PlaylistRowProps = {
@@ -78,6 +95,15 @@ const PlaylistRow = ({
   isCurrentSong,
   onPlay,
 }: PlaylistRowProps) => {
+  const [duration, setDuration] = useState("");
+  const date = new Date(song.date);
+
+  useEffect(() => {
+    const minutes = Math.floor(song.duration / 60);
+    const seconds = song.duration - minutes * 60;
+    setDuration(`${minutes}:${(0 + seconds.toString()).slice(-2)}`);
+  }, []);
+
   return (
     <StyledTr
       onDoubleClick={onPlay}
@@ -113,14 +139,16 @@ const PlaylistRow = ({
           </div>
         </div>
       </td>
-      <td className="col-3">{song.album}</td>
-      <td className="col-4">{song.date}</td>
+      <td className="col-3">
+        <span className="song-album">{song.album}</span>
+      </td>
+      <td className="col-4">{date.toDateString()}</td>
       <td className="col-5">
         <div className="buttons">
           <div className={`${!song.isLiked ? "hide" : ""}`}>
             <LikeButton isLiked={song.isLiked} onClick={() => {}} />
           </div>
-          <span>{song.duration}</span>
+          <span>{duration}</span>
           <div className="hide">
             <button>
               <BsThreeDots />

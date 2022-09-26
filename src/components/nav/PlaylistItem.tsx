@@ -16,15 +16,18 @@ type StyleProps = {
 };
 
 const StyledListItem = styled.li<StyleProps>`
-  font-size: var(--fs-sm);
-  padding-bottom: 0.5em;
   display: flex;
   justify-content: space-between;
+  font-size: 14px;
+  padding-bottom: 1.5em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   a {
-    ${({ theme }) => theme.mixins.opacityHover}
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    ${({ theme }) => theme.mixins.opacityHover}
     &.active {
       opacity: 1;
     }

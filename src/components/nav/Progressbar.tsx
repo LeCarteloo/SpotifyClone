@@ -62,10 +62,10 @@ const StyledDiv = styled.div<ProgressProps>`
 const Progressbar = ({ currentTime, songTime, onClick }: ProgressbarProps) => {
   const progressRef = useRef<HTMLDivElement>(null);
 
-  const currentMinutes: number = Math.floor(currentTime / 60);
-  const currentSeconds: number = currentTime - currentMinutes * 60;
-  const songMinutes: number = Math.floor(songTime / 60);
-  const songSeconds: number = songTime - songMinutes * 60;
+  const currentMinutes = Math.floor(currentTime / 60);
+  const currentSeconds = currentTime - currentMinutes * 60;
+  const songMinutes = Math.floor(songTime / 60);
+  const songSeconds = songTime - songMinutes * 60;
 
   const onProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = progressRef?.current?.getBoundingClientRect();
