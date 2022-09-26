@@ -16,8 +16,8 @@ interface MainProps {
 
 const StyledMain = styled.main`
   grid-area: main;
-  min-height: 100%;
   overflow: auto;
+  min-height: 100%;
   margin-top: calc(var(--topbar-height) * -1);
 `;
 
@@ -47,7 +47,10 @@ const Main = ({
           path="/playlist/:id"
           element={<PlaylistPage current={current} onPlay={onPlay} />}
         />
-        <Route path="/lyrics" element={<Lyrics />} />
+        <Route
+          path="/lyrics"
+          element={<Lyrics songName={current.song?.name} />}
+        />
       </Routes>
     </StyledMain>
   );

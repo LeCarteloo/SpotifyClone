@@ -176,7 +176,7 @@ const StyledSection = styled.section`
   }
 
   .col-1 {
-    width: 0%;
+    width: 1%;
   }
   .col-2 {
     width: 35%;

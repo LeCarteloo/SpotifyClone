@@ -10,7 +10,7 @@ const StyledHeader = styled.header`
   grid-area: top-bar;
   width: calc(100% - 3.8em);
   height: 64px;
-  background-color: #121212cc;
+  /* background-color: #121212cc; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -126,7 +126,7 @@ const Topbar = () => {
   };
 
   if (location.pathname === "/lyrics") {
-    return <></>;
+    return <StyledHeader></StyledHeader>;
   }
 
   return (
