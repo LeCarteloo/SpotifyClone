@@ -24,6 +24,7 @@ export default css`
     --topbar-height: 64px;
     --sidebar-width: 194px;
     --playbar-height: 57px;
+    --navbar-height: 70px;
 
     --radius-small: 2px;
     --radius-md: 5px;

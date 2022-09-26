@@ -10,6 +10,8 @@ import { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentSongInterface, SongListType } from "./types/types";
 import Topbar from "./components/nav/Topbar";
+import NavbarMobile from "./components/nav/NavbarMobile";
+import useIsMobile from "./hooks/useIsMobile";
 
 const StyledDiv = styled.div`
   height: 100%;
@@ -29,6 +31,9 @@ function App() {
     song: undefined,
     currDuration: 0,
   });
+  const isMobile = useIsMobile();
+
+  console.log(isMobile);
 
   const onPlay = (current: CurrentSongInterface) => {
     const { isPlaying, playlist, song, currDuration } = current;
@@ -70,6 +75,7 @@ function App() {
             onPlay={onPlaybarPlay}
             onProgressChange={onProgressChange}
           />
+          {isMobile && <NavbarMobile />}
         </StyledDiv>
       </Router>
     </ThemeProvider>

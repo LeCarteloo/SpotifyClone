@@ -20,7 +20,7 @@ const mixins = {
     }
   `,
   opacityHover: css`
-    opacity: 0.7;
+    opacity: 0.6;
     transition: opacity 0.2s ease-in;
     &:hover,
     &:focus-within {
@@ -42,6 +42,14 @@ const mixins = {
     &:hover,
     &:focus-within {
       text-decoration: underline;
+    }
+  `,
+  colorHover: css`
+    color: gray;
+    transition: color 0.2s ease-in;
+    &:hover,
+    &:focus-within {
+      color: var(--text-base);
     }
   `,
   buttonActive: css`
