@@ -4,6 +4,7 @@ import { css } from "styled-components";
 
 type RepeatButtonProps = {
   repeatAmount: number;
+  size?: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -15,11 +16,12 @@ const StyledButton = styled.button<RepeatButtonProps>`
       ${({ theme }) => theme.mixins.buttonActive};
       &::before {
         content: "${repeatAmount}";
+        background-color: ;
         position: absolute;
         width: 7px;
         height: 7px;
         font-size: 0.6em;
-        top: 0;
+        top: 0em;
         left: 50%;
         transform: translateX(-50%);
       }
@@ -28,11 +30,12 @@ const StyledButton = styled.button<RepeatButtonProps>`
 
 const RepeatButton: React.FC<RepeatButtonProps> = ({
   repeatAmount,
+  size,
   onClick,
 }) => {
   return (
     <StyledButton onClick={onClick} repeatAmount={repeatAmount}>
-      <RiRepeatFill />
+      <RiRepeatFill size={size} />
     </StyledButton>
   );
 };

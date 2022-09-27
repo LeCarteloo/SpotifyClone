@@ -4,6 +4,7 @@ import { BiShuffle } from "react-icons/bi";
 
 type ShuffleButtonProps = {
   isClicked: boolean;
+  size?: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -18,11 +19,12 @@ const StyledButton = styled.button<ShuffleButtonProps>`
 
 const ShuffleButton: React.FC<ShuffleButtonProps> = ({
   isClicked,
+  size = "1.1em",
   onClick,
 }) => {
   return (
     <StyledButton onClick={onClick} isClicked={isClicked}>
-      <BiShuffle size={"1.1em"} />
+      <BiShuffle size={size} />
     </StyledButton>
   );
 };
