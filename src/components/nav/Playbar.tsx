@@ -30,10 +30,13 @@ const StyledFooter = styled.footer`
   height: var(--playbar-height);
   align-items: center;
   display: flex;
-  /* gap: 2em; */
   justify-content: space-between;
   z-index: 1;
   border-top: 1px solid #282828;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 
   .song-current {
     display: flex;

@@ -22,6 +22,10 @@ const StyledHeader = styled.header`
     gap: 0.5em;
   }
 
+  @media (max-width: 480px) {
+    display: none;
+  }
+
   .nav-buttons {
     display: flex;
     gap: 1.15em;
