@@ -10,6 +10,9 @@ type LikeButtonProps = {
 
 const StyledButton = styled.button<LikeButtonProps>`
   ${({ theme }) => theme.mixins.opacityHover}
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--test-base);
   opacity: 0.7;
   transition: color 0.2s ease-in;

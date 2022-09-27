@@ -12,6 +12,7 @@ import { CurrentSongInterface, SongListType } from "./types/types";
 import Topbar from "./components/nav/Topbar";
 import NavbarMobile from "./components/nav/NavbarMobile";
 import useIsMobile from "./hooks/useIsMobile";
+import PlaybarMobile from "./components/nav/PlaybarMobile";
 
 const StyledDiv = styled.div`
   height: 100%;
@@ -75,6 +76,7 @@ function App() {
             onPlay={onPlaybarPlay}
             onProgressChange={onProgressChange}
           />
+          {isMobile && <PlaybarMobile />}
           {isMobile && <NavbarMobile />}
         </StyledDiv>
       </Router>

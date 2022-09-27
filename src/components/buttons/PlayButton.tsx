@@ -1,12 +1,12 @@
-import { FaPlayCircle, FaPauseCircle } from "react-icons/fa";
+import { FaPlayCircle, FaPauseCircle, FaPlay, FaPause } from "react-icons/fa";
 import styled, { css } from "styled-components";
-import { SongListType, PlaylistInterface } from "../../types/types";
 
 type PlayButtonProps = {
   isPlaying: boolean;
   isDisabled?: boolean;
   onClick: (arg: any) => void;
   isGreen?: boolean;
+  hasBackground?: boolean;
   size?: string;
 };
 
@@ -16,6 +16,9 @@ type StyleProps = {
 };
 
 const StyledButton = styled.button<StyleProps>`
+  display: flex;
+  align-items: center;
+
   &:not(:disabled) {
     ${({ theme }) => theme.mixins.scaleHover}
   }
@@ -36,6 +39,7 @@ const PlayButton = ({
   isDisabled,
   onClick,
   isGreen,
+  hasBackground = true,
   size,
 }: PlayButtonProps) => {
   return (
@@ -46,9 +50,15 @@ const PlayButton = ({
       disabled={isDisabled}
     >
       {isPlaying ? (
-        <FaPauseCircle size={size ? size : "1.8em"} />
-      ) : (
+        hasBackground ? (
+          <FaPauseCircle size={size ? size : "1.8em"} />
+        ) : (
+          <FaPause size={size ? size : "1.8em"} />
+        )
+      ) : hasBackground ? (
         <FaPlayCircle size={size ? size : "1.8em"} />
+      ) : (
+        <FaPlay size={size ? size : "1.8em"} />
       )}
     </StyledButton>
   );
