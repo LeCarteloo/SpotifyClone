@@ -1,18 +1,20 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { BsChevronDown, BsList } from "react-icons/bs";
 import { FiSpeaker } from "react-icons/fi";
 import { TbMicrophone2 } from "react-icons/tb";
-import { useLocation } from "react-router-dom";
-import styled, { css } from "styled-components";
+import { Link, useLocation } from "react-router-dom";
+import styled from "styled-components";
 import ActionButton from "../buttons/ActionButton";
 import LikeButton from "../buttons/LikeButton";
 import PlayButton from "../buttons/PlayButton";
 import RepeatButton from "../buttons/RepeatButton";
 import ShuffleButton from "../buttons/ShuffleButton";
 import Progressbar from "./Progressbar";
+import { CurrentSongInterface } from "../../types/types";
 
 const StyledNav = styled.nav<StyleProps>`
+  z-index: 10;
   height: var(--playbar-height);
   width: 100%;
   position: absolute;
@@ -51,31 +53,41 @@ const StyledNav = styled.nav<StyleProps>`
 `;
 
 const StyledDiv = styled.div`
-  .song-menu {
-    position: fixed;
+  position: fixed;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: 0.4s;
+  z-index: 11;
+  &.open {
     top: 0;
-    left: 0;
-    z-index: 20;
+    pointer-events: all;
+  }
+  .song-menu {
+    overflow: auto;
     width: calc(100% - 3em);
     height: calc(100% - 4.8em);
     padding: 2.4em 1.5em;
     background-color: rgba(0, 0, 0, 1);
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
-    display: flex;
     .menu-header {
       display: flex;
       justify-content: center;
       position: relative;
       .close-btn {
         position: absolute;
-        top: 0;
+        top: -5px;
         left: 10%;
       }
     }
     .menu-playlist {
-      max-width: 70%;
       font-size: 0.8em;
+      color: var(--text-base);
+      text-decoration: none;
     }
 
     .song-cover {
@@ -86,10 +98,13 @@ const StyledDiv = styled.div`
         height: auto;
         max-width: 300px;
       }
+      @media screen and (orientation: landscape) {
+        display: none;
+      }
     }
     .song-info {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       h1 {
         font-size: 30px;
       }
@@ -120,18 +135,49 @@ const StyledDiv = styled.div`
   }
 `;
 
+interface PlaybarMobileProps {
+  current: CurrentSongInterface;
+  onPlay: () => void;
+  onProgressChange: (time: number) => void;
+}
+
 type StyleProps = {
   isOpen?: boolean;
 };
 
-const PlaybarMobile = () => {
+const PlaybarMobile = ({
+  current,
+  onPlay,
+  onProgressChange,
+}: PlaybarMobileProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const [shuffle, setShuffle] = useState(false);
+  const [repeat, setRepeat] = useState(0);
   const location = useLocation();
 
-  const onOpenMenu = (e: any) => {
+  const onLike = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
+    setLiked(!liked);
+  };
+  const onShuffle = () => {
+    setShuffle(!shuffle);
+  };
+  const onRepeat = () => {
+    if (repeat >= 2) {
+      setRepeat(0);
+      return;
+    }
+
+    setRepeat(repeat + 1);
+  };
+
+  const onOpenMenu = (e: any) => {
     setIsOpen(!isOpen);
+  };
+
+  const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
   };
 
   return (
@@ -146,15 +192,18 @@ const PlaybarMobile = () => {
             <img src="https://via.placeholder.com/200" alt="Song cover" />
             <div className="song-nav">
               <div className="song-info">
-                <span>Numb</span>
-                <span>Linkin Park</span>
+                <span>{current.song?.name}</span>
+                <span>{current.song?.artist}</span>
               </div>
               <div className="song-buttons">
-                <LikeButton isLiked={false} onClick={() => {}} size="1.6em" />
+                <LikeButton isLiked={liked} onClick={onLike} size="1.6em" />
                 <PlayButton
-                  isPlaying={false}
                   hasBackground={false}
-                  onClick={() => {}}
+                  isPlaying={current.isPlaying}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onPlay();
+                  }}
                   size="1.4em"
                 />
               </div>
@@ -162,26 +211,39 @@ const PlaybarMobile = () => {
           </div>
         </div>
       </StyledNav>
-      {isOpen && (
-        <StyledDiv>
+      <StyledDiv className={`${isOpen ? "open" : ""}`}>
+        {isOpen && (
           <div className="song-menu">
             <div className="menu-header">
-              <span className="menu-playlist">
-                Polskie przeboje wszech czasów
-              </span>
+              {current.playlist && (
+                <Link
+                  to={`/playlist/${current.playlist.id}`}
+                  className="menu-playlist"
+                  onClick={onOpenMenu}
+                >
+                  {current.playlist.name}
+                </Link>
+              )}
               <button className="close-btn" onClick={onOpenMenu}>
                 <BsChevronDown size={"1.5em"} />
               </button>
             </div>
             <div className="song-cover">
-              <img src="https://via.placeholder.com/300" alt="Song cover" />
+              <img src={current.song?.songURL} alt="Song cover" />
             </div>
             <div className="song-info">
-              <h1>Numb</h1>
-              <h4>Linkin Park</h4>
+              <div>
+                <h1>{current.song?.name}</h1>
+                <h4>{current.song?.artist}</h4>
+              </div>
+              <LikeButton isLiked={liked} onClick={onLike} size="1.6em" />
             </div>
             <div className="menu-nav">
-              <Progressbar currentTime={0} songTime={180} onClick={() => {}} />
+              <Progressbar
+                currentTime={current.currDuration}
+                songTime={current.song ? current.song.duration : 0}
+                onClick={onProgressChange}
+              />
               <div className="nav-buttons">
                 <ShuffleButton
                   isClicked={false}
@@ -194,8 +256,8 @@ const PlaybarMobile = () => {
                     icon={<BiSkipPrevious size="3em" />}
                   />
                   <PlayButton
-                    isPlaying={false}
-                    onClick={() => {}}
+                    isPlaying={current.isPlaying}
+                    onClick={onPlay}
                     size={"3.5em"}
                   />
                   <ActionButton
@@ -221,7 +283,7 @@ const PlaybarMobile = () => {
                     onClick={() => {}}
                   />
                   <ActionButton
-                    isActive={true}
+                    isActive={false}
                     icon={<BsList size={"1.5em"} />}
                     onClick={() => {}}
                   />
@@ -229,8 +291,8 @@ const PlaybarMobile = () => {
               </div>
             </div>
           </div>
-        </StyledDiv>
-      )}
+        )}
+      </StyledDiv>
     </>
   );
 };

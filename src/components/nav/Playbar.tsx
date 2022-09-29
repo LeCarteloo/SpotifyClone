@@ -164,7 +164,7 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
           <RepeatButton repeatAmount={repeat} onClick={onRepeat} />
         </div>
         <Progressbar
-          currentTime={current.song ? current?.currDuration : 0}
+          currentTime={current.currDuration}
           songTime={current.song ? current.song.duration : 0}
           onClick={onProgressChange}
         />
