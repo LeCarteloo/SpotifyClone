@@ -42,8 +42,14 @@ const StyledButton = styled.button<LikeButtonProps>`
 `;
 
 const LikeButton: React.FC<LikeButtonProps> = ({ isLiked, onClick, size }) => {
+  const onLike = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
+    e.preventDefault();
+    onClick(e);
+  };
+
   return (
-    <StyledButton onClick={onClick} isLiked={isLiked}>
+    <StyledButton onClick={onLike} isLiked={isLiked}>
       {isLiked ? <FaHeart size={size} /> : <FaRegHeart size={size} />}
     </StyledButton>
   );

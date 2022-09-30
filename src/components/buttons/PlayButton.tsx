@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 type PlayButtonProps = {
   isPlaying: boolean;
   isDisabled?: boolean;
-  onClick: (arg: any) => void;
+  onClick: () => void;
   isGreen?: boolean;
   hasBackground?: boolean;
   size?: string;
@@ -42,10 +42,16 @@ const PlayButton = ({
   hasBackground = true,
   size,
 }: PlayButtonProps) => {
+  const onPlay = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
+    e.preventDefault();
+    onClick();
+  };
+
   return (
     <StyledButton
       isPlaying={isPlaying}
-      onClick={onClick}
+      onClick={onPlay}
       isGreen={isGreen}
       disabled={isDisabled}
     >

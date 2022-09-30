@@ -22,6 +22,11 @@ const StyledButton = styled.button<RepeatButtonProps>`
         height: 7px;
         font-size: 0.6em;
         top: 0em;
+        ${({ size }) =>
+          size &&
+          css`
+            top: -1em;
+          `}
         left: 50%;
         transform: translateX(-50%);
       }
@@ -34,7 +39,7 @@ const RepeatButton: React.FC<RepeatButtonProps> = ({
   onClick,
 }) => {
   return (
-    <StyledButton onClick={onClick} repeatAmount={repeatAmount}>
+    <StyledButton onClick={onClick} repeatAmount={repeatAmount} size={size}>
       <RiRepeatFill size={size} />
     </StyledButton>
   );
