@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import LikedTracks from "../playlist/LikedTracks";
-import Playlist from "../playlist/Playlist";
-import test from "../../data/favoritePlaylists.json";
+import LikedTracksBlock from "../blocks/LikedTracksBlock";
+import PlaylistBlock from "../blocks/PlaylistBlock";
+import test from "../../data/playlists.json";
 
 const StyledSection = styled.section`
   h2 {
@@ -20,20 +20,20 @@ const LibPlaylists = () => {
     <StyledSection>
       <h2>{"Playlists"}</h2>
       <div className="playlist-grid">
-        <LikedTracks />
-        <Playlist
+        <LikedTracksBlock />
+        <PlaylistBlock
           isPlaying={true}
           currDuration={30}
           playlist={test[0]}
           onPlay={onPlay}
         />
-        <Playlist
+        <PlaylistBlock
           isPlaying={true}
           currDuration={30}
           playlist={test[0]}
           onPlay={onPlay}
         />
-        <Playlist
+        <PlaylistBlock
           isPlaying={true}
           currDuration={30}
           playlist={test[0]}

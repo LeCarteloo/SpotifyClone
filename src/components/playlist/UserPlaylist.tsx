@@ -16,7 +16,7 @@ type StyledProps = {
 const StyledDiv = styled.div<StyledProps>`
   display: flex;
   align-items: center;
-  background-color: #0000004f;
+  background-color: var(--background-elevated-base);
   border-radius: var(--radius-small);
   height: 70px;
   overflow: hidden;
@@ -30,9 +30,11 @@ const StyledDiv = styled.div<StyledProps>`
 
   h3 {
     margin-left: 0.5em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: clamp(0.8em, 1.5vw, 1.17em);
   }
 
   .play-button {
@@ -64,7 +66,9 @@ const StyledDiv = styled.div<StyledProps>`
 
   @media (max-width: 768px) {
     height: 50px;
-    font-size: 0.7em;
+    h3 {
+      /* font-size: 0.7em; */
+    }
   }
 `;
 

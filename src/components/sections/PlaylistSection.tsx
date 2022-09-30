@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
-import Playlist from "../playlist/Playlist";
+import PlaylistBlock from "../blocks/PlaylistBlock";
 
 interface PlaylistSectionProps {
   title: string;
@@ -10,10 +10,10 @@ interface PlaylistSectionProps {
 }
 
 const StyledSection = styled.section`
-  width: 100%;
   overflow: hidden;
   h2 {
     margin: 0.8em 0;
+    ${({ theme }) => theme.mixins.innerSectionPadding}
   }
   .playlists-list {
     display: flex;
@@ -21,6 +21,11 @@ const StyledSection = styled.section`
     overflow: auto;
     padding-bottom: 0.5em;
     min-height: 100%;
+    margin: 0 1.9em;
+    @media (max-width: 480px) {
+      margin: 0;
+      padding: 0 1.9em;
+    }
   }
 `;
 const PlaylistSection = ({
@@ -34,7 +39,7 @@ const PlaylistSection = ({
       <h2>{title}</h2>
       <div className="playlists-list">
         {playlists.map((playlist) => (
-          <Playlist
+          <PlaylistBlock
             key={playlist.id}
             isPlaying={
               current.playlist?.id === playlist.id && current.isPlaying

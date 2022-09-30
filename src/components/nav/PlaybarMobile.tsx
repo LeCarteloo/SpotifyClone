@@ -157,7 +157,6 @@ const PlaybarMobile = ({
   const location = useLocation();
 
   const onLike = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.stopPropagation();
     setLiked(!liked);
   };
   const onShuffle = () => {
@@ -174,10 +173,6 @@ const PlaybarMobile = ({
 
   const onOpenMenu = (e: any) => {
     setIsOpen(!isOpen);
-  };
-
-  const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.stopPropagation();
   };
 
   return (
@@ -200,10 +195,7 @@ const PlaybarMobile = ({
                 <PlayButton
                   hasBackground={false}
                   isPlaying={current.isPlaying}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onPlay();
-                  }}
+                  onClick={onPlay}
                   size="1.4em"
                 />
               </div>

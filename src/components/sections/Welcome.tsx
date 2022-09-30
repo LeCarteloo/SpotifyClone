@@ -10,7 +10,7 @@ interface WelcomeProps {
 }
 
 const StyledSection = styled.section`
-  width: 100%;
+  ${({ theme }) => theme.mixins.innerSectionPadding}
   .user-playlists {
     margin-top: 1.2em;
     display: grid;
@@ -24,7 +24,7 @@ const StyledSection = styled.section`
 `;
 
 const Welcome = ({ current, userPlaylists, onPlay }: WelcomeProps) => {
-  const [msg, setMsg] = useState<String>("");
+  const [msg, setMsg] = useState("");
 
   useEffect(() => {
     const today = new Date();

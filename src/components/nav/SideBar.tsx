@@ -6,7 +6,7 @@ import { AiOutlinePlus, AiFillHeart } from "react-icons/ai";
 import Logo from "../../assets/logo.svg";
 import React from "react";
 import PlaylistItem from "./PlaylistItem";
-import { CurrentSongInterface } from "../../types/types";
+import { CurrentSongInterface, PlaylistInterface } from "../../types/types";
 import { NavLink } from "react-router-dom";
 
 const StyledNav = styled.nav`
@@ -96,14 +96,9 @@ const StyledAside = styled.aside`
   }
 `;
 
-interface Playlist {
-  id: number;
-  name: string;
-}
-
 type SidebarProps = {
   current: CurrentSongInterface;
-  playlists?: Playlist[];
+  playlists?: PlaylistInterface[];
   onPlaylistPause: () => void;
 };
 
