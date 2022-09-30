@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import GenreBlock from "../blocks/GenreBlock";
+import genres from "../../data/genres.json";
 
 const StyledSection = styled.section`
   ${({ theme }) => theme.mixins.sectionPadding};
@@ -20,34 +21,22 @@ const StyledSection = styled.section`
 `;
 
 const Search = () => {
+  // const [genres, setGenres] = useState();
+
   return (
     <StyledSection>
       <h2>Browse all</h2>
       <div className="search-grid">
-        <GenreBlock
-          id={1}
-          name="Podcasty"
-          img="https://via.placeholder.com/200"
-          bgColor="darkmagenta"
-        />
-        <GenreBlock
-          id={1}
-          name="Podcasty"
-          img="https://via.placeholder.com/200"
-          bgColor="darkred"
-        />
-        <GenreBlock
-          id={1}
-          name="Podcasty"
-          img="https://via.placeholder.com/200"
-          bgColor="green"
-        />
-        <GenreBlock
-          id={1}
-          name="Podcasty"
-          img="https://via.placeholder.com/200"
-          bgColor="darkgreen"
-        />
+        {genres &&
+          genres.map((genre) => (
+            <GenreBlock
+              key={genre.id}
+              id={genre.id}
+              name={genre.name}
+              img={genre.img}
+              bgColor={genre.color}
+            />
+          ))}
       </div>
     </StyledSection>
   );
