@@ -41,7 +41,7 @@ const StyledDiv = styled.div`
   }
 `;
 
-const LikedTracks = () => {
+const LikedTracksBlock = () => {
   return (
     <StyledDiv>
       <div className="list">
@@ -63,4 +63,4 @@ const LikedTracks = () => {
   );
 };
 
-export default LikedTracks;
+export default LikedTracksBlock;

@@ -1,8 +1,9 @@
 import styled, { css } from "styled-components";
 import PlayButton from "../buttons/PlayButton";
 import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
+import { Link } from "react-router-dom";
 
-interface PlaylistProps {
+interface PlaylistBlockProps {
   isPlaying: boolean;
   playlist: PlaylistInterface;
   currDuration: number;
@@ -13,7 +14,9 @@ type StyledProps = {
   isPlaying: boolean;
 };
 
-const StyledDiv = styled.div<StyledProps>`
+const StyledLink = styled(Link).withConfig({
+  shouldForwardProp: (prop) => !["isPlaying"].includes(prop),
+})<StyledProps>`
   position: relative;
   padding: 0.85em;
   width: calc(100% - 0.85em * 2);
@@ -22,7 +25,8 @@ const StyledDiv = styled.div<StyledProps>`
   background-color: var(--background-highlight);
   border-radius: var(--radius-md);
   overflow: hidden;
-
+  text-decoration: none;
+  color: var(--text-base);
   figure {
     position: relative;
     img {
@@ -89,14 +93,14 @@ const StyledDiv = styled.div<StyledProps>`
   }
 `;
 
-const Playlist = ({
+const PlaylistBlock = ({
   isPlaying,
   playlist,
   onPlay,
   currDuration,
-}: PlaylistProps) => {
+}: PlaylistBlockProps) => {
   return (
-    <StyledDiv isPlaying={isPlaying}>
+    <StyledLink to={`/playlist/${playlist.id}`} isPlaying={isPlaying}>
       <figure>
         <img src="https://via.placeholder.com/200" alt="Playlist cover" />
         <div className="play-button">
@@ -119,8 +123,8 @@ const Playlist = ({
         <h4>{playlist.name}</h4>
         <span>Queen, Three Days Grace, Papa Roach and more</span>
       </div>
-    </StyledDiv>
+    </StyledLink>
   );
 };
 
-export default Playlist;
+export default PlaylistBlock;
