@@ -6,6 +6,7 @@ import GlobalStyles from "./styles/global";
 import theme from "./styles/theme";
 import userPlaylists from "./data/userPlaylists.json";
 import favoritePlaylists from "./data/favoritePlaylists.json";
+import playlists from "./data/playlists.json";
 import { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentSongInterface, SongListType } from "./types/types";
@@ -25,6 +26,8 @@ const StyledDiv = styled.div`
     "play-bar play-bar";
 `;
 
+const USER_ID = 1;
+
 function App() {
   const [currSong, setCurrSong] = useState<CurrentSongInterface>({
     isPlaying: false,
@@ -33,8 +36,6 @@ function App() {
     currDuration: 0,
   });
   const isMobile = useIsMobile();
-
-  console.log(isMobile);
 
   const onPlay = (current: CurrentSongInterface) => {
     const { isPlaying, playlist, song, currDuration } = current;
@@ -53,6 +54,14 @@ function App() {
   const onProgressChange = (time: number) => {
     setCurrSong({ ...currSong, currDuration: time });
   };
+
+  const userPlaylists = playlists.filter(
+    (playlist) => playlist.author.id === USER_ID
+  );
+
+  const favoritePlaylists = playlists.filter(
+    (playlist) => playlist.author.id !== USER_ID
+  );
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,7 +85,13 @@ function App() {
             onPlay={onPlaybarPlay}
             onProgressChange={onProgressChange}
           />
-          {isMobile && <PlaybarMobile />}
+          {isMobile && currSong.song && (
+            <PlaybarMobile
+              current={currSong}
+              onPlay={onPlaybarPlay}
+              onProgressChange={onProgressChange}
+            />
+          )}
           {isMobile && <NavbarMobile />}
         </StyledDiv>
       </Router>

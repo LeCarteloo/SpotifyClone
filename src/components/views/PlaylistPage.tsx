@@ -8,7 +8,7 @@ import PlaylistRow from "../playlist/PlaylistRow";
 import { useRef } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
 import { CurrentSongInterface } from "../../types/types";
-import playlists from "../../data/userPlaylists.json";
+import playlists from "../../data/playlists.json";
 
 const StyledSection = styled.section`
   .playlist-header {
@@ -90,9 +90,7 @@ const StyledSection = styled.section`
         flex-direction: column;
       }
       .playlist-cover {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        margin: 0 auto;
       }
       .playlist-info {
         margin: 1.5em 0 0 0;
@@ -290,9 +288,9 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
             <thead className="table-header" ref={tableHeaderRef}>
               <tr>
                 <th className="col-1">#</th>
-                <th className="col-2">TYTUŁ</th>
+                <th className="col-2">TITLE</th>
                 <th className="col-3">ALBUM</th>
-                <th className="col-4">DATA DODANIA</th>
+                <th className="col-4">DATE ADDED</th>
                 <th className="col-5">
                   <BiTime size="1.25em" />
                 </th>

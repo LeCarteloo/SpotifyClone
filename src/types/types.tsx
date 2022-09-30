@@ -10,10 +10,20 @@ export type SongListType = {
   isLiked: boolean;
 };
 
+export type AuthorType = {
+  id: number;
+  username: string;
+};
+
 export interface PlaylistInterface {
   id: number;
   name: string;
   playlistURL: string;
+  desc?: string;
+  author: AuthorType;
+  likes: number;
+  isLiked?: boolean;
+  color?: string;
   songList: SongListType[];
 }
 

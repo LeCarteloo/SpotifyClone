@@ -3,6 +3,13 @@
     "id": 1,
     "name": "Rock",
     "playlistURL": "https://via.placeholder.com/200",
+    "desc": "Short description of a playlist",
+    "author": {
+      "id": 1,
+      "username": "User Name"
+    },
+    "likes": 5,
+    "color": "#C82830",
     "songList": [
       {
         "id": 1,
@@ -98,6 +105,14 @@
     "id": 2,
     "name": "Cyberpunk",
     "playlistURL": "https://via.placeholder.com/200",
+    "desc": "Short description of a playlist",
+    "author": {
+      "id": 1,
+      "username": "User Name"
+    },
+    "likes": 5,
+    "color": "#C82830",
+
     "songList": [
       {
         "id": 1,
@@ -116,6 +131,14 @@
     "id": 3,
     "name": "Pop",
     "playlistURL": "https://via.placeholder.com/200",
+    "desc": "Short description of a playlist",
+    "author": {
+      "id": 1,
+      "username": "User Name"
+    },
+    "likes": 5,
+    "color": "#C82830",
+
     "songList": [
       {
         "id": 1,
@@ -132,8 +155,16 @@
   },
   {
     "id": 4,
-    "name": "Very very very long name of playlist",
+    "name": "Mix 1",
     "playlistURL": "https://via.placeholder.com/200",
+    "desc": "Short description of a playlist",
+    "author": {
+      "id": 2,
+      "username": "Spotify"
+    },
+    "likes": 5,
+    "color": "#C82830",
+
     "songList": [
       {
         "id": 1,
@@ -150,26 +181,15 @@
   },
   {
     "id": 5,
-    "name": "Happy mix",
+    "name": "Mix 2",
     "playlistURL": "https://via.placeholder.com/200",
-    "songList": [
-      {
-        "id": 1,
-        "name": "A Reason to Fight A Reason to Fight",
-        "artist": "Disturbed",
-        "album": "Evolution (Deluxe Edition)",
-        "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
-        "duration": 284,
-        "plays": 53318831,
-        "isLiked": false
-      }
-    ]
-  },
-  {
-    "id": 6,
-    "name": "Moody mix",
-    "playlistURL": "https://via.placeholder.com/200",
+    "desc": "Short description of a playlist",
+    "author": {
+      "id": 2,
+      "username": "Spotify"
+    },
+    "likes": 5,
+    "color": "#C82830",
     "songList": [
       {
         "id": 1,
