@@ -1,10 +1,9 @@
 import styled from "styled-components";
+import songs from "../../data/songs.json";
 
 const StyledDiv = styled.div`
   background: linear-gradient(135deg, #450af5, #c4efd9 160%);
   border-radius: var(--radius-md);
-  /* height: 230px;
-  width: 348px; */
   display: flex;
   flex-direction: column;
   padding: 1.2em;
@@ -27,6 +26,9 @@ const StyledDiv = styled.div`
       white-space: normal;
       margin-bottom: 1em;
       line-height: 1.5em;
+      .subdued {
+        color: var(--essential-gray);
+      }
     }
   }
   .info {
@@ -46,18 +48,19 @@ const LikedTracksBlock = () => {
     <StyledDiv>
       <div className="list">
         <p>
-          Author - Title, Author- title Author - Title, Author- title Author -
-          Title, Author- title Title, Author- title Title, Author- title Title,
-          Author- title Author- title Author- title Author- title Author- title
-          Author- title Author- title Author- title Author- title Author- title
-          Author- title Author- title Author- title Author- title Author- title
-          Author- title Author- title Author-
-          titleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+          {songs &&
+            songs.map((song) => (
+              <>
+                <span>{song.artist}</span>
+                <span className="subdued"> • </span>
+                <span className="subdued">{song.name} </span>
+              </>
+            ))}
         </p>
       </div>
       <div className="info">
         <h1>Liked tracks</h1>
-        <span>7 liked tracks</span>
+        <span>{songs.length} liked tracks</span>
       </div>
     </StyledDiv>
   );

@@ -43,7 +43,16 @@ const Main = ({
           }
         />
         <Route path="/search" element={<Search />} />
-        <Route path="/library/*" element={<Library />} />
+        <Route
+          path="/library/*"
+          element={
+            <Library
+              userPlaylists={userPlaylists}
+              current={current}
+              onPlay={onPlay}
+            />
+          }
+        />
         <Route
           path="/playlist/:id"
           element={<PlaylistPage current={current} onPlay={onPlay} />}

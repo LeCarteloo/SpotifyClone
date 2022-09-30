@@ -4,17 +4,33 @@ import LibPlaylists from "../library/LibPlaylists";
 import LibNoData from "../library/LibNoData";
 import { MdOutlinePodcasts, MdOutlineAlbum } from "react-icons/md";
 import LibArtists from "../library/LibArtists";
+import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
 
 const StyledSection = styled.section`
   ${({ theme }) => theme.mixins.sectionPadding}
 `;
 
-const Library = () => {
+interface LibraryProps {
+  current: CurrentSongInterface;
+  userPlaylists: PlaylistInterface[];
+  onPlay: (current: CurrentSongInterface) => void;
+}
+
+const Library = ({ userPlaylists, current, onPlay }: LibraryProps) => {
   return (
     <StyledSection>
       <Routes>
         <Route index element={<Navigate to="/library/playlists" />} />
-        <Route path="playlists" element={<LibPlaylists />} />
+        <Route
+          path="playlists"
+          element={
+            <LibPlaylists
+              userPlaylists={userPlaylists}
+              current={current}
+              onPlay={onPlay}
+            />
+          }
+        />
         <Route
           path="podcasts"
           element={

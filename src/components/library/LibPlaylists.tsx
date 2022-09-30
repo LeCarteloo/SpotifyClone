@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import LikedTracksBlock from "../blocks/LikedTracksBlock";
 import PlaylistBlock from "../blocks/PlaylistBlock";
-import test from "../../data/playlists.json";
+import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
 
 const StyledSection = styled.section`
   h2 {
@@ -13,32 +13,31 @@ const StyledSection = styled.section`
   }
 `;
 
-const LibPlaylists = () => {
-  const onPlay = () => {};
+interface LibPlaylistsProps {
+  current: CurrentSongInterface;
+  userPlaylists: PlaylistInterface[];
+  onPlay: (current: CurrentSongInterface) => void;
+}
 
+const LibPlaylists = ({
+  current,
+  userPlaylists,
+  onPlay,
+}: LibPlaylistsProps) => {
   return (
     <StyledSection>
       <h2>{"Playlists"}</h2>
       <div className="playlist-grid">
         <LikedTracksBlock />
-        <PlaylistBlock
-          isPlaying={true}
-          currDuration={30}
-          playlist={test[0]}
-          onPlay={onPlay}
-        />
-        <PlaylistBlock
-          isPlaying={true}
-          currDuration={30}
-          playlist={test[0]}
-          onPlay={onPlay}
-        />
-        <PlaylistBlock
-          isPlaying={true}
-          currDuration={30}
-          playlist={test[0]}
-          onPlay={onPlay}
-        />
+        {userPlaylists &&
+          userPlaylists.map((playlist) => (
+            <PlaylistBlock
+              isPlaying={current.playlist?.id === playlist.id}
+              currDuration={0}
+              playlist={playlist}
+              onPlay={onPlay}
+            />
+          ))}
       </div>
     </StyledSection>
   );

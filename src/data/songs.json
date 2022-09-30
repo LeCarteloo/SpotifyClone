@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "name": "Forgotten",
+    "artist": "Linkin Park",
+    "album": "Hybrid Theory",
+    "date": "2020-01-09T18:25:43.511Z",
+    "songURL": "https://via.placeholder.com/200",
+    "duration": 194,
+    "plays": 53318831,
+    "isLiked": true
+  },
+  {
+    "id": 2,
+    "name": "Teardrops",
+    "artist": "Bring Me The Horizon",
+    "album": "Teardrops",
+    "date": "2020-01-09T18:25:43.511Z",
+    "songURL": "https://via.placeholder.com/200",
+    "duration": 215,
+    "plays": 53318831,
+    "isLiked": true
+  },
+  {
+    "id": 3,
+    "name": "Scars That I'm Hiding (feat. Anders Fride of In Flames)",
+    "artist": "From Ashes to New",
+    "album": "Scars That I'm Hiding",
+    "date": "2020-01-09T18:25:43.511Z",
+    "songURL": "https://via.placeholder.com/200",
+    "duration": 176,
+    "plays": 53318831,
+    "isLiked": true
+  }
+]

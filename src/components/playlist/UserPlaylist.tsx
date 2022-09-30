@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import PlayButton from "../buttons/PlayButton";
 import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
+import { Link } from "react-router-dom";
 
 interface UserPlaylistProps {
   isPlaying: boolean;
@@ -13,7 +14,9 @@ type StyledProps = {
   isPlaying: boolean;
 };
 
-const StyledDiv = styled.div<StyledProps>`
+const StyledLink = styled(Link).withConfig({
+  shouldForwardProp: (prop) => !["isPlaying"].includes(prop),
+})<StyledProps>`
   display: flex;
   align-items: center;
   background-color: var(--background-elevated-base);
@@ -21,6 +24,8 @@ const StyledDiv = styled.div<StyledProps>`
   height: 70px;
   overflow: hidden;
   position: relative;
+  text-decoration: none;
+  color: var(--text-base);
 
   img {
     height: 100%;
@@ -66,9 +71,6 @@ const StyledDiv = styled.div<StyledProps>`
 
   @media (max-width: 768px) {
     height: 50px;
-    h3 {
-      /* font-size: 0.7em; */
-    }
   }
 `;
 
@@ -79,7 +81,7 @@ const UserPlaylist = ({
   currDuration,
 }: UserPlaylistProps) => {
   return (
-    <StyledDiv isPlaying={isPlaying}>
+    <StyledLink to={`/playlist/${playlist.id}`} isPlaying={isPlaying}>
       <img src={playlist.playlistURL} alt="Playlist cover" />
       <h3>{playlist.name}</h3>
       <div className="play-button">
@@ -97,7 +99,7 @@ const UserPlaylist = ({
           size="2.5em"
         />
       </div>
-    </StyledDiv>
+    </StyledLink>
   );
 };
 

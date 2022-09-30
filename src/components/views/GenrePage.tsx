@@ -30,8 +30,9 @@ const GenrePage = ({ current, onPlay }: PlaylistSectionProps) => {
   return (
     <StyledSection>
       {genre &&
-        genre.sections.map((section: any) => (
+        genre.sections.map((section: any, i: number) => (
           <PlaylistSection
+            key={i}
             title={section.title}
             playlists={section.playlists}
             current={current}

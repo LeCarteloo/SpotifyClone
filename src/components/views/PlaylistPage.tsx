@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { BsThreeDots } from "react-icons/bs";
 import { BiTime } from "react-icons/bi";
 import LikeButton from "../buttons/LikeButton";
@@ -10,12 +10,16 @@ import { HiOutlinePencil } from "react-icons/hi";
 import { CurrentSongInterface } from "../../types/types";
 import playlists from "../../data/playlists.json";
 
-const StyledSection = styled.section`
+const StyledSection = styled.section<StyledProps>`
   .playlist-header {
     ${({ theme }) => theme.mixins.sectionPadding}
     padding-bottom: 1.8em;
-    background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
-      rgb(200, 40, 48);
+    ${({ color }) =>
+      color &&
+      css`
+        background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
+          ${color};
+      `}
 
     .header-wrapper {
       display: flex;
@@ -104,11 +108,15 @@ const StyledSection = styled.section`
     z-index: 1;
     &::before {
       content: "";
-      background: linear-gradient(
-          rgba(0, 0, 0, 0.6) 0,
-          var(--background-base) 100%
-        ),
-        rgb(200, 40, 48);
+      ${({ color }) =>
+        color &&
+        css`
+          background: linear-gradient(
+              rgba(0, 0, 0, 0.6) 0,
+              var(--background-base) 100%
+            ),
+            ${color};
+        `}
       position: absolute;
       width: 100%;
       height: 240px;
@@ -207,6 +215,10 @@ interface PlaylistPageProps {
   onPlay: (current: CurrentSongInterface) => void;
 }
 
+type StyledProps = {
+  color?: string;
+};
+
 const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
   const tableHeaderRef = useRef<HTMLTableSectionElement>(null);
   const params = useParams();
@@ -219,7 +231,7 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
   const isPlaying = current.playlist?.id === playlist?.id && current.isPlaying;
 
   return (
-    <StyledSection>
+    <StyledSection color={playlist?.color}>
       <div className="playlist-header">
         <div className="header-wrapper">
           <div
@@ -238,15 +250,13 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
           <div className="playlist-info">
             <div>PLAYLISTA</div>
             <h1 className="playlist-title">{playlist?.name}</h1>
-            <p className="playlist-desc">
-              Legendarne polskie piosenki na jednej playliście.
-            </p>
+            <p className="playlist-desc">{playlist?.desc}</p>
             <div className="playlist-author">
-              <Link to="/user/spotify">
-                <b>Spotify </b>
+              <Link to={`/user/${playlist?.author.id}`}>
+                <b>{playlist?.author.username} </b>
               </Link>
-              <span>• 198 655 polubień •</span>
-              <span> 90 utworów, 6 godz. 13 min</span>
+              <span>• {playlist?.likes} likes •</span>
+              <span> 90 tracks, 6 hr 13 min</span>
             </div>
           </div>
         </div>
