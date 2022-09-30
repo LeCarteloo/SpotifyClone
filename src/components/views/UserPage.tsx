@@ -2,10 +2,13 @@ import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { MdVerified } from "react-icons/md";
 import styled from "styled-components";
+import users from "../../data/users.json";
 import playlists from "../../data/playlists.json";
 import PlaylistSection from "../sections/PlaylistSection";
 import { CurrentSongInterface } from "../../types/types";
 import UserBlock from "../blocks/UserBlock";
+import UserSection from "../sections/UserSection";
+import { useParams } from "react-router-dom";
 
 const StyledSection = styled.section`
   width: 100%;
@@ -101,12 +104,17 @@ interface UserPageProps {
 
 const UserPage = ({ current, onPlay }: UserPageProps) => {
   const [isFollowing, setIsFollowing] = useState(false);
+  const params = useParams();
 
   const onFollow = () => {
     setIsFollowing(!isFollowing);
   };
 
-  const playlist = playlists.filter((playlist) => playlist.author.id === 1);
+  const playlist = playlists.filter(
+    (playlist) => playlist.author.id.toString() === params.id
+  );
+
+  const user = users.find((user) => user.id.toString() === params.id);
 
   return (
     <StyledSection>
@@ -118,14 +126,16 @@ const UserPage = ({ current, onPlay }: UserPageProps) => {
         />
         <div className="user-info">
           <div className="profile">
-            <MdVerified size={"1.9em"} color={"#0c67d3"} />
+            {user?.isVerified && (
+              <MdVerified size={"1.9em"} color={"#0c67d3"} />
+            )}
             <span>PROFILE</span>
           </div>
-          <h1 className="user-name">Boisterous Pop</h1>
+          <h1 className="user-name">{user?.name}</h1>
           <div className="user-stats">
-            <span>62 public playlists • </span>
-            <span>6307 followers • </span>
-            <span>30 following</span>
+            <span>{user?.playlists.length} public playlists • </span>
+            <span>{user?.followers.length} followers • </span>
+            <span>{user?.following.length} following</span>
           </div>
         </div>
       </div>
@@ -138,15 +148,20 @@ const UserPage = ({ current, onPlay }: UserPageProps) => {
             <BsThreeDots size="1.55em" />
           </button>
         </div>
-        <PlaylistSection
-          title={"Public playlists"}
-          playlists={playlist}
-          current={current}
-          onPlay={onPlay}
-        />
-        <div className="user-list">
-          <UserBlock />
-        </div>
+        {playlist && playlist.length > 0 && (
+          <PlaylistSection
+            title={"Public playlists"}
+            playlists={playlist}
+            current={current}
+            onPlay={onPlay}
+          />
+        )}
+        {user && user?.following.length > 0 && (
+          <UserSection title={"Following"} users={user.following} />
+        )}
+        {user && user?.followers.length > 0 && (
+          <UserSection title={"Followers"} users={user.followers} />
+        )}
       </div>
     </StyledSection>
   );

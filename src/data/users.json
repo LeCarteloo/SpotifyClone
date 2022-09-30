@@ -1,0 +1,45 @@
+[
+  {
+    "id": 1,
+    "name": "User name",
+    "isVerified": false,
+    "playlists": [],
+    "followers": [
+      {
+        "id": 3,
+        "name": "Test user"
+      }
+    ],
+    "following": [
+      {
+        "id": 2,
+        "name": "Spotify"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Spotify",
+    "isVerified": true,
+    "playlists": [],
+    "followers": [
+      {
+        "id": 1,
+        "name": "User name"
+      },
+      {
+        "id": 3,
+        "name": "Test user"
+      }
+    ],
+    "following": []
+  },
+  {
+    "id": 3,
+    "name": "Test user",
+    "isVerified": false,
+    "playlists": [],
+    "followers": [],
+    "following": []
+  }
+]
