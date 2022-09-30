@@ -60,7 +60,7 @@ function App() {
   );
 
   const favoritePlaylists = playlists.filter(
-    (playlist) => playlist.author.id !== USER_ID
+    (playlist) => playlist.author.id !== USER_ID && playlist.id < 100
   );
 
   return (

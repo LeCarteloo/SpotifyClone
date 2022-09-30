@@ -12,8 +12,7 @@ interface PlaylistSectionProps {
 const StyledSection = styled.section`
   overflow: hidden;
   h2 {
-    margin: 0.8em 0;
-    ${({ theme }) => theme.mixins.innerSectionPadding}
+    margin: 0.8em 0 0.8em 1.2em;
   }
   .playlists-list {
     display: flex;

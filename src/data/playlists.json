@@ -202,5 +202,57 @@
         "isLiked": false
       }
     ]
+  },
+  {
+    "id": 100,
+    "name": "Rock This",
+    "artist": "Queen",
+    "playlistURL": "https://via.placeholder.com/100",
+    "desc": "Short description of a playlist",
+    "author": {
+      "id": 2,
+      "username": "Spotify"
+    },
+    "likes": 5,
+    "color": "#C82830",
+    "songList": [
+      {
+        "id": 1,
+        "name": "Forgotten",
+        "artist": "Linkin Park",
+        "album": "Hybrid Theory",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://via.placeholder.com/200",
+        "duration": 194,
+        "plays": 53318831,
+        "isLiked": false
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "name": "This is AC/DC",
+    "artist": "AC/DC",
+    "playlistURL": "https://via.placeholder.com/100",
+    "desc": "Short description of a playlist",
+    "author": {
+      "id": 2,
+      "username": "Spotify"
+    },
+    "likes": 5,
+    "color": "#C82830",
+    "songList": [
+      {
+        "id": 1,
+        "name": "Forgotten",
+        "artist": "Linkin Park",
+        "album": "Hybrid Theory",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://via.placeholder.com/200",
+        "duration": 194,
+        "plays": 53318831,
+        "isLiked": false
+      }
+    ]
   }
 ]
