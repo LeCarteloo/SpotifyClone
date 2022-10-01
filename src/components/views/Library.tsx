@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { MdOutlinePodcasts, MdOutlineAlbum } from "react-icons/md";
+import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
 import LibPlaylists from "../library/LibPlaylists";
 import LibNoData from "../library/LibNoData";
-import { MdOutlinePodcasts, MdOutlineAlbum } from "react-icons/md";
 import LibArtists from "../library/LibArtists";
-import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
 
 const StyledSection = styled.section`
   ${({ theme }) => theme.mixins.sectionPadding}

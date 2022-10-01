@@ -7,12 +7,6 @@ import playingGif from "../../assets/playing.gif";
 import { useEffect, useState } from "react";
 
 const StyledTr = styled.tr`
-  &:hover {
-    background-color: var(--essential-tinted);
-  }
-  &:focus-within {
-    background-color: var(--essential-gray);
-  }
   .buttons {
     display: flex;
     justify-content: space-around;
@@ -47,6 +41,23 @@ const StyledTr = styled.tr`
   }
   td {
     padding: 0.47em 1em;
+    &:nth-child(n + 3) {
+      color: #ffffff88;
+      font-weight: 100;
+    }
+    &:first-child {
+      border-top-left-radius: var(--radius-md);
+    }
+    &:last-child {
+      border-top-right-radius: var(--radius-md);
+    }
+
+    &:first-child {
+      border-bottom-left-radius: var(--radius-md);
+    }
+    &:last-child {
+      border-bottom-right-radius: var(--radius-md);
+    }
   }
   .playing-icon {
     width: 16px;
@@ -77,6 +88,16 @@ const StyledTr = styled.tr`
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     display: -webkit-box;
+  }
+
+  &:hover {
+    background-color: var(--essential-tinted);
+    td {
+      color: var(--text-base);
+    }
+  }
+  &:focus-within {
+    background-color: var(--essential-gray);
   }
 `;
 

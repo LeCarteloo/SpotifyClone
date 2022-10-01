@@ -22,19 +22,7 @@ const StyledTable = styled.table`
       padding-top: 1.1em;
     }
   }
-  &:first-child td:first-child {
-    border-top-left-radius: var(--radius-md);
-  }
-  &:first-child td:last-child {
-    border-top-right-radius: var(--radius-md);
-  }
 
-  &:last-child td:first-child {
-    border-bottom-left-radius: var(--radius-md);
-  }
-  &:last-child td:last-child {
-    border-bottom-right-radius: var(--radius-md);
-  }
   th {
     font-weight: normal;
     text-align: left;

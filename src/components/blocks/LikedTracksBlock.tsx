@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import songs from "../../data/songs.json";
 
-const StyledDiv = styled.div`
+const StyledLink = styled(Link)`
   background: linear-gradient(135deg, #450af5, #c4efd9 160%);
   border-radius: var(--radius-md);
   display: flex;
@@ -10,6 +11,8 @@ const StyledDiv = styled.div`
   gap: 0em;
   /* max-width: 300px; */
   grid-column: 1/3;
+  text-decoration: none;
+  color: var(--text-base);
 
   .list {
     display: flex;
@@ -45,7 +48,7 @@ const StyledDiv = styled.div`
 
 const LikedTracksBlock = () => {
   return (
-    <StyledDiv>
+    <StyledLink to="/library/tracks">
       <div className="list">
         <p>
           {songs &&
@@ -62,7 +65,7 @@ const LikedTracksBlock = () => {
         <h1>Liked tracks</h1>
         <span>{songs.length} liked tracks</span>
       </div>
-    </StyledDiv>
+    </StyledLink>
   );
 };
 
