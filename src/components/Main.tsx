@@ -19,8 +19,14 @@ interface MainProps {
 const StyledMain = styled.main`
   grid-area: main;
   overflow: auto;
-  min-height: 100%;
   margin-top: calc(var(--topbar-height) * -1);
+  padding-bottom: 1em;
+  @media (max-width: 768px) {
+    min-height: calc(
+      100% - (var(--navbar-height) + var(--playbar-height) + 0.5em)
+    );
+    padding-bottom: calc(var(--navbar-height) + var(--playbar-height) + 0.5em);
+  }
 `;
 
 const Main = ({

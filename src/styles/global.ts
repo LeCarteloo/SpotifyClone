@@ -22,7 +22,7 @@ export default createGlobalStyle`
         background-color: transparent;
       }
       &::-webkit-scrollbar-thumb {
-        background-color: var(--essential-bright-accent);
+        background-color: var(--essential-subdued);
         border-radius: 10px;
       }
     }

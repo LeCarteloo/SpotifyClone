@@ -10,21 +10,22 @@ interface PlaylistSectionProps {
 }
 
 const StyledSection = styled.section`
+  padding-bottom: 0.5em;
+  margin: 0 1.9em;
+  @media (max-width: 480px) {
+    margin: 0;
+    padding: 0 1em;
+  }
+
   overflow: hidden;
   h2 {
-    margin: 0.8em 0 0.8em 1.2em;
+    margin: 0.8em 0;
   }
   .playlists-list {
     display: flex;
     gap: 1.6em;
     overflow: auto;
-    padding-bottom: 0.5em;
     min-height: 100%;
-    margin: 0 1.9em;
-    @media (max-width: 480px) {
-      margin: 0;
-      padding: 0 1.9em;
-    }
   }
 `;
 const PlaylistSection = ({

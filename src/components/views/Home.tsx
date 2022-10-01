@@ -12,7 +12,6 @@ interface HomeProps {
 
 const StyledDiv = styled.div`
   padding-top: calc(var(--topbar-height) + 1.2em);
-  height: calc(100% - (var(--topbar-height) + 1.2em));
 `;
 
 const Home = ({
