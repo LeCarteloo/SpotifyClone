@@ -13,17 +13,19 @@ const StyledDiv = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100%;
+  height: 85vh;
   gap: 1em;
   margin-top: -5.5em;
   h1 {
     margin-bottom: 8px;
     margin-top: 20px;
-    font-size: 2.2em;
+    font-size: clamp(1.5em, 4vw, 2.2em);
+    text-align: center;
   }
   span {
     margin-bottom: 32px;
     margin-top: 2em;
+    text-align: center;
   }
   button {
     padding: 0.8em 2em;
@@ -42,7 +44,7 @@ const LibNoData = ({ icon, title, text, btnText, onClick }: LibNoDataProps) => {
       {icon}
       <h1>{title}</h1>
       <span>{text}</span>
-      <button>{btnText}</button>
+      <button onClick={onClick}>{btnText}</button>
     </StyledDiv>
   );
 };

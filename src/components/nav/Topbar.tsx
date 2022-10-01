@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import { BiCaretDown, BiCaretUp } from "react-icons/bi";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import NavButton from "../buttons/NavButton";
 import NavDropdown from "../buttons/NavDropdown";
 import SearchInput from "../inputs/SearchInput";
@@ -17,14 +17,6 @@ const StyledHeader = styled.header`
   gap: 2.7em;
   padding: 0 1.9em;
   z-index: 99;
-
-  @media (max-width: 800px) {
-    gap: 0.5em;
-  }
-
-  @media (max-width: 480px) {
-    display: none;
-  }
 
   .nav-buttons {
     display: flex;
@@ -70,6 +62,8 @@ const StyledHeader = styled.header`
       align-items: center;
       background-color: var(--essential-press);
       border-radius: var(--radius-big);
+      text-decoration: none;
+      color: var(--text-base);
 
       &:hover {
         background-color: var(--background-elevated-highlight);
@@ -92,6 +86,22 @@ const StyledHeader = styled.header`
       .profile-name {
         display: none;
       }
+    }
+  }
+
+  @media (max-width: 800px) {
+    gap: 0.5em;
+  }
+
+  @media (max-width: 480px) {
+    /* display: none; */
+    .nav-buttons {
+      button:nth-child(2) {
+        display: none;
+      }
+    }
+    .premium-btn {
+      display: none;
     }
   }
 `;
@@ -146,29 +156,30 @@ const Topbar = () => {
           <BsChevronRight size="1em" />
         </StyledButton>
       </div>
-      {location.pathname.includes("/library") && (
-        <div className="library-links">
-          <div className="links">
-            <NavButton path="/library/playlists" text="Playlists" />
-            <NavButton path="/library/podcasts" text="Podcasts" />
-            <NavButton path="/library/artists" text="Artists" />
-            <NavButton path="/library/albums" text="Albums" />
+      {location.pathname.includes("/library") &&
+        !location.pathname.includes("/tracks") && (
+          <div className="library-links">
+            <div className="links">
+              <NavButton path="/library/playlists" text="Playlists" />
+              <NavButton path="/library/podcasts" text="Podcasts" />
+              <NavButton path="/library/artists" text="Artists" />
+              <NavButton path="/library/albums" text="Albums" />
+            </div>
+            <div className="dropdown">
+              <NavDropdown state={location.pathname.split("/").pop()} />
+            </div>
           </div>
-          <div className="dropdown">
-            <NavDropdown state={location.pathname.split("/").pop()} />
-          </div>
-        </div>
-      )}
+        )}
       {location.pathname === "/search" && <SearchInput />}
       <div className="nav-user">
         <button className="premium-btn">Go Premium</button>
-        <button className="profile-btn">
+        <Link to="/user/1" className="profile-btn">
           <img src="https://via.placeholder.com/200" alt="User avatar" />
           <div className="profile-btn-text">
             <span className="profile-name">User Name</span>
             <BiCaretDown size="1.4em" />
           </div>
-        </button>
+        </Link>
       </div>
     </StyledHeader>
   );

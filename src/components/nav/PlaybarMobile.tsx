@@ -60,7 +60,7 @@ const StyledDiv = styled.div`
   height: 100%;
   pointer-events: none;
   transition: 0.4s;
-  z-index: 11;
+  z-index: 99;
   &.open {
     top: 0;
     pointer-events: all;

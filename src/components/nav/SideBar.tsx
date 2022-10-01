@@ -7,7 +7,7 @@ import Logo from "../../assets/logo.svg";
 import React from "react";
 import PlaylistItem from "./PlaylistItem";
 import { CurrentSongInterface, PlaylistInterface } from "../../types/types";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const StyledNav = styled.nav`
   grid-area: side-bar;
@@ -76,11 +76,20 @@ const StyledAside = styled.aside`
       &.button-add {
         ${({ theme }) => theme.mixins.buttonAdd}
       }
-      &.button-liked {
-        ${({ theme }) => theme.mixins.buttonLiked}
-      }
       span {
         margin-left: 1.1em;
+      }
+    }
+
+    .button-liked {
+      display: flex;
+      ${({ theme }) => theme.mixins.buttonLiked}
+      ${({ theme }) => theme.mixins.opacityHover}
+      span {
+        margin-left: 1.1em;
+      }
+      &.active {
+        opacity: 1;
       }
     }
   }
@@ -141,12 +150,12 @@ const Sidebar: React.FC<SidebarProps> = ({
               </div>
               <span>Create playlist</span>
             </button>
-            <button className="button-liked">
+            <Link to="/library/tracks" className="button-liked">
               <div>
                 <AiFillHeart />
               </div>
               <span>Liked tracks</span>
-            </button>
+            </Link>
           </div>
           <hr></hr>
         </div>
