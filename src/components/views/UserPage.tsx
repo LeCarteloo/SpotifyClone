@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { MdVerified } from "react-icons/md";
 import styled from "styled-components";
@@ -6,9 +5,9 @@ import users from "../../data/users.json";
 import playlists from "../../data/playlists.json";
 import PlaylistSection from "../sections/PlaylistSection";
 import { CurrentSongInterface } from "../../types/types";
-import UserBlock from "../blocks/UserBlock";
 import UserSection from "../sections/UserSection";
 import { useParams } from "react-router-dom";
+import FollowButton from "../buttons/FollowButton";
 
 const StyledSection = styled.section`
   width: 100%;
@@ -74,13 +73,6 @@ const StyledSection = styled.section`
       gap: 2em;
       padding: 1.25em 1.9em;
       width: calc(100% - 3.8em);
-      button:first-child {
-        font-weight: bold;
-        padding: 0.5em 1em;
-        font-size: 0.87rem;
-        border-radius: var(--radius-md);
-        border: 1px solid var(--essential-base);
-      }
     }
   }
   .user-list {
@@ -103,12 +95,7 @@ interface UserPageProps {
 }
 
 const UserPage = ({ current, onPlay }: UserPageProps) => {
-  const [isFollowing, setIsFollowing] = useState(false);
   const params = useParams();
-
-  const onFollow = () => {
-    setIsFollowing(!isFollowing);
-  };
 
   const playlist = playlists.filter(
     (playlist) => playlist.author.id.toString() === params.id
@@ -133,7 +120,7 @@ const UserPage = ({ current, onPlay }: UserPageProps) => {
           </div>
           <h1 className="user-name">{user?.name}</h1>
           <div className="user-stats">
-            <span>{user?.playlists.length} public playlists • </span>
+            <span>{playlist.length} public playlists • </span>
             <span>{user?.followers.length} followers • </span>
             <span>{user?.following.length} following</span>
           </div>
@@ -141,9 +128,7 @@ const UserPage = ({ current, onPlay }: UserPageProps) => {
       </div>
       <div className="user-content">
         <div className="user-buttons">
-          <button onClick={onFollow}>
-            {isFollowing ? "FOLLOWING" : "FOLLOW"}
-          </button>
+          <FollowButton />
           <button>
             <BsThreeDots size="1.55em" />
           </button>
