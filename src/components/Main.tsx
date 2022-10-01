@@ -8,6 +8,7 @@ import Library from "./views/Library";
 import Search from "./views/Search";
 import GenrePage from "./views/GenrePage";
 import UserPage from "./views/UserPage";
+import ArtistPage from "./views/ArtistPage";
 
 interface MainProps {
   current: CurrentSongInterface;
@@ -72,6 +73,7 @@ const Main = ({
           path="/user/:id"
           element={<UserPage current={current} onPlay={onPlay} />}
         />
+        <Route path="/artist/:id" element={<ArtistPage />} />
         <Route
           path="/lyrics"
           element={<Lyrics songName={current.song?.name} />}

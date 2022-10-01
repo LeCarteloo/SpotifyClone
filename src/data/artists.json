@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "Linkin Park",
+    "isVerified": true,
+    "listeners": 24474250,
+    "albums": [
+      {
+        "id": 1,
+        "name": "Hybrid Theory",
+        "year": 2000,
+        "songList": [
+          {
+            "id": 1,
+            "name": "Forgotten",
+            "artist": "Linkin Park",
+            "album": "Hybrid Theory",
+            "date": "2020-01-09T18:25:43.511Z",
+            "songURL": "https://via.placeholder.com/200",
+            "duration": 194,
+            "plays": 53318831,
+            "isLiked": false
+          }
+        ]
+      }
+    ]
+  }
+]

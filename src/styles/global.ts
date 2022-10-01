@@ -9,12 +9,13 @@ export default createGlobalStyle`
         padding: 0;
         @supports (scrollbar-width: thin) {
         scrollbar-width: thin;
-        scrollbar-color: var(--essential-bright-accent) transparent;
+        scrollbar-color: var(--essential-subdued) transparent;
       }
       &::-webkit-scrollbar {
         border-radius: 10px;
         width: 5px;
         height: 5px;
+        background-color: var(--background-base);
       }
       &::-webkit-scrollbar-button {
         height: 0;

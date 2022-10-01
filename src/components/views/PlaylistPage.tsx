@@ -1,12 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { BsThreeDots } from "react-icons/bs";
 import LikeButton from "../buttons/LikeButton";
 import PlayButton from "../buttons/PlayButton";
 import { HiOutlinePencil } from "react-icons/hi";
 import { CurrentSongInterface } from "../../types/types";
 import playlists from "../../data/playlists.json";
 import Table from "../playlist/Table";
+import MoreButton from "../buttons/MoreButton";
 
 const StyledSection = styled.section<StyledProps>`
   .playlist-header {
@@ -200,9 +200,7 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
             size="3.5em"
           />
           <LikeButton isLiked={false} onClick={onLike} size="2em" />
-          <button>
-            <BsThreeDots size="1.55em" />
-          </button>
+          <MoreButton />
         </div>
         <div>
           {/* <div className="test-header">
