@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import styled, { css } from "styled-components";
 import LikeButton from "../buttons/LikeButton";
 import PlayButton from "../buttons/PlayButton";
@@ -7,6 +7,7 @@ import { CurrentSongInterface } from "../../types/types";
 import playlists from "../../data/playlists.json";
 import Table from "../playlist/Table";
 import MoreButton from "../buttons/MoreButton";
+import useImageColor from "../../hooks/useImageColor";
 
 const StyledSection = styled.section<StyledProps>`
   .playlist-header {
@@ -137,21 +138,21 @@ interface PlaylistPageProps {
 }
 
 type StyledProps = {
-  color?: string;
+  color: string;
 };
 
 const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
   const params = useParams();
   const onLike = () => {};
-
   const playlist = playlists.find(
     (playlist) => playlist.id.toString() === params.id
   );
+  const color = useImageColor(playlist?.playlistURL);
 
   const isPlaying = current.playlist?.id === playlist?.id && current.isPlaying;
 
   return (
-    <StyledSection color={playlist?.color}>
+    <StyledSection color={color}>
       <div className="playlist-header">
         <div className="header-wrapper">
           <div

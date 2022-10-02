@@ -3,7 +3,7 @@
     "id": 1,
     "name": "User name",
     "isVerified": false,
-    "img": "https://culturedecanted.files.wordpress.com/2014/07/evil_eyes-e1404648004181.jpg?w=186&h=186&crop=1",
+    "img": "https://i.scdn.co/image/ab6761610000f178caa995cbccddc98e3716bd77",
     "likedTracks": {
       "id": 1,
       "name": "Rock",
@@ -53,7 +53,7 @@
       {
         "id": 3,
         "name": "Test user",
-        "img": "https://via.placeholder.com/300"
+        "img": "https://i.imgur.com/6fCBP1j.jpg"
       }
     ],
     "following": [
@@ -78,12 +78,12 @@
       {
         "id": 1,
         "name": "User name",
-        "img": "https://culturedecanted.files.wordpress.com/2014/07/evil_eyes-e1404648004181.jpg?w=186&h=186&crop=1"
+        "img": "https://i.scdn.co/image/ab6761610000f178caa995cbccddc98e3716bd77"
       },
       {
         "id": 3,
         "name": "Test user",
-        "img": "https://via.placeholder.com/300"
+        "img": "https://i.imgur.com/6fCBP1j.jpg"
       }
     ],
     "following": []
@@ -91,7 +91,7 @@
   {
     "id": 3,
     "name": "Test user",
-    "img": "https://via.placeholder.com/300",
+    "img": "https://i.imgur.com/6fCBP1j.jpg",
     "isVerified": false,
     "followers": [],
     "following": []
@@ -105,7 +105,7 @@
       {
         "id": 1,
         "name": "User name",
-        "img": "https://culturedecanted.files.wordpress.com/2014/07/evil_eyes-e1404648004181.jpg?w=186&h=186&crop=1"
+        "img": "https://i.scdn.co/image/ab6761610000f178caa995cbccddc98e3716bd77"
       }
     ],
     "following": [

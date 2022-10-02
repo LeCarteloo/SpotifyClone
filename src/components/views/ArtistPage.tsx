@@ -1,14 +1,17 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { MdVerified } from "react-icons/md";
 import PlayButton from "../buttons/PlayButton";
 import FollowButton from "../buttons/FollowButton";
 import MoreButton from "../buttons/MoreButton";
-import artists from "../../data/artists.json";
 import { useParams } from "react-router-dom";
 import PlaylistRow from "../playlist/PlaylistRow";
+import PlaylistSection from "../sections/PlaylistSection";
+import { CurrentSongInterface } from "../../types/types";
+import artists from "../../data/artists.json";
+import playlists from "../../data/playlists.json";
+import UserSection from "../sections/UserSection";
 
-const StyledSection = styled.section`
-  width: 100%;
+const StyledSection = styled.section<StyledProps>`
   img {
   }
   .artist-img {
@@ -19,7 +22,11 @@ const StyledSection = styled.section`
     width: 100%;
     height: 50vh;
     min-height: 400px;
-    background-image: url(https://i.scdn.co/image/ab67618600001016db6a510c647f79e3a4ce544d);
+    ${({ bgImg }) =>
+      bgImg &&
+      css`
+        background-image: url(${bgImg});
+      `}
     background-position: 50% 15%;
     background-size: cover;
     &::after {
@@ -69,8 +76,6 @@ const StyledSection = styled.section`
     align-items: center;
   }
   .artist-content {
-    height: 5000px;
-    width: 100%;
     background-color: var(--background-base);
   }
   .artist-popular {
@@ -134,6 +139,9 @@ const StyledSection = styled.section`
     }
     .artist-pick {
       min-width: 385px;
+      @media (max-width: 480px) {
+        min-width: 0;
+      }
       .pick-info {
         display: flex;
         gap: 1em;
@@ -163,11 +171,25 @@ const StyledSection = styled.section`
   }
 `;
 
-const ArtistPage = () => {
+type StyledProps = {
+  bgImg: string | undefined;
+};
+
+interface ArtistPageProps {
+  current: CurrentSongInterface;
+  onPlay: (current: CurrentSongInterface) => void;
+}
+
+const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
   const params = useParams();
   const artist = artists.find((artist) => artist.id.toString() === params.id);
+  // Test
+  const artistPlaylists = playlists.filter(
+    (playlist) => playlist.author.username === artist?.name
+  );
+
   return (
-    <StyledSection>
+    <StyledSection bgImg={artist?.bgImg}>
       <div className="artist-img"></div>
       <div className="artist-header">
         <div>
@@ -202,13 +224,43 @@ const ArtistPage = () => {
             <table>
               <tbody>
                 {artist && (
-                  <PlaylistRow
-                    rowNumber={1}
-                    song={artist?.albums[0].songList[0]}
-                    isPlaying={false}
-                    isCurrentSong={false}
-                    onPlay={() => {}}
-                  />
+                  <>
+                    <PlaylistRow
+                      rowNumber={1}
+                      song={artist?.albums[0].songList[0]}
+                      isPlaying={false}
+                      isCurrentSong={false}
+                      onPlay={() => {}}
+                    />
+                    <PlaylistRow
+                      rowNumber={2}
+                      song={artist?.albums[0].songList[0]}
+                      isPlaying={false}
+                      isCurrentSong={false}
+                      onPlay={() => {}}
+                    />
+                    <PlaylistRow
+                      rowNumber={3}
+                      song={artist?.albums[0].songList[0]}
+                      isPlaying={false}
+                      isCurrentSong={false}
+                      onPlay={() => {}}
+                    />
+                    <PlaylistRow
+                      rowNumber={4}
+                      song={artist?.albums[0].songList[0]}
+                      isPlaying={false}
+                      isCurrentSong={false}
+                      onPlay={() => {}}
+                    />
+                    <PlaylistRow
+                      rowNumber={5}
+                      song={artist?.albums[0].songList[0]}
+                      isPlaying={false}
+                      isCurrentSong={false}
+                      onPlay={() => {}}
+                    />
+                  </>
                 )}
               </tbody>
             </table>
@@ -231,6 +283,21 @@ const ArtistPage = () => {
             </div>
           </div>
         </div>
+        {artistPlaylists.length > 0 && (
+          <PlaylistSection
+            title={`Featuring ${artist?.name}`}
+            playlists={artistPlaylists}
+            current={current}
+            onPlay={onPlay}
+          />
+        )}
+        {artist?.otherArtists && artist?.otherArtists.length > 0 && (
+          <UserSection
+            title={"Fans also likes"}
+            users={artist?.otherArtists}
+            type="Artist"
+          />
+        )}
       </div>
     </StyledSection>
   );

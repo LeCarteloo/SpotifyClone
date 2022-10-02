@@ -1,6 +1,6 @@
 import { BsThreeDots } from "react-icons/bs";
 import { MdVerified } from "react-icons/md";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import users from "../../data/users.json";
 import playlists from "../../data/playlists.json";
 import PlaylistSection from "../sections/PlaylistSection";
@@ -8,16 +8,21 @@ import { CurrentSongInterface } from "../../types/types";
 import UserSection from "../sections/UserSection";
 import { useParams } from "react-router-dom";
 import FollowButton from "../buttons/FollowButton";
+import useImageColor from "../../hooks/useImageColor";
 
-const StyledSection = styled.section`
+const StyledSection = styled.section<StyledProps>`
   width: 100%;
   .user-header {
     ${({ theme }) => theme.mixins.sectionPadding}
     padding-bottom: 1.8em;
     display: flex;
     gap: 1.4em;
-    background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
-      rgb(192, 80, 136);
+    ${({ color }) =>
+      color &&
+      css`
+        background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
+          ${color};
+      `}
     .user-avatar {
       border-radius: 50%;
       height: 232px;
@@ -57,11 +62,15 @@ const StyledSection = styled.section`
     position: relative;
     &::before {
       content: "";
-      background: linear-gradient(
-          rgba(0, 0, 0, 0.6) 0,
-          var(--background-base) 100%
-        ),
-        rgb(192, 80, 136);
+      ${({ color }) =>
+        color &&
+        css`
+          background: linear-gradient(
+              rgba(0, 0, 0, 0.6) 0,
+              var(--background-base) 100%
+            ),
+            ${color};
+        `}
       position: absolute;
       width: 100%;
       height: 240px;
@@ -94,17 +103,20 @@ interface UserPageProps {
   onPlay: (current: CurrentSongInterface) => void;
 }
 
+type StyledProps = {
+  color: string;
+};
+
 const UserPage = ({ current, onPlay }: UserPageProps) => {
   const params = useParams();
-
+  const user = users.find((user) => user.id.toString() === params.id);
+  const color = useImageColor(user?.img);
   const playlist = playlists.filter(
     (playlist) => playlist.author.id.toString() === params.id
   );
 
-  const user = users.find((user) => user.id.toString() === params.id);
-
   return (
-    <StyledSection>
+    <StyledSection color={color}>
       <div className="user-header">
         <img className="user-avatar" src={user?.img} alt="User avatar" />
         <div className="user-info">
