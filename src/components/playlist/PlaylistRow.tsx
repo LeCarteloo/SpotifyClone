@@ -5,6 +5,7 @@ import { FaPause } from "react-icons/fa";
 import { SongListType } from "../../types/types";
 import playingGif from "../../assets/playing.gif";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const StyledTr = styled.tr`
   .buttons {
@@ -82,6 +83,12 @@ const StyledTr = styled.tr`
     text-overflow: ellipsis;
   }
 
+  .song-artist {
+    text-decoration: none;
+    color: var(--text-base);
+    ${({ theme }) => theme.mixins.underlineHover};
+  }
+
   .song-album {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -98,6 +105,9 @@ const StyledTr = styled.tr`
   }
   &:focus-within {
     background-color: var(--essential-gray);
+    td {
+      color: var(--text-base);
+    }
   }
 `;
 
@@ -156,7 +166,9 @@ const PlaylistRow = ({
           <img src={song.songURL} alt="Song cover" className="song-cover" />
           <div className="song-title">
             <span className="song-name">{song.name}</span>
-            <span className="song-artist">{song.artist}</span>
+            <Link to={`/artist/${song.artist.id}`} className="song-artist">
+              {song.artist.username}
+            </Link>
           </div>
         </div>
       </td>

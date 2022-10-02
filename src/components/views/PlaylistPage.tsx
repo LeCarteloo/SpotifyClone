@@ -160,7 +160,7 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
             aria-label="Choose playlist image"
           >
             <div className="cover-wrapper">
-              <img src="https://via.placeholder.com/300" alt="Playlist cover" />
+              <img src={playlist?.playlistURL} alt="Playlist cover" />
               <button tabIndex={-1}>
                 <HiOutlinePencil size={"3em"} />
                 Choose image

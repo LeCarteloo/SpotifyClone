@@ -106,11 +106,7 @@ const UserPage = ({ current, onPlay }: UserPageProps) => {
   return (
     <StyledSection>
       <div className="user-header">
-        <img
-          className="user-avatar"
-          src="https://via.placeholder.com/300"
-          alt="User avatar"
-        />
+        <img className="user-avatar" src={user?.img} alt="User avatar" />
         <div className="user-info">
           <div className="profile">
             {user?.isVerified && (

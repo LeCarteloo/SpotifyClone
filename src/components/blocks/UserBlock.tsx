@@ -35,16 +35,19 @@ const StyledLink = styled(Link)`
 
 type UserBlockProps = {
   id: number;
+  img: string;
   name: string;
   type: string;
 };
 
-const UserBlock = ({ id, name, type }: UserBlockProps) => {
+const UserBlock = ({ id, img, name, type }: UserBlockProps) => {
+  const path = type === "Profile" ? "user" : "artist";
+
   return (
-    <StyledLink to={`/user/${id}`}>
-      <img src="https://via.placeholder.com/200" alt="User avatar" />
+    <StyledLink to={`/${path}/${id}`}>
+      <img src={img} alt="User avatar" />
       <h4>{name}</h4>
-      <span>{type}</span>
+      <span className="type">{type}</span>
     </StyledLink>
   );
 };

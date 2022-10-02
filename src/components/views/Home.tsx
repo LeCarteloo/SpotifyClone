@@ -2,6 +2,7 @@ import Welcome from "../sections/Welcome";
 import PlaylistSection from "../sections/PlaylistSection";
 import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 interface HomeProps {
   current: CurrentSongInterface;

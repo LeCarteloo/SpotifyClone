@@ -4,6 +4,12 @@
     "name": "Linkin Park",
     "isVerified": true,
     "listeners": 24474250,
+    "img": "https://i.scdn.co/image/ab6761610000517434e5aa6afc1ba147bfbb0677",
+    "bgImg": "https://i.scdn.co/image/ab67618600001016db6a510c647f79e3a4ce544d",
+    "pinnedPlaylist": {
+      "id": 103,
+      "name": "Linkin Park Complete Playlist"
+    },
     "albums": [
       {
         "id": 1,
@@ -13,7 +19,10 @@
           {
             "id": 1,
             "name": "Forgotten",
-            "artist": "Linkin Park",
+            "artist": {
+              "id": 4,
+              "username": "Linkin Park"
+            },
             "album": "Hybrid Theory",
             "date": "2020-01-09T18:25:43.511Z",
             "songURL": "https://via.placeholder.com/200",
@@ -22,6 +31,51 @@
             "isLiked": false
           }
         ]
+      }
+    ],
+    "otherArtists": [
+      {
+        "id": 2,
+        "name": "Bring Me The Horizon",
+        "img": "https://i.scdn.co/image/ab6761610000f178001ae3b1275c9ec37a4c550b"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Bring Me The Horizon",
+    "img": "https://i.scdn.co/image/ab6761610000f178001ae3b1275c9ec37a4c550b",
+    "bgImg": "https://i.scdn.co/image/ab67618600001016f6992e702e055d2a1fa907c3",
+    "isVerified": true,
+    "listeners": 8900323,
+    "albums": [
+      {
+        "id": 1,
+        "name": "Teardrops",
+        "year": 2020,
+        "songList": [
+          {
+            "id": 1,
+            "name": "Teardrops",
+            "artist": {
+              "id": 5,
+              "username": "Bring Me The Horizon"
+            },
+            "album": "Teardrops",
+            "date": "2020-01-09T18:25:43.511Z",
+            "songURL": "https://via.placeholder.com/200",
+            "duration": 215,
+            "plays": 53318831,
+            "isLiked": true
+          }
+        ]
+      }
+    ],
+    "otherArtists": [
+      {
+        "id": 1,
+        "name": "Linkin Park",
+        "img": "https://i.scdn.co/image/ab6761610000517434e5aa6afc1ba147bfbb0677"
       }
     ]
   }

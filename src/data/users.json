@@ -3,6 +3,7 @@
     "id": 1,
     "name": "User name",
     "isVerified": false,
+    "img": "https://culturedecanted.files.wordpress.com/2014/07/evil_eyes-e1404648004181.jpg?w=186&h=186&crop=1",
     "likedTracks": {
       "id": 1,
       "name": "Rock",
@@ -48,34 +49,41 @@
         }
       ]
     },
-
-    "playlists": [],
     "followers": [
       {
         "id": 3,
-        "name": "Test user"
+        "name": "Test user",
+        "img": "https://via.placeholder.com/300"
       }
     ],
     "following": [
       {
         "id": 2,
-        "name": "Spotify"
+        "name": "Spotify",
+        "img": "https://i.scdn.co/image/ab6775700000ee8555c25988a6ac314394d3fbf5"
+      },
+      {
+        "id": 4,
+        "name": "Linkin Park",
+        "img": "https://i.scdn.co/image/ab6775700000ee85cac03285ca0b43c60b8e47ff"
       }
     ]
   },
   {
     "id": 2,
     "name": "Spotify",
+    "img": "https://i.scdn.co/image/ab6775700000ee8555c25988a6ac314394d3fbf5",
     "isVerified": true,
-    "playlists": [],
     "followers": [
       {
         "id": 1,
-        "name": "User name"
+        "name": "User name",
+        "img": "https://culturedecanted.files.wordpress.com/2014/07/evil_eyes-e1404648004181.jpg?w=186&h=186&crop=1"
       },
       {
         "id": 3,
-        "name": "Test user"
+        "name": "Test user",
+        "img": "https://via.placeholder.com/300"
       }
     ],
     "following": []
@@ -83,9 +91,29 @@
   {
     "id": 3,
     "name": "Test user",
+    "img": "https://via.placeholder.com/300",
     "isVerified": false,
-    "playlists": [],
     "followers": [],
     "following": []
+  },
+  {
+    "id": 4,
+    "name": "Linkin Park",
+    "img": "https://i.scdn.co/image/ab6775700000ee85cac03285ca0b43c60b8e47ff",
+    "isVerified": true,
+    "followers": [
+      {
+        "id": 1,
+        "name": "User name",
+        "img": "https://culturedecanted.files.wordpress.com/2014/07/evil_eyes-e1404648004181.jpg?w=186&h=186&crop=1"
+      }
+    ],
+    "following": [
+      {
+        "id": 2,
+        "name": "Spotify",
+        "img": "https://i.scdn.co/image/ab6775700000ee8555c25988a6ac314394d3fbf5"
+      }
+    ]
   }
 ]

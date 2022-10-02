@@ -22,11 +22,12 @@ const StyledSection = styled.section`
 
 interface UserSectionProps {
   title: string;
+  type?: string;
   // Type any for testing later will be changed
   users: any;
 }
 
-const UserSection = ({ title, users }: UserSectionProps) => {
+const UserSection = ({ title, users, type = "Profile" }: UserSectionProps) => {
   return (
     <StyledSection>
       <h2>{title}</h2>
@@ -35,8 +36,9 @@ const UserSection = ({ title, users }: UserSectionProps) => {
           <UserBlock
             key={user.id}
             id={user.id}
+            img={user.img}
             name={user.name}
-            type={"Profile"}
+            type={type}
           />
         ))}
       </div>

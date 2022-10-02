@@ -1,18 +1,18 @@
+export type AuthorType = {
+  id: number;
+  username: string;
+};
+
 export type SongListType = {
   id: number;
   name: string;
-  artist: string;
+  artist: AuthorType;
   album: string;
   date: string;
   songURL: string;
   duration: number;
   plays: number;
   isLiked: boolean;
-};
-
-export type AuthorType = {
-  id: number;
-  username: string;
 };
 
 export interface PlaylistInterface {

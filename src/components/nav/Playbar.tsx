@@ -142,7 +142,7 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
             />
             <div className="song-info">
               <h4>{current.song?.name}</h4>
-              <h5>{current.song?.artist}</h5>
+              <h5>{current.song?.artist.username}</h5>
             </div>
             <LikeButton isLiked={liked} onClick={onLike} />
           </>

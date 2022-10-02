@@ -188,7 +188,7 @@ const PlaybarMobile = ({
             <div className="song-nav">
               <div className="song-info">
                 <span>{current.song?.name}</span>
-                <span>{current.song?.artist}</span>
+                <span>{current.song?.artist.username}</span>
               </div>
               <div className="song-buttons">
                 <LikeButton isLiked={liked} onClick={onLike} size="1.6em" />
@@ -226,7 +226,7 @@ const PlaybarMobile = ({
             <div className="song-info">
               <div>
                 <h1>{current.song?.name}</h1>
-                <h4>{current.song?.artist}</h4>
+                <h4>{current.song?.artist.username}</h4>
               </div>
               <LikeButton isLiked={liked} onClick={onLike} size="1.6em" />
             </div>

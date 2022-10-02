@@ -30,20 +30,10 @@ const StyledLink = styled(Link).withConfig({
   figure {
     position: relative;
     img {
-      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      border-radius: var(--radius-md);
       box-shadow: 0px 0px 10px 0px var(--background-press);
       width: 100%;
       height: auto;
-    }
-    &::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 5px;
-      background-color: yellow;
-      bottom: 0;
-      left: 0;
-      border-radius: 0 0 var(--radius-md) var(--radius-md);
     }
     .play-button {
       position: absolute;
@@ -102,7 +92,7 @@ const PlaylistBlock = ({
   return (
     <StyledLink to={`/playlist/${playlist.id}`} isPlaying={isPlaying}>
       <figure>
-        <img src="https://via.placeholder.com/200" alt="Playlist cover" />
+        <img src={playlist?.playlistURL} alt="Playlist cover" />
         <div className="play-button">
           <PlayButton
             isPlaying={isPlaying}
