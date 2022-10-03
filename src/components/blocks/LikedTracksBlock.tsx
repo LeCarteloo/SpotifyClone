@@ -53,11 +53,11 @@ const LikedTracksBlock = () => {
         <p>
           {songs &&
             songs.map((song) => (
-              <>
+              <span key={song.id}>
                 <span>{song.artist}</span>
                 <span className="subdued"> • </span>
                 <span className="subdued">{song.name} </span>
-              </>
+              </span>
             ))}
         </p>
       </div>

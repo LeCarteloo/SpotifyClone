@@ -107,6 +107,63 @@ const mixins = {
     grid-template-rows: repeat(auto-fill, minmax(270px, 1fr));
     gap: 1em;
   `,
+  table: css`
+    table-layout: fixed;
+    position: relative;
+    margin-top: 1.8em;
+    width: 100%;
+    border-collapse: collapse;
+
+    .table-header {
+      position: sticky;
+      width: 100%;
+      top: 64px;
+    }
+
+    th {
+      font-weight: normal;
+      text-align: left;
+      border-bottom: 1px solid var(--essential-subdued);
+      padding: 0.2em 1em;
+    }
+    .song-info {
+      display: flex;
+      .song-title {
+        margin-left: 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+
+    .col-1 {
+      width: 1%;
+    }
+    .col-2 {
+      width: 35%;
+    }
+    .col-5 {
+      text-align: center;
+      width: 100px;
+    }
+
+    @media (max-width: 1080px) {
+      .col-4 {
+        display: none;
+      }
+    }
+    @media (max-width: 480px) {
+      .col-1 {
+        display: none;
+      }
+      .col-3 {
+        display: none;
+      }
+      .col-5 {
+        display: none;
+      }
+    } ;
+  `,
 };
 
 export default mixins;

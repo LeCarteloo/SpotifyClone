@@ -165,12 +165,9 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
   };
 
   const playlistDuration = useMemo(() => {
-    console.log("eeeee");
     return calculateDuration(playlist?.songList);
   }, [playlist]);
   const isPlaying = current.playlist?.id === playlist?.id && current.isPlaying;
-
-  console.log("Refresh");
 
   return (
     <StyledSection color={color}>

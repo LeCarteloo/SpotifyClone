@@ -22,7 +22,6 @@ const GenrePage = ({ current, onPlay }: PlaylistSectionProps) => {
 
   useEffect(() => {
     const genre = genres.find((genre) => genre.id.toString() === params.id);
-    console.log(genre);
 
     setGenre(genre);
   }, []);

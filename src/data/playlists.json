@@ -309,10 +309,10 @@
     "playlistURL": "https://thisis-images.scdn.co/37i9dQZF1DZ06evO49hLQA-large.jpg",
     "desc": "Short description of a playlist",
     "author": {
-      "id": 15,
+      "id": 2,
       "username": "Spotify"
     },
-    "likes": 5,
+    "likes": 15,
     "color": "#C82830",
     "songList": [
       {

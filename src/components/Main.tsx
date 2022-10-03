@@ -9,6 +9,7 @@ import Search from "./views/Search";
 import GenrePage from "./views/GenrePage";
 import UserPage from "./views/UserPage";
 import ArtistPage from "./views/ArtistPage";
+import Queue from "./views/Queue";
 
 interface MainProps {
   current: CurrentSongInterface;
@@ -80,6 +81,10 @@ const Main = ({
         <Route
           path="/lyrics"
           element={<Lyrics songName={current.song?.name} />}
+        />
+        <Route
+          path="/queue"
+          element={<Queue current={current} onPlay={onPlay} />}
         />
       </Routes>
     </StyledMain>

@@ -124,7 +124,15 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
     navigate("/lyrics");
   };
 
-  const onQueue = () => {};
+  const onQueue = () => {
+    if (location.pathname.toString() === "/queue") {
+      navigate(-1);
+      return;
+    }
+
+    navigate("/queue");
+  };
+
   const onDevice = () => {};
   const onVolume = () => {};
   const onFullScreen = () => {};
@@ -176,7 +184,7 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
           onClick={onLyrics}
         />
         <ActionButton
-          isActive={true}
+          isActive={location.pathname === "/queue"}
           icon={<BsList size={"1.2em"} />}
           onClick={onQueue}
         />
