@@ -15,7 +15,7 @@ const StyledSection = styled.section<StyledProps>`
   img {
   }
   .artist-img {
-    top: -10%;
+    top: 0;
     right: 0;
     position: absolute;
     z-index: -1;
@@ -183,7 +183,6 @@ interface ArtistPageProps {
 const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
   const params = useParams();
   const artist = artists.find((artist) => artist.id.toString() === params.id);
-  // Test
   const artistPlaylists = playlists.filter(
     (playlist) => playlist.author.username === artist?.name
   );
@@ -210,7 +209,11 @@ const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
       <div className="artist-content">
         <div className="artist-controls">
           <PlayButton
-            isPlaying={false}
+            isPlaying={
+              current.isPlaying &&
+              current.song?.artist.id === artist?.id &&
+              current.playlist === undefined
+            }
             onClick={() => {}}
             isGreen={true}
             size="3.5em"
@@ -223,45 +226,37 @@ const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
             <h2>Popular</h2>
             <table>
               <tbody>
-                {artist && (
-                  <>
+                {artist &&
+                  artist.albums[0].songList.map((song, i) => (
                     <PlaylistRow
-                      rowNumber={1}
-                      song={artist?.albums[0].songList[0]}
-                      isPlaying={false}
-                      isCurrentSong={false}
-                      onPlay={() => {}}
+                      rowNumber={i + 1}
+                      song={song}
+                      isPlaying={
+                        current.song?.id === song.id &&
+                        current.isPlaying &&
+                        current.song?.artist.id === artist.id &&
+                        current.playlist === undefined
+                      }
+                      isCurrentSong={
+                        current.song?.id === song.id &&
+                        current.song?.artist.id === artist.id &&
+                        current.playlist === undefined
+                      }
+                      onPlay={() =>
+                        onPlay({
+                          isPlaying: !(
+                            current.song?.id === song.id && current.isPlaying
+                          ),
+                          song: song,
+                          playlist: undefined,
+                          currDuration:
+                            current.song?.id === song.id
+                              ? current.currDuration
+                              : 0,
+                        })
+                      }
                     />
-                    <PlaylistRow
-                      rowNumber={2}
-                      song={artist?.albums[0].songList[0]}
-                      isPlaying={false}
-                      isCurrentSong={false}
-                      onPlay={() => {}}
-                    />
-                    <PlaylistRow
-                      rowNumber={3}
-                      song={artist?.albums[0].songList[0]}
-                      isPlaying={false}
-                      isCurrentSong={false}
-                      onPlay={() => {}}
-                    />
-                    <PlaylistRow
-                      rowNumber={4}
-                      song={artist?.albums[0].songList[0]}
-                      isPlaying={false}
-                      isCurrentSong={false}
-                      onPlay={() => {}}
-                    />
-                    <PlaylistRow
-                      rowNumber={5}
-                      song={artist?.albums[0].songList[0]}
-                      isPlaying={false}
-                      isCurrentSong={false}
-                      onPlay={() => {}}
-                    />
-                  </>
-                )}
+                  ))}
               </tbody>
             </table>
           </div>

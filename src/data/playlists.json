@@ -311,20 +311,20 @@
       "id": 2,
       "username": "Spotify"
     },
-    "likes": 15,
+    "likes": 92323,
     "color": "#C82830",
     "songList": [
       {
         "id": 1,
-        "name": "Forgotten",
+        "name": "Back In Black",
         "artist": {
-          "id": 1,
-          "username": "Linkin Park"
+          "id": 5,
+          "username": "AC/DC"
         },
-        "album": "Hybrid Theory",
+        "album": "Back In Black",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://i.scdn.co/image/ab67616d00001e02e2f039481babe23658fc719a",
-        "duration": 194,
+        "songURL": "https://i.scdn.co/image/ab67616d00001e020b51f8d91f3a21e8426361ae",
+        "duration": 255,
         "plays": 53318831,
         "isLiked": false
       }
@@ -388,6 +388,93 @@
         "date": "2020-01-09T18:25:43.511Z",
         "songURL": "https://i.scdn.co/image/ab67616d00001e02e2f039481babe23658fc719a",
         "duration": 194,
+        "plays": 53318831,
+        "isLiked": false
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "name": "This is Dua Lipa",
+    "artist": {
+      "id": 4,
+      "username": "Dua Lipa"
+    },
+    "playlistURL": "https://i.scdn.co/image/ab67706f00000002880da7c5be289f2c7787ccd2",
+    "author": {
+      "id": 2,
+      "username": "Spotify"
+    },
+    "likes": 586,
+    "color": "#C82830",
+    "songList": [
+      {
+        "id": 1,
+        "name": "Don't Start Now",
+        "artist": {
+          "id": 3,
+          "username": "Dua Lipa"
+        },
+        "album": "Future Nostalgia",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://i.scdn.co/image/ab67616d00004851ef12a4e8cdb297684e197cc4",
+        "duration": 214,
+        "plays": 53318831,
+        "isLiked": false
+      },
+      {
+        "id": 2,
+        "name": "One Kiss",
+        "artist": {
+          "id": 3,
+          "username": "Dua Lipa"
+        },
+        "album": "Future Nostalgia",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://i.scdn.co/image/ab67616d00004851d09f96d82310d4d77c14c108",
+        "duration": 214,
+        "plays": 53318831,
+        "isLiked": false
+      },
+      {
+        "id": 3,
+        "name": "Levitating",
+        "artist": {
+          "id": 3,
+          "username": "Dua Lipa"
+        },
+        "album": "Future Nostalgia",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://i.scdn.co/image/ab67616d00001e02ef12a4e8cdb297684e197cc4",
+        "duration": 213,
+        "plays": 53318831,
+        "isLiked": false
+      },
+      {
+        "id": 4,
+        "name": "New Rules",
+        "artist": {
+          "id": 3,
+          "username": "Dua Lipa"
+        },
+        "album": "Dua Lipa (Deluxe)",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://i.scdn.co/image/ab67616d000048516b915e407b70e121e06fe979",
+        "duration": 209,
+        "plays": 53318831,
+        "isLiked": false
+      },
+      {
+        "id": 5,
+        "name": "Physical",
+        "artist": {
+          "id": 3,
+          "username": "Dua Lipa"
+        },
+        "album": "Dua Lipa (Deluxe)",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://i.scdn.co/image/ab67616d00004851ef12a4e8cdb297684e197cc4",
+        "duration": 193,
         "plays": 53318831,
         "isLiked": false
       }

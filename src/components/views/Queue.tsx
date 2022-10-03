@@ -57,6 +57,7 @@ const Queue = ({ current, onPlay }: QueueProps) => {
                       current.song &&
                       song.id !== current?.song.id && (
                         <PlaylistRow
+                          key={i}
                           rowNumber={i + 2}
                           song={song}
                           isCurrentSong={false}

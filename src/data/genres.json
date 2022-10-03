@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Rock",
     "color": "#b32727",
-    "img": "https://via.placeholder.com/100",
+    "img": "https://t.scdn.co/media/derived/rock_9ce79e0a4ef901bbd10494f5b855d3cc_0_0_274_274.jpg",
     "sections": [
       {
         "title": "Pulse of rock",
@@ -12,6 +12,10 @@
             "id": 100,
             "name": "Rock This",
             "artist": "Queen",
+            "author": {
+              "id": 2,
+              "username": "Spotify"
+            },
             "playlistURL": "https://i.scdn.co/image/ab67706f000000025d3a1f3ecce21ca3907e26a8",
             "songList": [
               {
@@ -31,6 +35,10 @@
             "id": 101,
             "name": "This is AC/DC",
             "artist": "AC/DC",
+            "author": {
+              "id": 2,
+              "username": "Spotify"
+            },
             "playlistURL": "https://thisis-images.scdn.co/37i9dQZF1DZ06evO49hLQA-large.jpg",
             "songList": [
               {
@@ -41,6 +49,106 @@
                 "date": "2020-01-09T18:25:43.511Z",
                 "songURL": "https://via.placeholder.com/200",
                 "duration": 194,
+                "plays": 53318831,
+                "isLiked": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Pop",
+    "color": "#3c9cf5",
+    "img": "https://t.scdn.co/media/derived/pop-274x274_447148649685019f5e2a03a39e78ba52_0_0_274_274.jpg",
+    "sections": [
+      {
+        "title": "Hot Hits",
+        "playlists": [
+          {
+            "id": 104,
+            "name": "This is Dua Lipa",
+            "artist": {
+              "id": 4,
+              "username": "Dua Lipa"
+            },
+            "playlistURL": "https://i.scdn.co/image/ab67706f00000002880da7c5be289f2c7787ccd2",
+            "author": {
+              "id": 2,
+              "username": "Spotify"
+            },
+            "likes": 586,
+            "color": "#C82830",
+            "songList": [
+              {
+                "id": 1,
+                "name": "Don't Start Now",
+                "artist": {
+                  "id": 3,
+                  "username": "Dua Lipa"
+                },
+                "album": "Future Nostalgia",
+                "date": "2020-01-09T18:25:43.511Z",
+                "songURL": "https://i.scdn.co/image/ab67616d00004851ef12a4e8cdb297684e197cc4",
+                "duration": 214,
+                "plays": 53318831,
+                "isLiked": false
+              },
+              {
+                "id": 2,
+                "name": "One Kiss",
+                "artist": {
+                  "id": 3,
+                  "username": "Dua Lipa"
+                },
+                "album": "Future Nostalgia",
+                "date": "2020-01-09T18:25:43.511Z",
+                "songURL": "https://i.scdn.co/image/ab67616d00004851d09f96d82310d4d77c14c108",
+                "duration": 214,
+                "plays": 53318831,
+                "isLiked": false
+              },
+              {
+                "id": 3,
+                "name": "Levitating",
+                "artist": {
+                  "id": 3,
+                  "username": "Dua Lipa"
+                },
+                "album": "Future Nostalgia",
+                "date": "2020-01-09T18:25:43.511Z",
+                "songURL": "https://i.scdn.co/image/ab67616d00001e02ef12a4e8cdb297684e197cc4",
+                "duration": 213,
+                "plays": 53318831,
+                "isLiked": false
+              },
+              {
+                "id": 4,
+                "name": "New Rules",
+                "artist": {
+                  "id": 3,
+                  "username": "Dua Lipa"
+                },
+                "album": "Dua Lipa (Deluxe)",
+                "date": "2020-01-09T18:25:43.511Z",
+                "songURL": "https://i.scdn.co/image/ab67616d000048516b915e407b70e121e06fe979",
+                "duration": 209,
+                "plays": 53318831,
+                "isLiked": false
+              },
+              {
+                "id": 5,
+                "name": "Physical",
+                "artist": {
+                  "id": 3,
+                  "username": "Dua Lipa"
+                },
+                "album": "Dua Lipa (Deluxe)",
+                "date": "2020-01-09T18:25:43.511Z",
+                "songURL": "https://i.scdn.co/image/ab67616d00004851ef12a4e8cdb297684e197cc4",
+                "duration": 193,
                 "plays": 53318831,
                 "isLiked": false
               }
