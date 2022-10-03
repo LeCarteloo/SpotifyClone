@@ -111,7 +111,7 @@ const PlaylistBlock = ({
       </figure>
       <div className="playlist-info">
         <h4>{playlist.name}</h4>
-        <span>Queen, Three Days Grace, Papa Roach and more</span>
+        <span>{`By ${playlist.author.username}`}</span>
       </div>
     </StyledLink>
   );

@@ -3,7 +3,6 @@
     "id": 1,
     "name": "Rock",
     "playlistURL": "https://i.scdn.co/image/ab67706c0000bebbb89a03972d3e816f21574ffa",
-    "desc": "Short description of a playlist",
     "author": {
       "id": 1,
       "username": "User name"
@@ -20,7 +19,7 @@
         },
         "album": "Hybrid Theory",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://i.scdn.co/image/ab67616d00004851e2f039481babe23658fc719a",
+        "songURL": "https://i.scdn.co/image/ab67616d00001e02e2f039481babe23658fc719a",
         "duration": 194,
         "plays": 53318831,
         "isLiked": false
@@ -73,7 +72,7 @@
     "id": 2,
     "name": "Cyberpunk",
     "playlistURL": "https://i.scdn.co/image/ab67706c0000bebbe7984b80d395a002a66360e7",
-    "desc": "Short description of a playlist",
+    "desc": "Best Cyberpunk theme tracks",
     "author": {
       "id": 1,
       "username": "User Name"
@@ -129,7 +128,7 @@
     "id": 3,
     "name": "Pop",
     "playlistURL": "https://i.scdn.co/image/ab67706f0000000371d4be11b38e047fe00745bc",
-    "desc": "Short description of a playlist",
+    "desc": "The most interesting tracks in the current world of pop music.",
     "author": {
       "id": 1,
       "username": "User Name"
@@ -175,7 +174,7 @@
         },
         "album": "Future Nostalgia",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://i.scdn.co/image/ab67616d00004851ef12a4e8cdb297684e197cc4",
+        "songURL": "https://i.scdn.co/image/ab67616d00001e02ef12a4e8cdb297684e197cc4",
         "duration": 213,
         "plays": 53318831,
         "isLiked": false
@@ -214,7 +213,7 @@
     "id": 4,
     "name": "Mix 1",
     "playlistURL": "https://i.scdn.co/image/ab67706c0000bebb915f63b998f36477a4820931",
-    "desc": "Short description of a playlist",
+    "desc": "Your Daily Mix",
     "author": {
       "id": 2,
       "username": "Spotify"
@@ -243,7 +242,7 @@
     "id": 5,
     "name": "Mix 2",
     "playlistURL": "https://i.scdn.co/image/ab67706c0000bebb8b2e21394fddd611b2e94561",
-    "desc": "Short description of a playlist",
+    "desc": "Your Daily Mix",
     "author": {
       "id": 2,
       "username": "Spotify"
@@ -275,7 +274,7 @@
       "username": "Queen"
     },
     "playlistURL": "https://i.scdn.co/image/ab67706f000000025d3a1f3ecce21ca3907e26a8",
-    "desc": "Short description of a playlist",
+    "desc": "The latest from Paramore along with the Rock songs you need to hear today.",
     "author": {
       "id": 2,
       "username": "Spotify"
@@ -292,7 +291,7 @@
         },
         "album": "Hybrid Theory",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
+        "songURL": "https://i.scdn.co/image/ab67616d00001e02e2f039481babe23658fc719a",
         "duration": 194,
         "plays": 53318831,
         "isLiked": false
@@ -307,7 +306,7 @@
       "username": "AC/DC"
     },
     "playlistURL": "https://thisis-images.scdn.co/37i9dQZF1DZ06evO49hLQA-large.jpg",
-    "desc": "Short description of a playlist",
+    "desc": "This is AC/DC. The essential tracks, all in one playlist.",
     "author": {
       "id": 2,
       "username": "Spotify"
@@ -324,7 +323,7 @@
         },
         "album": "Hybrid Theory",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
+        "songURL": "https://i.scdn.co/image/ab67616d00001e02e2f039481babe23658fc719a",
         "duration": 194,
         "plays": 53318831,
         "isLiked": false
@@ -339,7 +338,7 @@
       "username": "Linkin Park"
     },
     "playlistURL": "https://thisis-images.scdn.co/37i9dQZF1DZ06evO47cwRq-large.jpg",
-    "desc": "Short description of a playlist",
+    "desc": "This is Linkin Park. The essential tracks, all in one playlist.",
     "author": {
       "id": 2,
       "username": "Spotify"
@@ -356,7 +355,7 @@
         },
         "album": "Hybrid Theory",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
+        "songURL": "https://i.scdn.co/image/ab67616d00001e02e2f039481babe23658fc719a",
         "duration": 194,
         "plays": 53318831,
         "isLiked": false
@@ -371,7 +370,6 @@
       "username": "Linkin Park"
     },
     "playlistURL": "https://i.scdn.co/image/ab67706c0000bebb8722d6809d0169e9d9eddc5d",
-    "desc": "Short description of a playlist",
     "author": {
       "id": 4,
       "username": "Linkin Park"
@@ -388,7 +386,7 @@
         },
         "album": "Hybrid Theory",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
+        "songURL": "https://i.scdn.co/image/ab67616d00001e02e2f039481babe23658fc719a",
         "duration": 194,
         "plays": 53318831,
         "isLiked": false

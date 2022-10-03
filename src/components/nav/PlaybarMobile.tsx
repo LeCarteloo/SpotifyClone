@@ -4,7 +4,7 @@ import { BsChevronDown, BsList } from "react-icons/bs";
 import { FiSpeaker } from "react-icons/fi";
 import { TbMicrophone2 } from "react-icons/tb";
 import { Link, useLocation } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import ActionButton from "../buttons/ActionButton";
 import LikeButton from "../buttons/LikeButton";
 import PlayButton from "../buttons/PlayButton";
@@ -12,6 +12,7 @@ import RepeatButton from "../buttons/RepeatButton";
 import ShuffleButton from "../buttons/ShuffleButton";
 import Progressbar from "./Progressbar";
 import { CurrentSongInterface } from "../../types/types";
+import useImageColor from "../../hooks/useImageColor";
 
 const StyledNav = styled.nav<StyleProps>`
   z-index: 10;
@@ -25,7 +26,14 @@ const StyledNav = styled.nav<StyleProps>`
     margin: 0 0.5em;
     padding: 0.5em;
     border-radius: var(--radius-md);
+
     background-color: darkolivegreen;
+    ${({ color }) =>
+      color &&
+      css`
+        background-color: ${color};
+      `}
+
     .playbar-content {
       display: flex;
       img {
@@ -52,7 +60,7 @@ const StyledNav = styled.nav<StyleProps>`
   }
 `;
 
-const StyledDiv = styled.div`
+const StyledDiv = styled.div<StyleProps>`
   position: fixed;
   top: 100%;
   left: 0;
@@ -70,7 +78,12 @@ const StyledDiv = styled.div`
     width: calc(100% - 3em);
     height: calc(100% - 4.8em);
     padding: 2.4em 1.5em;
-    background-color: rgba(0, 0, 0, 1);
+    /* background-color: rgba(0, 0, 0, 1); */
+    ${({ color }) =>
+      color &&
+      css`
+        background: linear-gradient(${color}, black);
+      `}
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -143,6 +156,7 @@ interface PlaybarMobileProps {
 
 type StyleProps = {
   isOpen?: boolean;
+  color?: string;
 };
 
 const PlaybarMobile = ({
@@ -155,6 +169,7 @@ const PlaybarMobile = ({
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState(0);
   const location = useLocation();
+  const color = useImageColor(current.song?.songURL);
 
   const onLike = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setLiked(!liked);
@@ -181,6 +196,7 @@ const PlaybarMobile = ({
         aria-label="Playing song navigation"
         onClick={onOpenMenu}
         isOpen={isOpen}
+        color={color}
       >
         <div className="playbar-wrapper">
           <div className="playbar-content">
@@ -203,7 +219,7 @@ const PlaybarMobile = ({
           </div>
         </div>
       </StyledNav>
-      <StyledDiv className={`${isOpen ? "open" : ""}`}>
+      <StyledDiv color={color} className={`${isOpen ? "open" : ""}`}>
         {isOpen && (
           <div className="song-menu">
             <div className="menu-header">

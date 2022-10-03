@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 
 const useImageColor = (image: string | undefined) => {
   const [color, setColor] = useState("");
-  const location = useLocation();
   const fac = new FastAverageColor();
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const useImageColor = (image: string | undefined) => {
           console.error(e);
         });
     }
-  }, [location.pathname]);
+  }, [image]);
 
   return color;
 };
