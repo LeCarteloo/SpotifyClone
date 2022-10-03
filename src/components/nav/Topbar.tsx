@@ -174,7 +174,10 @@ const Topbar = () => {
       <div className="nav-user">
         <button className="premium-btn">Go Premium</button>
         <Link to="/user/1" className="profile-btn">
-          <img src="https://via.placeholder.com/200" alt="User avatar" />
+          <img
+            src="https://i.scdn.co/image/ab6761610000f178caa995cbccddc98e3716bd77"
+            alt="User avatar"
+          />
           <div className="profile-btn-text">
             <span className="profile-name">User Name</span>
             <BiCaretDown size="1.4em" />

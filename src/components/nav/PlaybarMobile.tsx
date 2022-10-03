@@ -184,7 +184,7 @@ const PlaybarMobile = ({
       >
         <div className="playbar-wrapper">
           <div className="playbar-content">
-            <img src="https://via.placeholder.com/200" alt="Song cover" />
+            <img src={current.song?.songURL} alt="Song cover" />
             <div className="song-nav">
               <div className="song-info">
                 <span>{current.song?.name}</span>

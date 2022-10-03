@@ -136,7 +136,7 @@ const UserPage = ({ current, onPlay }: UserPageProps) => {
       </div>
       <div className="user-content">
         <div className="user-buttons">
-          <FollowButton />
+          {user?.id !== 1 && <FollowButton />}
           <button>
             <BsThreeDots size="1.55em" />
           </button>

@@ -2,13 +2,13 @@
   {
     "id": 1,
     "name": "Rock",
-    "playlistURL": "https://i.scdn.co/image/ab67706c0000bebbbf28ec5c52f1b778084de6a6",
+    "playlistURL": "https://i.scdn.co/image/ab67706c0000bebbb89a03972d3e816f21574ffa",
     "desc": "Short description of a playlist",
     "author": {
       "id": 1,
-      "username": "Linkin Park"
+      "username": "User name"
     },
-    "likes": 5,
+    "likes": 11,
     "color": "#C82830",
     "songList": [
       {
@@ -20,7 +20,7 @@
         },
         "album": "Hybrid Theory",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
+        "songURL": "https://i.scdn.co/image/ab67616d00004851e2f039481babe23658fc719a",
         "duration": 194,
         "plays": 53318831,
         "isLiked": false
@@ -34,50 +34,36 @@
         },
         "album": "Teardrops",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
+        "songURL": "https://i.scdn.co/image/ab67616d000048517c2b1dc1639152beaeadf00d",
         "duration": 215,
         "plays": 53318831,
         "isLiked": true
       },
       {
-        "id": 2,
-        "name": "Teardrops",
+        "id": 3,
+        "name": "Numb",
         "artist": {
-          "id": 2,
-          "username": "Bring Me The Horizon"
+          "id": 1,
+          "username": "Linkin Park"
         },
-        "album": "Teardrops",
+        "album": "Meteora",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
-        "duration": 215,
+        "songURL": "https://i.scdn.co/image/ab67616d00001e02b4ad7ebaf4575f120eb3f193",
+        "duration": 185,
         "plays": 53318831,
         "isLiked": true
       },
       {
-        "id": 2,
-        "name": "Teardrops",
+        "id": 4,
+        "name": "Numb / Encore",
         "artist": {
-          "id": 2,
-          "username": "Bring Me The Horizon"
+          "id": 1,
+          "username": "Linkin Park"
         },
-        "album": "Teardrops",
+        "album": "MTV Ultimate",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
-        "duration": 215,
-        "plays": 53318831,
-        "isLiked": true
-      },
-      {
-        "id": 2,
-        "name": "Teardrops",
-        "artist": {
-          "id": 2,
-          "username": "Bring Me The Horizon"
-        },
-        "album": "Teardrops",
-        "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
-        "duration": 215,
+        "songURL": "https://i.scdn.co/image/ab67616d00001e027282412ad025c14f7039f516",
+        "duration": 185,
         "plays": 53318831,
         "isLiked": true
       }
@@ -99,13 +85,41 @@
         "id": 1,
         "name": "Spoiler - Original Mix",
         "artist": {
-          "id": 6,
+          "id": 4,
           "username": "Hyper"
         },
         "album": "Lies",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
-        "duration": 272,
+        "songURL": "https://i.scdn.co/image/ab67616d00004851b0222d2ff7d5f263639c9548",
+        "duration": 271,
+        "plays": 53318831,
+        "isLiked": false
+      },
+      {
+        "id": 2,
+        "name": "Clockwork - Original Mix",
+        "artist": {
+          "id": 4,
+          "username": "Hyper"
+        },
+        "album": "Lies",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://i.scdn.co/image/ab67616d00004851b0222d2ff7d5f263639c9548",
+        "duration": 276,
+        "plays": 53318831,
+        "isLiked": false
+      },
+      {
+        "id": 3,
+        "name": "We Control",
+        "artist": {
+          "id": 4,
+          "username": "Hyper"
+        },
+        "album": "We Control",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://i.scdn.co/image/ab67616d00001e02becbea9f81d7c98c07b7e283",
+        "duration": 276,
         "plays": 53318831,
         "isLiked": false
       }
@@ -126,15 +140,71 @@
     "songList": [
       {
         "id": 1,
-        "name": "We Found Love",
+        "name": "Don't Start Now",
         "artist": {
-          "id": 7,
-          "username": "Rihanna"
+          "id": 3,
+          "username": "Dua Lipa"
         },
-        "album": "Talk That Talk",
+        "album": "Future Nostalgia",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
-        "duration": 215,
+        "songURL": "https://i.scdn.co/image/ab67616d00004851ef12a4e8cdb297684e197cc4",
+        "duration": 214,
+        "plays": 53318831,
+        "isLiked": false
+      },
+      {
+        "id": 2,
+        "name": "One Kiss",
+        "artist": {
+          "id": 3,
+          "username": "Dua Lipa"
+        },
+        "album": "Future Nostalgia",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://i.scdn.co/image/ab67616d00004851d09f96d82310d4d77c14c108",
+        "duration": 214,
+        "plays": 53318831,
+        "isLiked": false
+      },
+      {
+        "id": 3,
+        "name": "Levitating",
+        "artist": {
+          "id": 3,
+          "username": "Dua Lipa"
+        },
+        "album": "Future Nostalgia",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://i.scdn.co/image/ab67616d00004851ef12a4e8cdb297684e197cc4",
+        "duration": 213,
+        "plays": 53318831,
+        "isLiked": false
+      },
+      {
+        "id": 4,
+        "name": "New Rules",
+        "artist": {
+          "id": 3,
+          "username": "Dua Lipa"
+        },
+        "album": "Dua Lipa (Deluxe)",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://i.scdn.co/image/ab67616d000048516b915e407b70e121e06fe979",
+        "duration": 209,
+        "plays": 53318831,
+        "isLiked": false
+      },
+      {
+        "id": 5,
+        "name": "Physical",
+        "artist": {
+          "id": 3,
+          "username": "Dua Lipa"
+        },
+        "album": "Dua Lipa (Deluxe)",
+        "date": "2020-01-09T18:25:43.511Z",
+        "songURL": "https://i.scdn.co/image/ab67616d00004851ef12a4e8cdb297684e197cc4",
+        "duration": 193,
         "plays": 53318831,
         "isLiked": false
       }
@@ -178,7 +248,7 @@
       "id": 2,
       "username": "Spotify"
     },
-    "likes": 5,
+    "likes": 300,
     "color": "#C82830",
     "songList": [
       {
@@ -210,7 +280,7 @@
       "id": 2,
       "username": "Spotify"
     },
-    "likes": 5,
+    "likes": 22,
     "color": "#C82830",
     "songList": [
       {
@@ -239,7 +309,7 @@
     "playlistURL": "https://thisis-images.scdn.co/37i9dQZF1DZ06evO49hLQA-large.jpg",
     "desc": "Short description of a playlist",
     "author": {
-      "id": 2,
+      "id": 15,
       "username": "Spotify"
     },
     "likes": 5,
@@ -274,7 +344,7 @@
       "id": 2,
       "username": "Spotify"
     },
-    "likes": 5,
+    "likes": 63,
     "color": "#C82830",
     "songList": [
       {
@@ -306,7 +376,7 @@
       "id": 4,
       "username": "Linkin Park"
     },
-    "likes": 5,
+    "likes": 586,
     "color": "#C82830",
     "songList": [
       {

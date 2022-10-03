@@ -1,13 +1,15 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled, { css } from "styled-components";
 import LikeButton from "../buttons/LikeButton";
 import PlayButton from "../buttons/PlayButton";
 import { HiOutlinePencil } from "react-icons/hi";
-import { CurrentSongInterface } from "../../types/types";
+import { CurrentSongInterface, SongListType } from "../../types/types";
 import playlists from "../../data/playlists.json";
 import Table from "../playlist/Table";
 import MoreButton from "../buttons/MoreButton";
 import useImageColor from "../../hooks/useImageColor";
+import { useMemo } from "react";
+import { formatPlaylistDuration } from "../../utility/formatDuration";
 
 const StyledSection = styled.section<StyledProps>`
   .playlist-header {
@@ -148,8 +150,27 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
     (playlist) => playlist.id.toString() === params.id
   );
   const color = useImageColor(playlist?.playlistURL);
+  const calculateDuration = (songList: SongListType[] | undefined) => {
+    let duration = 0;
 
+    if (!songList) {
+      return;
+    }
+
+    songList.forEach((song) => {
+      duration += song.duration;
+    });
+
+    return duration;
+  };
+
+  const playlistDuration = useMemo(() => {
+    console.log("eeeee");
+    return calculateDuration(playlist?.songList);
+  }, [playlist]);
   const isPlaying = current.playlist?.id === playlist?.id && current.isPlaying;
+
+  console.log("Refresh");
 
   return (
     <StyledSection color={color}>
@@ -174,10 +195,13 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
             <p className="playlist-desc">{playlist?.desc}</p>
             <div className="playlist-author">
               <Link to={`/user/${playlist?.author.id}`}>
-                <b>{playlist?.author.username} </b>
+                <b>{playlist?.author.username}</b>
               </Link>
-              <span>• {playlist?.likes} likes •</span>
-              <span> 90 tracks, 6 hr 13 min</span>
+              <span> • {playlist?.likes} likes •</span>
+              <span>
+                {" " + playlist?.songList.length} tracks,{" "}
+                {playlistDuration && formatPlaylistDuration(playlistDuration)}
+              </span>
             </div>
           </div>
         </div>

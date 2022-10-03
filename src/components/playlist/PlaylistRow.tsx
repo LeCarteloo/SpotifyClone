@@ -6,6 +6,7 @@ import { SongListType } from "../../types/types";
 import playingGif from "../../assets/playing.gif";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { formatSongDuration } from "../../utility/formatDuration";
 
 const StyledTr = styled.tr`
   .buttons {
@@ -130,9 +131,7 @@ const PlaylistRow = ({
   const date = new Date(song.date);
 
   useEffect(() => {
-    const minutes = Math.floor(song.duration / 60);
-    const seconds = song.duration - minutes * 60;
-    setDuration(`${minutes}:${(0 + seconds.toString()).slice(-2)}`);
+    setDuration(formatSongDuration(song.duration));
   }, []);
 
   return (
