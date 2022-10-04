@@ -224,15 +224,15 @@
     "songList": [
       {
         "id": 1,
-        "name": "A Reason to Fight",
+        "name": "Don't Start Now",
         "artist": {
-          "id": 7,
-          "username": "Disturbed"
+          "id": 3,
+          "username": "Dua Lipa"
         },
-        "album": "Evolution (Deluxe Edition)",
+        "album": "Future Nostalgia",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
-        "duration": 284,
+        "songURL": "https://i.scdn.co/image/ab67616d00004851ef12a4e8cdb297684e197cc4",
+        "duration": 214,
         "plays": 53318831,
         "isLiked": false
       }
@@ -252,15 +252,15 @@
     "songList": [
       {
         "id": 1,
-        "name": "A Reason to Fight",
+        "name": "Don't Start Now",
         "artist": {
-          "id": 7,
-          "username": "Disturbed"
+          "id": 3,
+          "username": "Dua Lipa"
         },
-        "album": "Evolution (Deluxe Edition)",
+        "album": "Future Nostalgia",
         "date": "2020-01-09T18:25:43.511Z",
-        "songURL": "https://via.placeholder.com/200",
-        "duration": 284,
+        "songURL": "https://i.scdn.co/image/ab67616d00004851ef12a4e8cdb297684e197cc4",
+        "duration": 214,
         "plays": 53318831,
         "isLiked": false
       }

@@ -214,7 +214,21 @@ const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
               current.song?.artist.id === artist?.id &&
               current.playlist === undefined
             }
-            onClick={() => {}}
+            onClick={() =>
+              onPlay({
+                isPlaying: !(
+                  current.isPlaying &&
+                  current.song?.artist.id === artist?.id &&
+                  current.playlist === undefined
+                ),
+                song: artist?.albums[0].songList[0],
+                playlist: undefined,
+                currDuration:
+                  current.song?.artist.id === artist?.id
+                    ? current.currDuration
+                    : 0,
+              })
+            }
             isGreen={true}
             size="3.5em"
           />
@@ -229,6 +243,7 @@ const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
                 {artist &&
                   artist.albums[0].songList.map((song, i) => (
                     <PlaylistRow
+                      key={i}
                       rowNumber={i + 1}
                       song={song}
                       isPlaying={
@@ -245,7 +260,9 @@ const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
                       onPlay={() =>
                         onPlay({
                           isPlaying: !(
-                            current.song?.id === song.id && current.isPlaying
+                            current.song?.id === song.id &&
+                            current.isPlaying &&
+                            current.playlist === undefined
                           ),
                           song: song,
                           playlist: undefined,

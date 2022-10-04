@@ -178,11 +178,13 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
         />
       </div>
       <div className="other-buttons">
-        <ActionButton
-          isActive={location.pathname === "/lyrics"}
-          icon={<TbMicrophone2 size={"1em"} />}
-          onClick={onLyrics}
-        />
+        {current.song && (
+          <ActionButton
+            isActive={location.pathname === "/lyrics"}
+            icon={<TbMicrophone2 size={"1em"} />}
+            onClick={onLyrics}
+          />
+        )}
         <ActionButton
           isActive={location.pathname === "/queue"}
           icon={<BsList size={"1.2em"} />}

@@ -128,7 +128,12 @@ const PlaylistRow = ({
   onPlay,
 }: PlaylistRowProps) => {
   const [duration, setDuration] = useState("");
+  const [liked, setLiked] = useState(false);
   const date = new Date(song.date);
+
+  const onLike = () => {
+    setLiked(!liked);
+  };
 
   useEffect(() => {
     setDuration(formatSongDuration(song.duration));
@@ -177,8 +182,8 @@ const PlaylistRow = ({
       <td className="col-4">{date.toDateString()}</td>
       <td className="col-5">
         <div className="buttons">
-          <div className={`${!song.isLiked ? "hide" : ""}`}>
-            <LikeButton isLiked={song.isLiked} onClick={() => {}} />
+          <div className={`${!liked ? "hide" : ""}`}>
+            <LikeButton isLiked={liked} onClick={onLike} />
           </div>
           <span>{duration}</span>
           <div className="hide">

@@ -20,7 +20,7 @@
             "id": 1,
             "name": "Forgotten",
             "artist": {
-              "id": 4,
+              "id": 1,
               "username": "Linkin Park"
             },
             "album": "Hybrid Theory",
@@ -58,7 +58,7 @@
             "id": 1,
             "name": "Teardrops",
             "artist": {
-              "id": 5,
+              "id": 2,
               "username": "Bring Me The Horizon"
             },
             "album": "Teardrops",

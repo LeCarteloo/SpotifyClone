@@ -8,7 +8,7 @@ import playlists from "../../data/playlists.json";
 import Table from "../playlist/Table";
 import MoreButton from "../buttons/MoreButton";
 import useImageColor from "../../hooks/useImageColor";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { formatPlaylistDuration } from "../../utility/formatDuration";
 
 const StyledSection = styled.section<StyledProps>`
@@ -144,8 +144,11 @@ type StyledProps = {
 };
 
 const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
+  const [liked, setLiked] = useState(false);
   const params = useParams();
-  const onLike = () => {};
+  const onLike = () => {
+    setLiked(!liked);
+  };
   const playlist = playlists.find(
     (playlist) => playlist.id.toString() === params.id
   );
@@ -211,7 +214,10 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
               onPlay({
                 isPlaying: !isPlaying,
                 playlist: playlist,
-                song: playlist?.songList[0],
+                song:
+                  current.playlist?.id === playlist?.id
+                    ? current.song
+                    : playlist?.songList[0],
                 currDuration:
                   current.playlist?.id === playlist?.id
                     ? current.currDuration
@@ -221,7 +227,7 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
             isGreen={true}
             size="3.5em"
           />
-          <LikeButton isLiked={false} onClick={onLike} size="2em" />
+          <LikeButton isLiked={liked} onClick={onLike} size="2em" />
           <MoreButton />
         </div>
         <div>

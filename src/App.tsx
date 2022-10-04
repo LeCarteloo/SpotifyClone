@@ -38,9 +38,9 @@ function App() {
   const onPlay = (current: CurrentSongInterface) => {
     const { isPlaying, playlist, song, currDuration } = current;
     setCurrSong({
-      isPlaying: isPlaying ? isPlaying : !currSong.isPlaying,
-      playlist: playlist ? playlist : currSong.playlist,
-      song: song ? song : currSong.song,
+      isPlaying: isPlaying,
+      playlist: playlist,
+      song: song,
       currDuration: currDuration,
     });
   };
