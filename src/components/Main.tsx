@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { PlaylistInterface, CurrentSongInterface } from "../types/types";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import Home from "./views/Home";
 import Lyrics from "./views/Lyrics";
 import PlaylistPage from "./views/PlaylistPage";
@@ -10,6 +10,8 @@ import GenrePage from "./views/GenrePage";
 import UserPage from "./views/UserPage";
 import ArtistPage from "./views/ArtistPage";
 import Queue from "./views/Queue";
+import LibNoData from "./library/LibNoData";
+import { FaSpotify } from "react-icons/fa";
 
 interface MainProps {
   current: CurrentSongInterface;
@@ -37,6 +39,7 @@ const Main = ({
   userPlaylists,
   favoritePlaylists,
 }: MainProps) => {
+  const navigate = useNavigate();
   return (
     <StyledMain>
       <Routes>
@@ -86,6 +89,21 @@ const Main = ({
           path="/queue"
           element={<Queue current={current} onPlay={onPlay} />}
         />
+        <Route
+          path="/notfound"
+          element={
+            <LibNoData
+              icon={<FaSpotify size={"5em"} />}
+              title={"Page not found"}
+              text={"We can't find the page you're looking for."}
+              btnText={"Home"}
+              onClick={() => {
+                navigate("/");
+              }}
+            />
+          }
+        />
+        <Route path="*" element={<Navigate to="/notfound" replace />} />
       </Routes>
     </StyledMain>
   );

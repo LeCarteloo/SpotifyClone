@@ -52,7 +52,7 @@ const NavDropdown = ({ state }: NavDropdownProps) => {
           {isOpen ? <BiCaretUp size="1.4em" /> : <BiCaretDown size="1.4em" />}
         </div>
       </button>
-      <div className="options">
+      <div className="options" onClick={() => setIsOpen(!isOpen)}>
         <NavButton path="/library/playlists" text="Playlists" />
         <NavButton path="/library/podcasts" text="Podcasts" />
         <NavButton path="/library/artists" text="Artists" />

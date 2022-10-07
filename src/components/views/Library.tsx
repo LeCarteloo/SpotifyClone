@@ -20,7 +20,7 @@ const Library = ({ userPlaylists, current, onPlay }: LibraryProps) => {
   return (
     <StyledSection>
       <Routes>
-        <Route index element={<Navigate to="/library/playlists" />} />
+        <Route index element={<Navigate to="/library/playlists" replace />} />
         <Route
           path="playlists"
           element={
