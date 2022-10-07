@@ -1,17 +1,23 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styled, { css } from "styled-components";
 import LikeButton from "../buttons/LikeButton";
 import PlayButton from "../buttons/PlayButton";
 import { HiOutlinePencil } from "react-icons/hi";
-import { CurrentSongInterface, SongListType } from "../../types/types";
+import {
+  CurrentSongInterface,
+  PlaylistInterface,
+  SongListType,
+} from "../../types/types";
 import playlists from "../../data/playlists.json";
 import Table from "../playlist/Table";
 import MoreButton from "../buttons/MoreButton";
 import useImageColor from "../../hooks/useImageColor";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { formatPlaylistDuration } from "../../utility/formatDuration";
+import Loading from "../Loading";
 
 const StyledSection = styled.section<StyledProps>`
+  height: 100%;
   .playlist-header {
     ${({ theme }) => theme.mixins.sectionPadding}
     padding-bottom: 1.8em;
@@ -145,14 +151,9 @@ type StyledProps = {
 
 const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
   const [liked, setLiked] = useState(false);
+  const [playlist, setPlaylists] = useState<PlaylistInterface>();
+  const navigate = useNavigate();
   const params = useParams();
-  const onLike = () => {
-    setLiked(!liked);
-  };
-  const playlist = playlists.find(
-    (playlist) => playlist.id.toString() === params.id
-  );
-  const color = useImageColor(playlist?.playlistURL);
   const calculateDuration = (songList: SongListType[] | undefined) => {
     let duration = 0;
 
@@ -166,88 +167,114 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
 
     return duration;
   };
-
   const playlistDuration = useMemo(() => {
     return calculateDuration(playlist?.songList);
   }, [playlist]);
+
+  const onLike = () => {
+    setLiked(!liked);
+  };
+
+  useEffect(() => {
+    // Getting playlist from JSON file by param id
+    const playlist = playlists.find(
+      (playlist) => playlist.id.toString() === params.id
+    );
+
+    // If playlist does not exist then redirect to notfound path
+    if (!playlist) {
+      navigate("/notfound");
+    }
+
+    setPlaylists(playlist);
+  }, []);
+
   const isPlaying = current.playlist?.id === playlist?.id && current.isPlaying;
+  const color = useImageColor(playlist?.playlistURL);
 
   return (
     <StyledSection color={color}>
-      <div className="playlist-header">
-        <div className="header-wrapper">
-          <div
-            className="playlist-cover"
-            tabIndex={0}
-            aria-label="Choose playlist image"
-          >
-            <div className="cover-wrapper">
-              <img src={playlist?.playlistURL} alt="Playlist cover" />
-              <button tabIndex={-1}>
-                <HiOutlinePencil size={"3em"} />
-                Choose image
-              </button>
+      {playlist ? (
+        <>
+          <div className="playlist-header">
+            <div className="header-wrapper">
+              <div
+                className="playlist-cover"
+                tabIndex={0}
+                aria-label="Choose playlist image"
+              >
+                <div className="cover-wrapper">
+                  <img src={playlist.playlistURL} alt="Playlist cover" />
+                  <button tabIndex={-1}>
+                    <HiOutlinePencil size={"3em"} />
+                    Choose image
+                  </button>
+                </div>
+              </div>
+              <div className="playlist-info">
+                <div>PLAYLIST</div>
+                <h1 className="playlist-title">{playlist.name}</h1>
+                <p className="playlist-desc">{playlist.desc}</p>
+                <div className="playlist-author">
+                  <Link to={`/user/${playlist.author.id}`}>
+                    <b>{playlist.author.username}</b>
+                  </Link>
+                  <span> • {playlist.likes} likes •</span>
+                  <span>
+                    {" " + playlist.songList.length} tracks,{" "}
+                    {playlistDuration &&
+                      formatPlaylistDuration(playlistDuration)}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="playlist-info">
-            <div>PLAYLISTA</div>
-            <h1 className="playlist-title">{playlist?.name}</h1>
-            <p className="playlist-desc">{playlist?.desc}</p>
-            <div className="playlist-author">
-              <Link to={`/user/${playlist?.author.id}`}>
-                <b>{playlist?.author.username}</b>
-              </Link>
-              <span> • {playlist?.likes} likes •</span>
-              <span>
-                {" " + playlist?.songList.length} tracks,{" "}
-                {playlistDuration && formatPlaylistDuration(playlistDuration)}
-              </span>
+          <div className="playlist-content">
+            <div className="playlist-controls">
+              <PlayButton
+                isPlaying={isPlaying}
+                onClick={() =>
+                  onPlay({
+                    isPlaying: !isPlaying,
+                    playlist: playlist,
+                    song:
+                      current.playlist?.id === playlist.id
+                        ? current.song
+                        : playlist.songList[0],
+                    currDuration:
+                      current.playlist?.id === playlist.id
+                        ? current.currDuration
+                        : 0,
+                  })
+                }
+                isGreen={true}
+                size="3.5em"
+              />
+              <LikeButton isLiked={liked} onClick={onLike} size="2em" />
+              <MoreButton />
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="playlist-content">
-        <div className="playlist-controls">
-          <PlayButton
-            isPlaying={isPlaying}
-            onClick={() =>
-              onPlay({
-                isPlaying: !isPlaying,
-                playlist: playlist,
-                song:
-                  current.playlist?.id === playlist?.id
-                    ? current.song
-                    : playlist?.songList[0],
-                currDuration:
-                  current.playlist?.id === playlist?.id
-                    ? current.currDuration
-                    : 0,
-              })
-            }
-            isGreen={true}
-            size="3.5em"
-          />
-          <LikeButton isLiked={liked} onClick={onLike} size="2em" />
-          <MoreButton />
-        </div>
-        <div>
-          {/* <div className="test-header">
-            <div>#</div>
-            <div>TYTUŁ</div>
-            <div>ALBUM</div>
-            <div>DATA DODANIA</div>
             <div>
-              <BiTime size="1.25em" />
+              {/* <div className="test-header">
+                  <div>#</div>
+                  <div>TYTUŁ</div>
+                  <div>ALBUM</div>
+                  <div>DATA DODANIA</div>
+                  <div>
+                    <BiTime size="1.25em" />
+                  </div>
+                </div> */}
+              <Table
+                playlist={playlist}
+                current={current}
+                onPlay={onPlay}
+                isPlaying={isPlaying}
+              />
             </div>
-          </div> */}
-          <Table
-            playlist={playlist}
-            current={current}
-            onPlay={onPlay}
-            isPlaying={isPlaying}
-          />
-        </div>
-      </div>
+          </div>
+        </>
+      ) : (
+        <Loading />
+      )}
     </StyledSection>
   );
 };
