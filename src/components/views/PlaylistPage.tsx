@@ -188,7 +188,7 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
     }
 
     setPlaylists(playlist);
-  }, []);
+  }, [params.id]);
 
   const isPlaying = current.playlist?.id === playlist?.id && current.isPlaying;
   const color = useImageColor(playlist?.playlistURL);

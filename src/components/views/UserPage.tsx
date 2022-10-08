@@ -137,7 +137,7 @@ const UserPage = ({ current, onPlay }: UserPageProps) => {
 
     setUserPlaylists(userPlaylists);
     setUser(user);
-  }, []);
+  }, [params.id]);
 
   return (
     <StyledSection color={color}>

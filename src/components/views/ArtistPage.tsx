@@ -211,7 +211,7 @@ const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
 
     setArtist(artist);
     setArtistsPlaylists(artistPlaylists);
-  }, []);
+  }, [params.id]);
 
   return (
     <StyledSection bgImg={artist?.bgImg}>
