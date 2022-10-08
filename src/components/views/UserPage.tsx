@@ -4,11 +4,17 @@ import styled, { css } from "styled-components";
 import users from "../../data/users.json";
 import playlists from "../../data/playlists.json";
 import PlaylistSection from "../sections/PlaylistSection";
-import { CurrentSongInterface } from "../../types/types";
+import {
+  CurrentSongInterface,
+  PlaylistInterface,
+  UserInterface,
+} from "../../types/types";
 import UserSection from "../sections/UserSection";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FollowButton from "../buttons/FollowButton";
 import useImageColor from "../../hooks/useImageColor";
+import { useEffect, useState } from "react";
+import Loading from "../Loading";
 
 const StyledSection = styled.section<StyledProps>`
   width: 100%;
@@ -108,54 +114,78 @@ type StyledProps = {
 };
 
 const UserPage = ({ current, onPlay }: UserPageProps) => {
+  const [user, setUser] = useState<UserInterface>();
+  const [userPlaylists, setUserPlaylists] = useState<PlaylistInterface[]>();
   const params = useParams();
-  const user = users.find((user) => user.id.toString() === params.id);
+  const navigate = useNavigate();
   const color = useImageColor(user?.img);
-  const playlist = playlists.filter(
-    (playlist) => playlist.author.id.toString() === params.id
-  );
+
+  // Loading data from JSON (could be API call)
+  useEffect(() => {
+    // Getting user from JSON file by param id
+    const user = users.find((user) => user.id.toString() === params.id);
+
+    // If user does not exist then redirect to notfound path
+    if (!user) {
+      navigate("/notfound", { replace: true });
+    }
+
+    // Getting playlist from JSON file by param id
+    const userPlaylists = playlists.filter(
+      (playlist) => playlist.author.id.toString() === params.id
+    );
+
+    setUserPlaylists(userPlaylists);
+    setUser(user);
+  }, []);
 
   return (
     <StyledSection color={color}>
-      <div className="user-header">
-        <img className="user-avatar" src={user?.img} alt="User avatar" />
-        <div className="user-info">
-          <div className="profile">
-            {user?.isVerified && (
-              <MdVerified size={"1.9em"} color={"#0c67d3"} />
+      {user ? (
+        <>
+          <div className="user-header">
+            <img className="user-avatar" src={user.img} alt="User avatar" />
+            <div className="user-info">
+              <div className="profile">
+                {user.isVerified && (
+                  <MdVerified size={"1.9em"} color={"#0c67d3"} />
+                )}
+                <span>PROFILE</span>
+              </div>
+              <h1 className="user-name">{user.name}</h1>
+              <div className="user-stats">
+                <span>{userPlaylists?.length} public playlists • </span>
+                <span>{user.followers.length} followers • </span>
+                <span>{user.following.length} following</span>
+              </div>
+            </div>
+          </div>
+          <div className="user-content">
+            <div className="user-buttons">
+              {user.id !== 1 && <FollowButton />}
+              <button>
+                <BsThreeDots size="1.55em" />
+              </button>
+            </div>
+            {userPlaylists && userPlaylists.length > 0 && (
+              <PlaylistSection
+                title={"Public playlists"}
+                playlists={userPlaylists}
+                current={current}
+                onPlay={onPlay}
+              />
             )}
-            <span>PROFILE</span>
+            {user.following.length > 0 && (
+              <UserSection title={"Following"} users={user.following} />
+            )}
+            {user.followers.length > 0 && (
+              <UserSection title={"Followers"} users={user.followers} />
+            )}
           </div>
-          <h1 className="user-name">{user?.name}</h1>
-          <div className="user-stats">
-            <span>{playlist.length} public playlists • </span>
-            <span>{user?.followers.length} followers • </span>
-            <span>{user?.following.length} following</span>
-          </div>
-        </div>
-      </div>
-      <div className="user-content">
-        <div className="user-buttons">
-          {user?.id !== 1 && <FollowButton />}
-          <button>
-            <BsThreeDots size="1.55em" />
-          </button>
-        </div>
-        {playlist && playlist.length > 0 && (
-          <PlaylistSection
-            title={"Public playlists"}
-            playlists={playlist}
-            current={current}
-            onPlay={onPlay}
-          />
-        )}
-        {user && user?.following.length > 0 && (
-          <UserSection title={"Following"} users={user.following} />
-        )}
-        {user && user?.followers.length > 0 && (
-          <UserSection title={"Followers"} users={user.followers} />
-        )}
-      </div>
+        </>
+      ) : (
+        <Loading />
+      )}
     </StyledSection>
   );
 };

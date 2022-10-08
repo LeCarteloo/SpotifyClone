@@ -8,7 +8,8 @@
     "bgImg": "https://i.scdn.co/image/ab67618600001016db6a510c647f79e3a4ce544d",
     "pinnedPlaylist": {
       "id": 103,
-      "name": "Linkin Park Complete Playlist"
+      "name": "Linkin Park Complete Playlist",
+      "img": "https://i.scdn.co/image/ab67706c0000bebb8722d6809d0169e9d9eddc5d"
     },
     "albums": [
       {
@@ -25,7 +26,7 @@
             },
             "album": "Hybrid Theory",
             "date": "2020-01-09T18:25:43.511Z",
-            "songURL": "https://via.placeholder.com/200",
+            "songURL": "https://i.scdn.co/image/ab67616d00001e02e2f039481babe23658fc719a",
             "duration": 194,
             "plays": 53318831,
             "isLiked": false
@@ -63,7 +64,7 @@
             },
             "album": "Teardrops",
             "date": "2020-01-09T18:25:43.511Z",
-            "songURL": "https://via.placeholder.com/200",
+            "songURL": "https://i.scdn.co/image/ab67616d000048517c2b1dc1639152beaeadf00d",
             "duration": 215,
             "plays": 53318831,
             "isLiked": true

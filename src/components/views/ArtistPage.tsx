@@ -3,13 +3,20 @@ import { MdVerified } from "react-icons/md";
 import PlayButton from "../buttons/PlayButton";
 import FollowButton from "../buttons/FollowButton";
 import MoreButton from "../buttons/MoreButton";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import PlaylistRow from "../playlist/PlaylistRow";
 import PlaylistSection from "../sections/PlaylistSection";
-import { CurrentSongInterface } from "../../types/types";
+import {
+  ArtistInterface,
+  CurrentSongInterface,
+  PlaylistInterface,
+  SongListType,
+} from "../../types/types";
 import artists from "../../data/artists.json";
 import playlists from "../../data/playlists.json";
 import UserSection from "../sections/UserSection";
+import { useEffect, useState } from "react";
+import Loading from "../Loading";
 
 const StyledSection = styled.section<StyledProps>`
   img {
@@ -154,6 +161,11 @@ const StyledSection = styled.section<StyledProps>`
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          a {
+            text-decoration: none;
+            color: var(--text-base);
+            ${({ theme }) => theme.mixins.underlineHover}
+          }
         }
         .posted {
           display: flex;
@@ -181,136 +193,158 @@ interface ArtistPageProps {
 }
 
 const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
+  const [artist, setArtist] = useState<ArtistInterface>();
+  const [artistPlaylists, setArtistsPlaylists] =
+    useState<PlaylistInterface[]>();
   const params = useParams();
-  const artist = artists.find((artist) => artist.id.toString() === params.id);
-  const artistPlaylists = playlists.filter(
-    (playlist) => playlist.author.username === artist?.name
-  );
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const artist = artists.find((artist) => artist.id.toString() === params.id);
+    const artistPlaylists = playlists.filter(
+      (playlist) => playlist.author.username === artist?.name
+    );
+
+    if (!artist) {
+      navigate("/notfound");
+    }
+
+    setArtist(artist);
+    setArtistsPlaylists(artistPlaylists);
+  }, []);
 
   return (
     <StyledSection bgImg={artist?.bgImg}>
-      <div className="artist-img"></div>
-      <div className="artist-header">
-        <div>
-          {artist?.isVerified ? (
-            <>
-              <MdVerified size={"1.5em"} color={"#0c67d3"} />
-              <span>Verified artist</span>
-            </>
-          ) : (
-            <span>Artist</span>
-          )}
-        </div>
-        <h1 className="artist-name">{artist?.name}</h1>
-        <span className="artist-listeners">
-          {artist?.listeners.toLocaleString()} monthly listeners
-        </span>
-      </div>
-      <div className="artist-content">
-        <div className="artist-controls">
-          <PlayButton
-            isPlaying={
-              current.isPlaying &&
-              current.song?.artist.id === artist?.id &&
-              current.playlist === undefined
-            }
-            onClick={() =>
-              onPlay({
-                isPlaying: !(
+      {artist ? (
+        <>
+          <div className="artist-img"></div>
+          <div className="artist-header">
+            <div>
+              {artist?.isVerified ? (
+                <>
+                  <MdVerified size={"1.5em"} color={"#0c67d3"} />
+                  <span>Verified artist</span>
+                </>
+              ) : (
+                <span>Artist</span>
+              )}
+            </div>
+            <h1 className="artist-name">{artist?.name}</h1>
+            <span className="artist-listeners">
+              {artist?.listeners.toLocaleString()} monthly listeners
+            </span>
+          </div>
+          <div className="artist-content">
+            <div className="artist-controls">
+              <PlayButton
+                isPlaying={
                   current.isPlaying &&
                   current.song?.artist.id === artist?.id &&
                   current.playlist === undefined
-                ),
-                song: artist?.albums[0].songList[0],
-                playlist: undefined,
-                currDuration:
-                  current.song?.artist.id === artist?.id
-                    ? current.currDuration
-                    : 0,
-              })
-            }
-            isGreen={true}
-            size="3.5em"
-          />
-          <FollowButton />
-          <MoreButton />
-        </div>
-        <div className="artist-popular">
-          <div>
-            <h2>Popular</h2>
-            <table>
-              <tbody>
-                {artist &&
-                  artist.albums[0].songList.map((song, i) => (
-                    <PlaylistRow
-                      key={i}
-                      rowNumber={i + 1}
-                      song={song}
-                      isPlaying={
-                        current.song?.id === song.id &&
-                        current.isPlaying &&
-                        current.song?.artist.id === artist.id &&
-                        current.playlist === undefined
-                      }
-                      isCurrentSong={
-                        current.song?.id === song.id &&
-                        current.song?.artist.id === artist.id &&
-                        current.playlist === undefined
-                      }
-                      onPlay={() =>
-                        onPlay({
-                          isPlaying: !(
+                }
+                onClick={() =>
+                  onPlay({
+                    isPlaying: !(
+                      current.isPlaying &&
+                      current.song?.artist.id === artist?.id &&
+                      current.playlist === undefined
+                    ),
+                    song: artist?.albums[0].songList[0],
+                    playlist: undefined,
+                    currDuration:
+                      current.song?.artist.id === artist?.id
+                        ? current.currDuration
+                        : 0,
+                  })
+                }
+                isGreen={true}
+                size="3.5em"
+              />
+              <FollowButton />
+              <MoreButton />
+            </div>
+            <div className="artist-popular">
+              <div>
+                <h2>Popular</h2>
+                <table>
+                  <tbody>
+                    {artist.albums[0].songList.map(
+                      (song: SongListType, i: number) => (
+                        <PlaylistRow
+                          key={i}
+                          rowNumber={i + 1}
+                          song={song}
+                          isPlaying={
                             current.song?.id === song.id &&
                             current.isPlaying &&
+                            current.song?.artist.id === artist.id &&
                             current.playlist === undefined
-                          ),
-                          song: song,
-                          playlist: undefined,
-                          currDuration:
-                            current.song?.id === song.id
-                              ? current.currDuration
-                              : 0,
-                        })
-                      }
-                    />
-                  ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="artist-pick">
-            <h2>Artist pick</h2>
-            <div className="pick-info">
-              <img src="https://via.placeholder.com/100" alt="Artist pick" />
-              <div className="pick-text">
-                <div className="posted">
-                  <img
-                    src="https://via.placeholder.com/100"
-                    alt="Artist avatar"
-                  />
-                  <span>Posted by Linkin Park</span>
-                </div>
-                <div>Linkin Park Complete Playlist</div>
-                <div>Playlist</div>
+                          }
+                          isCurrentSong={
+                            current.song?.id === song.id &&
+                            current.song?.artist.id === artist.id &&
+                            current.playlist === undefined
+                          }
+                          onPlay={() =>
+                            onPlay({
+                              isPlaying: !(
+                                current.song?.id === song.id &&
+                                current.isPlaying &&
+                                current.playlist === undefined
+                              ),
+                              song: song,
+                              playlist: undefined,
+                              currDuration:
+                                current.song?.id === song.id
+                                  ? current.currDuration
+                                  : 0,
+                            })
+                          }
+                        />
+                      )
+                    )}
+                  </tbody>
+                </table>
               </div>
+              {artist.pinnedPlaylist && (
+                <div className="artist-pick">
+                  <h2>Artist pick</h2>
+                  <div className="pick-info">
+                    <img src={artist.pinnedPlaylist.img} alt="Artist pick" />
+                    <div className="pick-text">
+                      <div className="posted">
+                        <img src={artist.img} alt="Artist avatar" />
+                        <span>Posted by {artist.name}</span>
+                      </div>
+                      <Link to={`/playlist/${artist.pinnedPlaylist.id}`}>
+                        {artist.pinnedPlaylist.name}
+                      </Link>
+                      <div>Playlist</div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
+            {artistPlaylists && artistPlaylists.length > 0 && (
+              <PlaylistSection
+                title={`Featuring ${artist.name}`}
+                playlists={artistPlaylists}
+                current={current}
+                onPlay={onPlay}
+              />
+            )}
+            {artist.otherArtists && artist.otherArtists.length > 0 && (
+              <UserSection
+                title={"Fans also likes"}
+                users={artist.otherArtists}
+                type="Artist"
+              />
+            )}
           </div>
-        </div>
-        {artistPlaylists.length > 0 && (
-          <PlaylistSection
-            title={`Featuring ${artist?.name}`}
-            playlists={artistPlaylists}
-            current={current}
-            onPlay={onPlay}
-          />
-        )}
-        {artist?.otherArtists && artist?.otherArtists.length > 0 && (
-          <UserSection
-            title={"Fans also likes"}
-            users={artist?.otherArtists}
-            type="Artist"
-          />
-        )}
-      </div>
+        </>
+      ) : (
+        <Loading />
+      )}
     </StyledSection>
   );
 };

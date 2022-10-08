@@ -175,6 +175,7 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
     setLiked(!liked);
   };
 
+  // Loading data from JSON (could be API call)
   useEffect(() => {
     // Getting playlist from JSON file by param id
     const playlist = playlists.find(
