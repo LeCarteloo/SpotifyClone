@@ -254,8 +254,8 @@ const PlaybarMobile = ({
               />
               <div className="nav-buttons">
                 <ShuffleButton
-                  isClicked={false}
-                  onClick={() => {}}
+                  isClicked={shuffle}
+                  onClick={onShuffle}
                   size={"1.5em"}
                 />
                 <div className="play-buttons">
@@ -274,8 +274,8 @@ const PlaybarMobile = ({
                   />
                 </div>
                 <RepeatButton
-                  repeatAmount={2}
-                  onClick={() => {}}
+                  repeatAmount={repeat}
+                  onClick={onRepeat}
                   size={"1.5em"}
                 />
               </div>

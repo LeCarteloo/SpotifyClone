@@ -17,7 +17,6 @@ import { formatPlaylistDuration } from "../../utility/formatDuration";
 import Loading from "../Loading";
 
 const StyledSection = styled.section<StyledProps>`
-  height: 100%;
   .playlist-header {
     ${({ theme }) => theme.mixins.sectionPadding}
     padding-bottom: 1.8em;

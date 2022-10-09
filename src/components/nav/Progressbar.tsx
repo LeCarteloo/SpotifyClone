@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import styled, { css } from "styled-components";
 
 type ProgressbarProps = {
@@ -42,6 +42,11 @@ const StyledDiv = styled.div<ProgressProps>`
         top: 50%;
         right: -7px;
         transform: translateY(-50%);
+        ${({ progress }) =>
+          !progress &&
+          css`
+            display: none;
+          `}
       }
     }
   }
