@@ -3,7 +3,7 @@ import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { BsChevronDown, BsList } from "react-icons/bs";
 import { FiSpeaker } from "react-icons/fi";
 import { TbMicrophone2 } from "react-icons/tb";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
 import ActionButton from "../buttons/ActionButton";
 import LikeButton from "../buttons/LikeButton";
@@ -169,6 +169,7 @@ const PlaybarMobile = ({
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
   const color = useImageColor(current.song?.songURL);
 
   const onLike = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -184,6 +185,26 @@ const PlaybarMobile = ({
     }
 
     setRepeat(repeat + 1);
+  };
+  const onLyrics = () => {
+    if (location.pathname.toString() === "/lyrics") {
+      navigate(-1);
+      setIsOpen(!isOpen);
+      return;
+    }
+
+    navigate("/lyrics");
+    setIsOpen(!isOpen);
+  };
+  const onQueue = () => {
+    if (location.pathname.toString() === "/queue") {
+      navigate(-1);
+      setIsOpen(!isOpen);
+      return;
+    }
+
+    navigate("/queue");
+    setIsOpen(!isOpen);
   };
 
   const onOpenMenu = (e: any) => {
@@ -288,12 +309,12 @@ const PlaybarMobile = ({
                   <ActionButton
                     isActive={location.pathname === "/lyrics"}
                     icon={<TbMicrophone2 size={"1.3em"} />}
-                    onClick={() => {}}
+                    onClick={onLyrics}
                   />
                   <ActionButton
-                    isActive={false}
+                    isActive={location.pathname === "/queue"}
                     icon={<BsList size={"1.5em"} />}
-                    onClick={() => {}}
+                    onClick={onQueue}
                   />
                 </div>
               </div>

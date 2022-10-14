@@ -33,7 +33,9 @@ const LibPlaylists = ({
           userPlaylists.map((playlist) => (
             <PlaylistBlock
               key={playlist.id}
-              isPlaying={current.playlist?.id === playlist.id}
+              isPlaying={
+                current.playlist?.id === playlist.id && current.isPlaying
+              }
               currDuration={0}
               playlist={playlist}
               onPlay={onPlay}
