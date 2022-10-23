@@ -4,12 +4,18 @@ type animEnum = "scale" | "opacity";
 
 interface ActionButtonProps {
   icon?: JSX.Element;
+  name: string;
   isActive?: boolean;
   animType?: animEnum;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const StyledButton = styled.button<ActionButtonProps>`
+type StyledProps = {
+  isActive?: boolean;
+  animType?: animEnum;
+};
+
+const StyledButton = styled.button<StyledProps>`
   ${({ animType }) =>
     animType === "opacity"
       ? css`
@@ -28,12 +34,18 @@ const StyledButton = styled.button<ActionButtonProps>`
 
 const ActionButton: React.FC<ActionButtonProps> = ({
   icon,
+  name,
   isActive,
   onClick,
   animType = "opacity",
 }) => {
   return (
-    <StyledButton onClick={onClick} animType={animType} isActive={isActive}>
+    <StyledButton
+      onClick={onClick}
+      animType={animType}
+      isActive={isActive}
+      aria-label={name}
+    >
       {icon}
     </StyledButton>
   );

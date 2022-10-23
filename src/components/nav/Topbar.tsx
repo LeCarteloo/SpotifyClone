@@ -149,10 +149,17 @@ const Topbar = () => {
         <StyledButton
           onClick={goBackward}
           disabled={location.key === "default"}
+          aria-disabled={location.key === "default"}
+          aria-label="navigate backward"
         >
           <BsChevronLeft size="1em" />
         </StyledButton>
-        <StyledButton onClick={goForward} disabled={true}>
+        <StyledButton
+          onClick={goForward}
+          disabled={true}
+          aria-disabled={true}
+          aria-label="navigate forward"
+        >
           <BsChevronRight size="1em" />
         </StyledButton>
       </div>

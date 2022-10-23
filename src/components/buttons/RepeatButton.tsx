@@ -39,7 +39,12 @@ const RepeatButton: React.FC<RepeatButtonProps> = ({
   onClick,
 }) => {
   return (
-    <StyledButton onClick={onClick} repeatAmount={repeatAmount} size={size}>
+    <StyledButton
+      onClick={onClick}
+      repeatAmount={repeatAmount}
+      size={size}
+      aria-label="repeat"
+    >
       <RiRepeatFill size={size} />
     </StyledButton>
   );

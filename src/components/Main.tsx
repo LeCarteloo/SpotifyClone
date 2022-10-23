@@ -40,6 +40,8 @@ const Main = ({
   favoritePlaylists,
 }: MainProps) => {
   const navigate = useNavigate();
+  console.log("refresh");
+
   return (
     <StyledMain>
       <Routes>

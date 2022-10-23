@@ -23,7 +23,7 @@ const ShuffleButton: React.FC<ShuffleButtonProps> = ({
   onClick,
 }) => {
   return (
-    <StyledButton onClick={onClick} isClicked={isClicked}>
+    <StyledButton onClick={onClick} isClicked={isClicked} aria-label="shuffle">
       <BiShuffle size={size} />
     </StyledButton>
   );

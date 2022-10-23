@@ -283,6 +283,7 @@ const PlaybarMobile = ({
                   <ActionButton
                     onClick={() => {}}
                     icon={<BiSkipPrevious size="3em" />}
+                    name="previous song"
                   />
                   <PlayButton
                     isPlaying={current.isPlaying}
@@ -292,6 +293,7 @@ const PlaybarMobile = ({
                   <ActionButton
                     onClick={() => {}}
                     icon={<BiSkipNext size="3em" />}
+                    name="next song"
                   />
                 </div>
                 <RepeatButton
@@ -304,17 +306,20 @@ const PlaybarMobile = ({
                 <ActionButton
                   icon={<FiSpeaker size={"1.3em"} />}
                   onClick={() => {}}
+                  name="connect to a device"
                 />
                 <div>
                   <ActionButton
                     isActive={location.pathname === "/lyrics"}
                     icon={<TbMicrophone2 size={"1.3em"} />}
                     onClick={onLyrics}
+                    name="go to lyrics"
                   />
                   <ActionButton
                     isActive={location.pathname === "/queue"}
                     icon={<BsList size={"1.5em"} />}
                     onClick={onQueue}
+                    name="go to queue"
                   />
                 </div>
               </div>

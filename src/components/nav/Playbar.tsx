@@ -162,13 +162,18 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
           <ActionButton
             onClick={onPrevSong}
             icon={<BiSkipPrevious size="2em" />}
+            name="previous song"
           />
           <PlayButton
             isPlaying={current.isPlaying}
             isDisabled={!current.song}
             onClick={onPlay}
           />
-          <ActionButton onClick={onNextSong} icon={<BiSkipNext size="2em" />} />
+          <ActionButton
+            onClick={onNextSong}
+            icon={<BiSkipNext size="2em" />}
+            name="next song"
+          />
           <RepeatButton repeatAmount={repeat} onClick={onRepeat} />
         </div>
         <Progressbar
@@ -183,18 +188,29 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
             isActive={location.pathname === "/lyrics"}
             icon={<TbMicrophone2 size={"1em"} />}
             onClick={onLyrics}
+            name="go to lyrics"
           />
         )}
         <ActionButton
           isActive={location.pathname === "/queue"}
           icon={<BsList size={"1.2em"} />}
           onClick={onQueue}
+          name="go to queue"
         />
-        <ActionButton icon={<FiSpeaker size={"1em"} />} onClick={onDevice} />
-        <ActionButton icon={<FiVolume2 size={"1em"} />} onClick={onVolume} />
+        <ActionButton
+          icon={<FiSpeaker size={"1em"} />}
+          onClick={onDevice}
+          name="connect to a device"
+        />
+        <ActionButton
+          icon={<FiVolume2 size={"1em"} />}
+          onClick={onVolume}
+          name="volume"
+        />
         <ActionButton
           icon={<MdOpenInFull size={"1em"} />}
           onClick={onFullScreen}
+          name="full screen"
         />
       </div>
     </StyledFooter>

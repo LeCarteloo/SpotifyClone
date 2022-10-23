@@ -54,6 +54,8 @@ const PlayButton = ({
       onClick={onPlay}
       isGreen={isGreen}
       disabled={isDisabled}
+      aria-disabled={isDisabled}
+      aria-label="play"
     >
       {isPlaying ? (
         hasBackground ? (
