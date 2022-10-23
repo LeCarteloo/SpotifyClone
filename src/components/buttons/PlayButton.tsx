@@ -1,5 +1,6 @@
 import { FaPlayCircle, FaPauseCircle, FaPlay, FaPause } from "react-icons/fa";
 import styled, { css } from "styled-components";
+import { CurrentSongInterface } from "../../types/types";
 
 type PlayButtonProps = {
   isPlaying: boolean;

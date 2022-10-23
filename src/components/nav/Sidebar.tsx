@@ -8,6 +8,7 @@ import React from "react";
 import PlaylistItem from "./PlaylistItem";
 import { CurrentSongInterface, PlaylistInterface } from "../../types/types";
 import { Link, NavLink } from "react-router-dom";
+import { useAppContext } from "../../context/AppContext";
 
 const StyledNav = styled.nav`
   grid-area: side-bar;
@@ -106,16 +107,12 @@ const StyledAside = styled.aside`
 `;
 
 type SidebarProps = {
-  current: CurrentSongInterface;
   playlists?: PlaylistInterface[];
-  onPlaylistPause: () => void;
 };
 
-const Sidebar: React.FC<SidebarProps> = ({
-  current,
-  playlists,
-  onPlaylistPause,
-}) => {
+const Sidebar: React.FC<SidebarProps> = ({ playlists }) => {
+  const { currentSong, onPlay } = useAppContext();
+
   return (
     <StyledNav>
       <StyledAside>
@@ -167,11 +164,13 @@ const Sidebar: React.FC<SidebarProps> = ({
                 id={playlist.id}
                 name={playlist.name}
                 isPlaying={
-                  current.playlist &&
-                  playlist.id === current.playlist!.id &&
-                  current.isPlaying
+                  currentSong.playlist &&
+                  playlist.id === currentSong.playlist!.id &&
+                  currentSong.isPlaying
                 }
-                onPause={onPlaylistPause}
+                onPause={() =>
+                  onPlay({ ...currentSong, isPlaying: !currentSong.isPlaying })
+                }
               />
             ))}
           </ul>

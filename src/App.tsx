@@ -12,6 +12,7 @@ import Topbar from "./components/nav/Topbar";
 import NavbarMobile from "./components/nav/NavbarMobile";
 import useIsMobile from "./hooks/useIsMobile";
 import PlaybarMobile from "./components/nav/PlaybarMobile";
+import { AppProvider } from "./context/AppContext";
 
 const StyledDiv = styled.div`
   height: 100%;
@@ -45,10 +46,6 @@ function App() {
     });
   };
 
-  const onPlaybarPlay = () => {
-    setCurrSong({ ...currSong, isPlaying: !currSong.isPlaying });
-  };
-
   const onProgressChange = (time: number) => {
     setCurrSong({ ...currSong, currDuration: time });
   };
@@ -64,35 +61,23 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Router>
-        <StyledDiv>
-          <Sidebar
-            current={currSong}
-            playlists={userPlaylists}
-            onPlaylistPause={onPlaybarPlay}
-          />
-          <Topbar />
-          <Main
-            current={currSong}
-            onPlay={onPlay}
-            userPlaylists={userPlaylists}
-            favoritePlaylists={favoritePlaylists}
-          />
-          <Playbar
-            current={currSong}
-            onPlay={onPlaybarPlay}
-            onProgressChange={onProgressChange}
-          />
-          {isMobile && currSong.song && (
-            <PlaybarMobile
-              current={currSong}
-              onPlay={onPlaybarPlay}
-              onProgressChange={onProgressChange}
+      <AppProvider currentSong={currSong} onPlay={onPlay}>
+        <Router>
+          <StyledDiv>
+            <Sidebar playlists={userPlaylists} />
+            <Topbar />
+            <Main
+              userPlaylists={userPlaylists}
+              favoritePlaylists={favoritePlaylists}
             />
-          )}
-          {isMobile && <NavbarMobile />}
-        </StyledDiv>
-      </Router>
+            <Playbar onProgressChange={onProgressChange} />
+            {isMobile && currSong.song && (
+              <PlaybarMobile onProgressChange={onProgressChange} />
+            )}
+            {isMobile && <NavbarMobile />}
+          </StyledDiv>
+        </Router>
+      </AppProvider>
     </ThemeProvider>
   );
 }

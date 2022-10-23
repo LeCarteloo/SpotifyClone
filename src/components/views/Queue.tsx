@@ -3,6 +3,7 @@ import { CurrentSongInterface } from "../../types/types";
 import LibNoData from "../library/LibNoData";
 import PlaylistRow from "../playlist/PlaylistRow";
 import { BsList } from "react-icons/bs";
+import { useAppContext } from "../../context/AppContext";
 
 const StyledSection = styled.section`
   ${({ theme }) => theme.mixins.sectionPadding}
@@ -17,15 +18,12 @@ const StyledTable = styled.table`
   margin-top: 0.5em;
 `;
 
-interface QueueProps {
-  current: CurrentSongInterface;
-  onPlay: (current: CurrentSongInterface) => void;
-}
+const Queue = () => {
+  const { currentSong, onPlay } = useAppContext();
 
-const Queue = ({ current, onPlay }: QueueProps) => {
   return (
     <StyledSection>
-      {current.song ? (
+      {currentSong.song ? (
         <>
           <h2>Queue</h2>
           <h4 className="title">Now playing</h4>
@@ -33,29 +31,29 @@ const Queue = ({ current, onPlay }: QueueProps) => {
             <tbody>
               <PlaylistRow
                 rowNumber={1}
-                song={current.song}
+                song={currentSong.song}
                 isCurrentSong={true}
-                isPlaying={current.isPlaying}
+                isPlaying={currentSong.isPlaying}
                 onPlay={() =>
                   onPlay({
-                    isPlaying: !current.isPlaying,
-                    playlist: current.playlist,
-                    song: current.song,
-                    currDuration: current.currDuration,
+                    isPlaying: !currentSong.isPlaying,
+                    playlist: currentSong.playlist,
+                    song: currentSong.song,
+                    currDuration: currentSong.currDuration,
                   })
                 }
               />
             </tbody>
           </StyledTable>
-          {current.playlist && current.playlist.songList.length > 1 && (
+          {currentSong.playlist && currentSong.playlist.songList.length > 1 && (
             <>
-              <h4 className="title">Next from: {current.playlist?.name}</h4>
+              <h4 className="title">Next from: {currentSong.playlist?.name}</h4>
               <StyledTable>
                 <tbody>
-                  {current.playlist.songList.map(
+                  {currentSong.playlist.songList.map(
                     (song, i) =>
-                      current.song &&
-                      song.id !== current?.song.id && (
+                      currentSong.song &&
+                      song.id !== currentSong?.song.id && (
                         <PlaylistRow
                           key={i}
                           rowNumber={i + 2}
@@ -65,7 +63,7 @@ const Queue = ({ current, onPlay }: QueueProps) => {
                           onPlay={() =>
                             onPlay({
                               isPlaying: true,
-                              playlist: current.playlist,
+                              playlist: currentSong.playlist,
                               song: song,
                               currDuration: 0,
                             })

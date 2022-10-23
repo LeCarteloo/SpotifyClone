@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
+import { useAppContext } from "../../context/AppContext";
+import { PlaylistInterface } from "../../types/types";
 import PlaylistBlock from "../blocks/PlaylistBlock";
 
 interface PlaylistSectionProps {
   title: string;
   playlists: PlaylistInterface[];
-  current: CurrentSongInterface;
-  onPlay: (current: CurrentSongInterface) => void;
 }
 
 const StyledSection = styled.section`
@@ -28,12 +27,9 @@ const StyledSection = styled.section`
     min-height: 100%;
   }
 `;
-const PlaylistSection = ({
-  title,
-  playlists,
-  current,
-  onPlay,
-}: PlaylistSectionProps) => {
+const PlaylistSection = ({ title, playlists }: PlaylistSectionProps) => {
+  const { currentSong, onPlay } = useAppContext();
+
   return (
     <StyledSection>
       <h2>{title}</h2>
@@ -42,10 +38,12 @@ const PlaylistSection = ({
           <PlaylistBlock
             key={playlist.id}
             isPlaying={
-              current.playlist?.id === playlist.id && current.isPlaying
+              currentSong.playlist?.id === playlist.id && currentSong.isPlaying
             }
             currDuration={
-              current.playlist?.id === playlist.id ? current.currDuration : 0
+              currentSong.playlist?.id === playlist.id
+                ? currentSong.currDuration
+                : 0
             }
             playlist={playlist}
             onPlay={onPlay}

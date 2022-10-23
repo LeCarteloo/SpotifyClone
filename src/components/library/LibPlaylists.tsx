@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import LikedTracksBlock from "../blocks/LikedTracksBlock";
 import PlaylistBlock from "../blocks/PlaylistBlock";
-import { PlaylistInterface, CurrentSongInterface } from "../../types/types";
+import { PlaylistInterface } from "../../types/types";
+import { useAppContext } from "../../context/AppContext";
 
 const StyledSection = styled.section`
   h2 {
@@ -14,16 +15,12 @@ const StyledSection = styled.section`
 `;
 
 interface LibPlaylistsProps {
-  current: CurrentSongInterface;
   userPlaylists: PlaylistInterface[];
-  onPlay: (current: CurrentSongInterface) => void;
 }
 
-const LibPlaylists = ({
-  current,
-  userPlaylists,
-  onPlay,
-}: LibPlaylistsProps) => {
+const LibPlaylists = ({ userPlaylists }: LibPlaylistsProps) => {
+  const { currentSong, onPlay } = useAppContext();
+
   return (
     <StyledSection>
       <h2>{"Playlists"}</h2>
@@ -34,7 +31,8 @@ const LibPlaylists = ({
             <PlaylistBlock
               key={playlist.id}
               isPlaying={
-                current.playlist?.id === playlist.id && current.isPlaying
+                currentSong.playlist?.id === playlist.id &&
+                currentSong.isPlaying
               }
               currDuration={0}
               playlist={playlist}

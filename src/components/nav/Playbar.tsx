@@ -13,12 +13,10 @@ import { TbMicrophone2 } from "react-icons/tb";
 import { MdOpenInFull } from "react-icons/md";
 import { BsList } from "react-icons/bs";
 
-import { CurrentSongInterface } from "../../types/types";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAppContext } from "../../context/AppContext";
 
 type PlaybarProps = {
-  current: CurrentSongInterface;
-  onPlay: () => void;
   onProgressChange: (time: number) => void;
 };
 
@@ -86,8 +84,9 @@ const StyledFooter = styled.footer`
   }
 `;
 
-const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
+const Playbar = ({ onProgressChange }: PlaybarProps) => {
   const [liked, setLiked] = useState(false);
+  const { currentSong, onPlay } = useAppContext();
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState(0);
 
@@ -140,17 +139,17 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
   return (
     <StyledFooter>
       <div className="song-current">
-        {current.song && (
+        {currentSong.song && (
           <>
             <img
-              src={current.song?.songURL}
+              src={currentSong.song?.songURL}
               alt="Song cover"
               width="50px"
               height="50px"
             />
             <div className="song-info">
-              <h4>{current.song?.name}</h4>
-              <h5>{current.song?.artist.username}</h5>
+              <h4>{currentSong.song?.name}</h4>
+              <h5>{currentSong.song?.artist.username}</h5>
             </div>
             <LikeButton isLiked={liked} onClick={onLike} />
           </>
@@ -165,9 +164,11 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
             name="previous song"
           />
           <PlayButton
-            isPlaying={current.isPlaying}
-            isDisabled={!current.song}
-            onClick={onPlay}
+            isPlaying={currentSong.isPlaying}
+            isDisabled={!currentSong.song}
+            onClick={() =>
+              onPlay({ ...currentSong, isPlaying: !currentSong.isPlaying })
+            }
           />
           <ActionButton
             onClick={onNextSong}
@@ -177,13 +178,13 @@ const Playbar = ({ current, onPlay, onProgressChange }: PlaybarProps) => {
           <RepeatButton repeatAmount={repeat} onClick={onRepeat} />
         </div>
         <Progressbar
-          currentTime={current.currDuration}
-          songTime={current.song ? current.song.duration : 0}
+          currentTime={currentSong.currDuration}
+          songTime={currentSong.song ? currentSong.song.duration : 0}
           onClick={onProgressChange}
         />
       </div>
       <div className="other-buttons">
-        {current.song && (
+        {currentSong.song && (
           <ActionButton
             isActive={location.pathname === "/lyrics"}
             icon={<TbMicrophone2 size={"1em"} />}

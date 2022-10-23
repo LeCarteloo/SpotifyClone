@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useAppContext } from "../../context/AppContext";
 import lyricsData from "../../data/songLyrics.json";
 
 const StyledSection = styled.section`
@@ -24,16 +25,15 @@ const StyledSection = styled.section`
   }
 `;
 
-type LyricsProps = {
-  songName: string | undefined;
-};
-
-const Lyrics = ({ songName }: LyricsProps) => {
+const Lyrics = () => {
+  const { currentSong } = useAppContext();
   const [lyrics, setLyrics] = useState<string[]>();
 
   // Sample data, could be API call
   useEffect(() => {
-    const lyrics = lyricsData.find((lyrics) => lyrics.name === songName);
+    const lyrics = lyricsData.find(
+      (lyrics) => lyrics.name === currentSong?.song?.name
+    );
     const separatedLyrics = lyrics?.lyrics.split("|");
     setLyrics(separatedLyrics);
   }, []);

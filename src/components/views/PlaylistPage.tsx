@@ -3,11 +3,7 @@ import styled, { css } from "styled-components";
 import LikeButton from "../buttons/LikeButton";
 import PlayButton from "../buttons/PlayButton";
 import { HiOutlinePencil } from "react-icons/hi";
-import {
-  CurrentSongInterface,
-  PlaylistInterface,
-  SongListType,
-} from "../../types/types";
+import { PlaylistInterface, SongListType } from "../../types/types";
 import playlists from "../../data/playlists.json";
 import Table from "../playlist/Table";
 import MoreButton from "../buttons/MoreButton";
@@ -15,6 +11,7 @@ import useImageColor from "../../hooks/useImageColor";
 import { useEffect, useMemo, useState } from "react";
 import { formatPlaylistDuration } from "../../utility/formatDuration";
 import Loading from "../Loading";
+import { useAppContext } from "../../context/AppContext";
 
 const StyledSection = styled.section<StyledProps>`
   .playlist-header {
@@ -139,17 +136,13 @@ const StyledSection = styled.section<StyledProps>`
   }
 `;
 
-interface PlaylistPageProps {
-  current: CurrentSongInterface;
-  onPlay: (current: CurrentSongInterface) => void;
-}
-
 type StyledProps = {
   color: string;
 };
 
-const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
+const PlaylistPage = () => {
   const [liked, setLiked] = useState(false);
+  const { currentSong, onPlay } = useAppContext();
   const [playlist, setPlaylists] = useState<PlaylistInterface>();
   const navigate = useNavigate();
   const params = useParams();
@@ -189,7 +182,8 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
     setPlaylists(playlist);
   }, [params.id]);
 
-  const isPlaying = current.playlist?.id === playlist?.id && current.isPlaying;
+  const isPlaying =
+    currentSong.playlist?.id === playlist?.id && currentSong.isPlaying;
   const color = useImageColor(playlist?.playlistURL);
 
   return (
@@ -238,12 +232,12 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
                     isPlaying: !isPlaying,
                     playlist: playlist,
                     song:
-                      current.playlist?.id === playlist.id
-                        ? current.song
+                      currentSong.playlist?.id === playlist.id
+                        ? currentSong.song
                         : playlist.songList[0],
                     currDuration:
-                      current.playlist?.id === playlist.id
-                        ? current.currDuration
+                      currentSong.playlist?.id === playlist.id
+                        ? currentSong.currDuration
                         : 0,
                   })
                 }
@@ -265,7 +259,7 @@ const PlaylistPage = ({ current, onPlay }: PlaylistPageProps) => {
                 </div> */}
               <Table
                 playlist={playlist}
-                current={current}
+                current={currentSong}
                 onPlay={onPlay}
                 isPlaying={isPlaying}
               />

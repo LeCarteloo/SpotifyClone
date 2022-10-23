@@ -11,8 +11,8 @@ import PlayButton from "../buttons/PlayButton";
 import RepeatButton from "../buttons/RepeatButton";
 import ShuffleButton from "../buttons/ShuffleButton";
 import Progressbar from "./Progressbar";
-import { CurrentSongInterface } from "../../types/types";
 import useImageColor from "../../hooks/useImageColor";
+import { useAppContext } from "../../context/AppContext";
 
 const StyledNav = styled.nav<StyleProps>`
   z-index: 10;
@@ -149,8 +149,6 @@ const StyledDiv = styled.div<StyleProps>`
 `;
 
 interface PlaybarMobileProps {
-  current: CurrentSongInterface;
-  onPlay: () => void;
   onProgressChange: (time: number) => void;
 }
 
@@ -159,18 +157,15 @@ type StyleProps = {
   color?: string;
 };
 
-const PlaybarMobile = ({
-  current,
-  onPlay,
-  onProgressChange,
-}: PlaybarMobileProps) => {
+const PlaybarMobile = ({ onProgressChange }: PlaybarMobileProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [liked, setLiked] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState(0);
+  const { currentSong, onPlay } = useAppContext();
   const location = useLocation();
   const navigate = useNavigate();
-  const color = useImageColor(current.song?.songURL);
+  const color = useImageColor(currentSong.song?.songURL);
 
   const onLike = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setLiked(!liked);
@@ -221,18 +216,23 @@ const PlaybarMobile = ({
       >
         <div className="playbar-wrapper">
           <div className="playbar-content">
-            <img src={current.song?.songURL} alt="Song cover" />
+            <img src={currentSong.song?.songURL} alt="Song cover" />
             <div className="song-nav">
               <div className="song-info">
-                <span>{current.song?.name}</span>
-                <span>{current.song?.artist.username}</span>
+                <span>{currentSong.song?.name}</span>
+                <span>{currentSong.song?.artist.username}</span>
               </div>
               <div className="song-buttons">
                 <LikeButton isLiked={liked} onClick={onLike} size="1.6em" />
                 <PlayButton
                   hasBackground={false}
-                  isPlaying={current.isPlaying}
-                  onClick={onPlay}
+                  isPlaying={currentSong.isPlaying}
+                  onClick={() =>
+                    onPlay({
+                      ...currentSong,
+                      isPlaying: !currentSong.isPlaying,
+                    })
+                  }
                   size="1.4em"
                 />
               </div>
@@ -244,13 +244,13 @@ const PlaybarMobile = ({
         {isOpen && (
           <div className="song-menu">
             <div className="menu-header">
-              {current.playlist && (
+              {currentSong.playlist && (
                 <Link
-                  to={`/playlist/${current.playlist.id}`}
+                  to={`/playlist/${currentSong.playlist.id}`}
                   className="menu-playlist"
                   onClick={onOpenMenu}
                 >
-                  {current.playlist.name}
+                  {currentSong.playlist.name}
                 </Link>
               )}
               <button className="close-btn" onClick={onOpenMenu}>
@@ -258,19 +258,19 @@ const PlaybarMobile = ({
               </button>
             </div>
             <div className="song-cover">
-              <img src={current.song?.songURL} alt="Song cover" />
+              <img src={currentSong.song?.songURL} alt="Song cover" />
             </div>
             <div className="song-info">
               <div>
-                <h1>{current.song?.name}</h1>
-                <h4>{current.song?.artist.username}</h4>
+                <h1>{currentSong.song?.name}</h1>
+                <h4>{currentSong.song?.artist.username}</h4>
               </div>
               <LikeButton isLiked={liked} onClick={onLike} size="1.6em" />
             </div>
             <div className="menu-nav">
               <Progressbar
-                currentTime={current.currDuration}
-                songTime={current.song ? current.song.duration : 0}
+                currentTime={currentSong.currDuration}
+                songTime={currentSong.song ? currentSong.song.duration : 0}
                 onClick={onProgressChange}
               />
               <div className="nav-buttons">
@@ -286,8 +286,13 @@ const PlaybarMobile = ({
                     name="previous song"
                   />
                   <PlayButton
-                    isPlaying={current.isPlaying}
-                    onClick={onPlay}
+                    isPlaying={currentSong.isPlaying}
+                    onClick={() =>
+                      onPlay({
+                        ...currentSong,
+                        isPlaying: !currentSong.isPlaying,
+                      })
+                    }
                     size={"3.5em"}
                   />
                   <ActionButton

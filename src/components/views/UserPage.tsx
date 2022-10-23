@@ -4,11 +4,7 @@ import styled, { css } from "styled-components";
 import users from "../../data/users.json";
 import playlists from "../../data/playlists.json";
 import PlaylistSection from "../sections/PlaylistSection";
-import {
-  CurrentSongInterface,
-  PlaylistInterface,
-  UserInterface,
-} from "../../types/types";
+import { PlaylistInterface, UserInterface } from "../../types/types";
 import UserSection from "../sections/UserSection";
 import { useNavigate, useParams } from "react-router-dom";
 import FollowButton from "../buttons/FollowButton";
@@ -104,16 +100,11 @@ const StyledSection = styled.section<StyledProps>`
   }
 `;
 
-interface UserPageProps {
-  current: CurrentSongInterface;
-  onPlay: (current: CurrentSongInterface) => void;
-}
-
 type StyledProps = {
   color: string;
 };
 
-const UserPage = ({ current, onPlay }: UserPageProps) => {
+const UserPage = () => {
   const [user, setUser] = useState<UserInterface>();
   const [userPlaylists, setUserPlaylists] = useState<PlaylistInterface[]>();
   const params = useParams();
@@ -171,8 +162,6 @@ const UserPage = ({ current, onPlay }: UserPageProps) => {
               <PlaylistSection
                 title={"Public playlists"}
                 playlists={userPlaylists}
-                current={current}
-                onPlay={onPlay}
               />
             )}
             {user.following.length > 0 && (

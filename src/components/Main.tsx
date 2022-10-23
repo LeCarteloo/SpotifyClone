@@ -14,10 +14,8 @@ import LibNoData from "./library/LibNoData";
 import { FaSpotify } from "react-icons/fa";
 
 interface MainProps {
-  current: CurrentSongInterface;
   userPlaylists: PlaylistInterface[];
   favoritePlaylists: PlaylistInterface[];
-  onPlay: (current: CurrentSongInterface) => void;
 }
 
 const StyledMain = styled.main`
@@ -33,14 +31,8 @@ const StyledMain = styled.main`
   }
 `;
 
-const Main = ({
-  current,
-  onPlay,
-  userPlaylists,
-  favoritePlaylists,
-}: MainProps) => {
+const Main = ({ userPlaylists, favoritePlaylists }: MainProps) => {
   const navigate = useNavigate();
-  console.log("refresh");
 
   return (
     <StyledMain>
@@ -49,8 +41,6 @@ const Main = ({
           path="/"
           element={
             <Home
-              current={current}
-              onPlay={onPlay}
               userPlaylists={userPlaylists}
               favoritePlaylists={favoritePlaylists}
             />
@@ -59,38 +49,14 @@ const Main = ({
         <Route path="/search" element={<Search />} />
         <Route
           path="/library/*"
-          element={
-            <Library
-              userPlaylists={userPlaylists}
-              current={current}
-              onPlay={onPlay}
-            />
-          }
+          element={<Library userPlaylists={userPlaylists} />}
         />
-        <Route
-          path="/playlist/:id"
-          element={<PlaylistPage current={current} onPlay={onPlay} />}
-        />
-        <Route
-          path="/genre/:id"
-          element={<GenrePage current={current} onPlay={onPlay} />}
-        />
-        <Route
-          path="/user/:id"
-          element={<UserPage current={current} onPlay={onPlay} />}
-        />
-        <Route
-          path="/artist/:id"
-          element={<ArtistPage current={current} onPlay={onPlay} />}
-        />
-        <Route
-          path="/lyrics"
-          element={<Lyrics songName={current.song?.name} />}
-        />
-        <Route
-          path="/queue"
-          element={<Queue current={current} onPlay={onPlay} />}
-        />
+        <Route path="/playlist/:id" element={<PlaylistPage />} />
+        <Route path="/genre/:id" element={<GenrePage />} />
+        <Route path="/user/:id" element={<UserPage />} />
+        <Route path="/artist/:id" element={<ArtistPage />} />
+        <Route path="/lyrics" element={<Lyrics />} />
+        <Route path="/queue" element={<Queue />} />
         <Route
           path="/notfound"
           element={

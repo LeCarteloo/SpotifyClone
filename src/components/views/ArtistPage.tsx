@@ -8,7 +8,6 @@ import PlaylistRow from "../playlist/PlaylistRow";
 import PlaylistSection from "../sections/PlaylistSection";
 import {
   ArtistInterface,
-  CurrentSongInterface,
   PlaylistInterface,
   SongListType,
 } from "../../types/types";
@@ -17,6 +16,7 @@ import playlists from "../../data/playlists.json";
 import UserSection from "../sections/UserSection";
 import { useEffect, useState } from "react";
 import Loading from "../Loading";
+import { useAppContext } from "../../context/AppContext";
 
 const StyledSection = styled.section<StyledProps>`
   img {
@@ -187,13 +187,9 @@ type StyledProps = {
   bgImg: string | undefined;
 };
 
-interface ArtistPageProps {
-  current: CurrentSongInterface;
-  onPlay: (current: CurrentSongInterface) => void;
-}
-
-const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
+const ArtistPage = () => {
   const [artist, setArtist] = useState<ArtistInterface>();
+  const { currentSong, onPlay } = useAppContext();
   const [artistPlaylists, setArtistsPlaylists] =
     useState<PlaylistInterface[]>();
   const params = useParams();
@@ -238,22 +234,22 @@ const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
             <div className="artist-controls">
               <PlayButton
                 isPlaying={
-                  current.isPlaying &&
-                  current.song?.artist.id === artist?.id &&
-                  current.playlist === undefined
+                  currentSong.isPlaying &&
+                  currentSong.song?.artist.id === artist?.id &&
+                  currentSong.playlist === undefined
                 }
                 onClick={() =>
                   onPlay({
                     isPlaying: !(
-                      current.isPlaying &&
-                      current.song?.artist.id === artist?.id &&
-                      current.playlist === undefined
+                      currentSong.isPlaying &&
+                      currentSong.song?.artist.id === artist?.id &&
+                      currentSong.playlist === undefined
                     ),
                     song: artist?.albums[0].songList[0],
                     playlist: undefined,
                     currDuration:
-                      current.song?.artist.id === artist?.id
-                        ? current.currDuration
+                      currentSong.song?.artist.id === artist?.id
+                        ? currentSong.currDuration
                         : 0,
                   })
                 }
@@ -275,28 +271,28 @@ const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
                           rowNumber={i + 1}
                           song={song}
                           isPlaying={
-                            current.song?.id === song.id &&
-                            current.isPlaying &&
-                            current.song?.artist.id === artist.id &&
-                            current.playlist === undefined
+                            currentSong.song?.id === song.id &&
+                            currentSong.isPlaying &&
+                            currentSong.song?.artist.id === artist.id &&
+                            currentSong.playlist === undefined
                           }
                           isCurrentSong={
-                            current.song?.id === song.id &&
-                            current.song?.artist.id === artist.id &&
-                            current.playlist === undefined
+                            currentSong.song?.id === song.id &&
+                            currentSong.song?.artist.id === artist.id &&
+                            currentSong.playlist === undefined
                           }
                           onPlay={() =>
                             onPlay({
                               isPlaying: !(
-                                current.song?.id === song.id &&
-                                current.isPlaying &&
-                                current.playlist === undefined
+                                currentSong.song?.id === song.id &&
+                                currentSong.isPlaying &&
+                                currentSong.playlist === undefined
                               ),
                               song: song,
                               playlist: undefined,
                               currDuration:
-                                current.song?.id === song.id
-                                  ? current.currDuration
+                                currentSong.song?.id === song.id
+                                  ? currentSong.currDuration
                                   : 0,
                             })
                           }
@@ -329,8 +325,6 @@ const ArtistPage = ({ current, onPlay }: ArtistPageProps) => {
               <PlaylistSection
                 title={`Featuring ${artist.name}`}
                 playlists={artistPlaylists}
-                current={current}
-                onPlay={onPlay}
               />
             )}
             {artist.otherArtists && artist.otherArtists.length > 0 && (

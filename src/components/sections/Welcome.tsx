@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import UserPlaylist from "../playlist/UserPlaylist";
-import { CurrentSongInterface, PlaylistInterface } from "../../types/types";
+import { PlaylistInterface } from "../../types/types";
+import { useAppContext } from "../../context/AppContext";
 
 interface WelcomeProps {
-  current: CurrentSongInterface;
   userPlaylists: PlaylistInterface[];
-  onPlay: (current: CurrentSongInterface) => void;
 }
 
 const StyledSection = styled.section`
@@ -23,9 +22,9 @@ const StyledSection = styled.section`
   }
 `;
 
-const Welcome = ({ current, userPlaylists, onPlay }: WelcomeProps) => {
+const Welcome = ({ userPlaylists }: WelcomeProps) => {
   const [msg, setMsg] = useState("");
-
+  const { currentSong, onPlay } = useAppContext();
   useEffect(() => {
     const today = new Date();
     if (today.getHours() < 18 && today.getHours() > 5) {
@@ -44,10 +43,12 @@ const Welcome = ({ current, userPlaylists, onPlay }: WelcomeProps) => {
           <UserPlaylist
             key={playlist.id}
             isPlaying={
-              current.playlist?.id === playlist.id && current.isPlaying
+              currentSong.playlist?.id === playlist.id && currentSong.isPlaying
             }
             currDuration={
-              current.playlist?.id === playlist.id ? current.currDuration : 0
+              currentSong.playlist?.id === playlist.id
+                ? currentSong.currDuration
+                : 0
             }
             playlist={playlist}
             onPlay={onPlay}
