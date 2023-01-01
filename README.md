@@ -119,4 +119,4 @@ To run this application you need to clone the repo, install npm packages and ins
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[app-screenshot]: https://i.imgur.com/Ti2tOze.png
+[app-screenshot]: https://i.imgur.com/NggD18w.png
